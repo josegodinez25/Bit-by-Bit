@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReservationPageControllerClass">
+   <children>
+      <ButtonBar layoutX="150.0" layoutY="6.0" prefHeight="150.0" prefWidth="1560.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="20.0">
+        <buttons>
+            <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="174.0" text="Return To Main" />
+            <Label text="Step 3: Payment Details" />
+            <Label text="*required fields" />
+        </buttons>
+      </ButtonBar>
+      <SplitPane dividerPositions="0.5" layoutX="757.0" layoutY="160.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="190.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TextField layoutX="156.0" layoutY="83.0" />
+                  <TextField layoutX="156.0" layoutY="139.0" />
+                  <TextField layoutX="156.0" layoutY="205.0" />
+                  <Label layoutX="217.0" layoutY="50.0" text="First Name*" />
+                  <Label layoutX="217.0" layoutY="116.0" text="Last Name*" />
+                  <Label layoutX="217.0" layoutY="181.0" text="E-Mail Address" />
+                  <Label layoutX="217.0" layoutY="240.0" text="Phone number*" />
+                  <TextField layoutX="174.0" layoutY="271.0" />
+                  <Label layoutX="40.0" layoutY="14.0" text="Step 1: Your details" />
+                  <Label layoutX="40.0" layoutY="42.0" text="*required fields" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="46.0" layoutY="21.0" text="Step 2: Property Details" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <SplitPane dividerPositions="0.5" layoutX="1133.0" layoutY="234.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="1000.0" AnchorPane.rightAnchor="190.0" AnchorPane.topAnchor="190.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Step 3: Reservation card details" />
+                  <Label layoutX="13.0" layoutY="33.0" text="*required fields" />
+                  <Label layoutX="14.0" layoutY="66.0" text="First Name*" />
+                  <TextField layoutX="14.0" layoutY="83.0" />
+                  <Label layoutX="15.0" layoutY="115.0" text="Last Name*" />
+                  <TextField layoutX="14.0" layoutY="132.0" />
+                  <Label layoutX="14.0" layoutY="165.0" text="Card number*" />
+                  <TextField layoutX="14.0" layoutY="182.0" />
+                  <Label layoutX="17.0" layoutY="216.0" text="Expiration date*" />
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
