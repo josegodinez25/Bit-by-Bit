@@ -12,24 +12,23 @@
       <ButtonBar layoutX="150.0" layoutY="6.0" prefHeight="150.0" prefWidth="1560.0" AnchorPane.leftAnchor="175.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="20.0">
         <buttons>
             <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="174.0" text="Return To Main" />
-            <Label text="Step 3: Payment Details" />
-            <Label text="*required fields" />
+            <Button mnemonicParsing="false" onAction="#switchToSearchScene" prefHeight="175.0" prefWidth="98.0" text="Search for a different room" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
         </buttons>
       </ButtonBar>
       <SplitPane dividerPositions="0.5" layoutX="757.0" layoutY="160.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="190.0" AnchorPane.leftAnchor="190.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="190.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <TextField layoutX="156.0" layoutY="83.0" />
-                  <TextField layoutX="156.0" layoutY="139.0" />
-                  <TextField layoutX="156.0" layoutY="205.0" />
-                  <Label layoutX="217.0" layoutY="50.0" text="First Name*" />
-                  <Label layoutX="217.0" layoutY="116.0" text="Last Name*" />
-                  <Label layoutX="217.0" layoutY="181.0" text="E-Mail Address" />
-                  <Label layoutX="217.0" layoutY="240.0" text="Phone number*" />
-                  <TextField layoutX="174.0" layoutY="271.0" />
-                  <Label layoutX="40.0" layoutY="14.0" text="Step 1: Your details" />
-                  <Label layoutX="40.0" layoutY="42.0" text="*required fields" />
+                  <TextField layoutX="14.0" layoutY="84.0" />
+                  <TextField layoutX="14.0" layoutY="133.0" />
+                  <TextField layoutX="14.0" layoutY="182.0" />
+                  <Label layoutX="14.0" layoutY="59.0" text="First Name*" />
+                  <Label layoutX="15.0" layoutY="116.0" text="Last Name*" />
+                  <Label layoutX="15.0" layoutY="165.0" text="E-mail address*" />
+                  <Label layoutX="13.0" layoutY="214.0" text="Phone number*" />
+                  <TextField layoutX="14.0" layoutY="231.0" />
+                  <Label layoutX="14.0" layoutY="14.0" text="Step 1: Your details" />
+                  <Label layoutX="14.0" layoutY="31.0" text="*required fields" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -52,8 +51,19 @@
                   <Label layoutX="14.0" layoutY="165.0" text="Card number*" />
                   <TextField layoutX="14.0" layoutY="182.0" />
                   <Label layoutX="17.0" layoutY="216.0" text="Expiration date*" />
+                  <TextField layoutX="14.0" layoutY="233.0" prefHeight="25.0" prefWidth="30.0" />
+                  <Label layoutX="49.0" layoutY="233.0" prefHeight="25.0" prefWidth="13.0" text="/" textAlignment="JUSTIFY" />
+                  <TextField layoutX="62.0" layoutY="233.0" prefHeight="25.0" prefWidth="30.0" />
+                  <Label layoutX="340.0" layoutY="115.0" text="Zip code*" />
+                  <Label layoutX="340.0" layoutY="66.0" text="Country*" />
+                  <TextField layoutX="340.0" layoutY="83.0" />
+                  <TextField layoutX="340.0" layoutY="132.0" />
                </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="12.0" layoutY="17.0" text="Step 4: Confirm and review" />
+                  <Button layoutX="593.0" layoutY="307.0" mnemonicParsing="false" text="Confirm transaction" />
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </children>
