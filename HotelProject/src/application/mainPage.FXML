@@ -16,18 +16,18 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPageControllerClass">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPageControllerClass">
    <children>
-      <BorderPane layoutX="-14.0" layoutY="225.0" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane prefHeight="768.0" prefWidth="1366.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
-            <HBox prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: #332E2E;" BorderPane.alignment="CENTER">
+            <HBox prefHeight="100.0" prefWidth="1366.0" style="-fx-background-color: #332E2E;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../ImageFolder/HotelLogo.jpg" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../ImageFolder/icons/icons8-hotel-96.png" />
                      </image>
@@ -36,14 +36,14 @@
             </HBox>
          </top>
          <left>
-            <VBox prefHeight="800.0" prefWidth="150.0" style="-fx-background-color: #332E2E;" BorderPane.alignment="CENTER">
+            <VBox prefHeight="618.0" prefWidth="100.0" style="-fx-background-color: #332E2E;" BorderPane.alignment="CENTER">
                <children>
                   <Label alignment="TOP_CENTER" prefHeight="92.0" prefWidth="303.0" text="text" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Label alignment="TOP_CENTER" prefHeight="92.0" prefWidth="303.0" text="text" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
+                  <Label alignment="TOP_CENTER" prefHeight="92.0" prefWidth="100.0" text="text" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -57,11 +57,11 @@
                </children></VBox>
          </left>
          <right>
-            <VBox prefHeight="800.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+            <VBox prefHeight="668.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../ImageFolder/icons/icons8-review-100.png" />
                            </image>
@@ -69,9 +69,9 @@
                               <Insets top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                      <Button mnemonicParsing="false" opacity="0.75" prefHeight="30.0" prefWidth="250.0" style="-fx-background-color: #332E2E; -fx-background-radius: 15;" text="Review your Reservation" textFill="WHITE">
+                      <Button mnemonicParsing="false" opacity="0.75" prefHeight="30.0" prefWidth="183.0" style="-fx-background-color: #332E2E; -fx-background-radius: 15;" text="Review your Reservation" textFill="WHITE">
                            <font>
-                              <Font name="SansSerif Regular" size="18.0" />
+                              <Font name="SansSerif Regular" size="14.0" />
                            </font>
                            <HBox.margin>
                               <Insets top="20.0" />
@@ -83,7 +83,7 @@
                      <children>
                         <Button mnemonicParsing="false" opacity="0.75" prefHeight="50.0" prefWidth="234.0" style="-fx-background-color: White; -fx-background-radius: 15;" text="Cancel your Reservation" textAlignment="CENTER">
                            <font>
-                              <Font name="System Bold" size="18.0" />
+                              <Font name="System Bold" size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -92,7 +92,7 @@
                      <children>
                         <Button mnemonicParsing="false" opacity="0.75" prefHeight="23.0" prefWidth="225.0" style="-fx-background-radius: 15; -fx-background-color: White;" text="Change your Reservation" wrapText="true">
                            <font>
-                              <Font size="18.0" />
+                              <Font size="14.0" />
                            </font>
                         </Button>
                      </children>
@@ -100,9 +100,9 @@
                </children></VBox>
          </right>
          <bottom>
-            <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="1920.0" BorderPane.alignment="CENTER">
+            <HBox nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="1366.0" BorderPane.alignment="CENTER">
                <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#322e2e" height="50.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#322e2e" height="50.0" stroke="BLACK" strokeType="INSIDE" width="100.0" />
                   <ImageView fitHeight="26.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../ImageFolder/icons/icons8-id-100.png" />
@@ -132,25 +132,27 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="608.0" fitWidth="1056.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <ImageView fitHeight="441.0" fitWidth="759.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <image>
                         <Image url="@../../ImageFolder/download-modified.png" />
                      </image>
                   </ImageView>
-                  <ButtonBar prefHeight="150.0" prefWidth="1560.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <ButtonBar prefHeight="150.0" prefWidth="1560.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#switchToSearchScene" opacity="0.75" prefHeight="42.0" prefWidth="201.0" style="-fx-background-radius: 15; -fx-background-color: White;" text="Search for a room" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font name="SansSerif Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </buttons></ButtonBar>
                   <Label alignment="TOP_CENTER" prefHeight="92.0" prefWidth="303.0" text="text" textAlignment="JUSTIFY" textFill="WHITE" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <Button mnemonicParsing="false" onAction="#switchToReservationScene" opacity="0.75" prefHeight="45.0" prefWidth="217.0" style="-fx-background-radius: 15; -fx-background-color: White;" text="Make a Reservation" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                  <Button mnemonicParsing="false" onAction="#switchToReservationScene" opacity="0.75" prefHeight="45.0" prefWidth="217.0" style="-fx-background-radius: 15; -fx-background-color: White;" text="Make a Reservation" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="4" GridPane.rowIndex="2">
                      <font>
-                        <Font name="System Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#switchToSearchScene" opacity="0.75" prefHeight="42.0" prefWidth="201.0" style="-fx-background-radius: 15; -fx-background-color: White;" text="Search for a room" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <font>
-                        <Font name="SansSerif Bold" size="18.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
                </children>
