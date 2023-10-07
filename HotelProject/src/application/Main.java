@@ -16,7 +16,7 @@ public class Main extends Application {
 		//Group root = new Group();
 		try {
 		Parent root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		Image topIcon = new Image("Hotel_Logo.jpg");	
+		Image topIcon = new Image("topLeftLogo.png");	
 		Scene mainScreenScene = new Scene(root);	
 		//Stage mainScreen = new Stage();
 		
@@ -25,7 +25,7 @@ public class Main extends Application {
 		//resize true or false
 		//stage.serResizable(false);
 		stage.getIcons().add(topIcon);
-		stage.setTitle("CHANGE TITLE");
+		stage.setTitle("Asylum Hotel Reservation System");
 		stage.setScene(mainScreenScene);
 		stage.show();
 		}
