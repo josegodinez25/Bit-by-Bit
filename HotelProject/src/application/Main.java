@@ -20,8 +20,8 @@ public class Main extends Application {
 		Scene mainScreenScene = new Scene(root);	
 		//Stage mainScreen = new Stage();
 		
-		stage.setWidth(1366);
-		stage.setHeight(768);
+		//stage.setWidth(1366);
+		//stage.setHeight(768);
 		//resize true or false
 		//stage.serResizable(false);
 		stage.getIcons().add(topIcon);
@@ -35,6 +35,7 @@ public class Main extends Application {
 }
 	public static void main(String[] args) {
 		Application.launch(args);
+		
 		
 	}
 }

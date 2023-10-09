@@ -8,12 +8,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ReservationPageControllerClass {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	
 	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
@@ -31,4 +33,9 @@ public class ReservationPageControllerClass {
 			stage.setScene(scene);
 			stage.show();
 	}	
+	
+	@FXML
+	public void test(ActionEvent event) throws IOException {
+	
+	}
 }
