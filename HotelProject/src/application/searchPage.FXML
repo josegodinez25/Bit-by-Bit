@@ -292,7 +292,7 @@
                                           </HBox>
                                           <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                                              <children>
-                                                <Label prefHeight="131.0" prefWidth="286.0" text="\\$1000" textAlignment="RIGHT" wrapText="true">
+                                                <Label prefHeight="131.0" prefWidth="286.0" text="\$1000" textAlignment="RIGHT" wrapText="true">
                                                    <font>
                                                       <Font name="SansSerif Regular" size="24.0" />
                                                    </font>
