@@ -13,6 +13,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ReadWriteExcel {
 
+	public static void main(String[]args) {
+		ReadWriteExcel obj = new ReadWriteExcel();
+		obj.WriteExcel("Customers", 0, 5, "ID");
+	}
+	
 	public String ReadExcel(String SheetName, int rNum, int cNum) {
 		String data = "";
 		try {

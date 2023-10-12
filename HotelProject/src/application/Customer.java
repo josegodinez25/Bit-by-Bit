@@ -1,20 +1,35 @@
 package application;
 
 public class Customer {
-
-	public void inputUserDetail(String FirstName, String LastName, String Email, String PhoneNumber) {
+	String firstName;
+	String lastName;
+	String email;
+	String phoneNumber;
+	String ID;
+	
+	
+	Customer(String firstName,String lastName, String email, String phoneNumber){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		ID = "";
+	}
+	
+	public void inputUserDetail() {
 
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int CustomerCount = 1;
-
+		//checks if the cell is empty
 		while (obj.isNull(CustomerCount, 1) == false) {
 			CustomerCount++;
 		}
-
-		obj.WriteExcel("Customers", CustomerCount, 1, FirstName);
-		obj.WriteExcel("Customers", CustomerCount, 2, LastName);
-		obj.WriteExcel("Customers", CustomerCount, 3, Email);
-		obj.WriteExcel("Customers", CustomerCount, 4, PhoneNumber);
+		//if the cell is empty then write the info in excel
+		obj.WriteExcel("Customers", CustomerCount, 1, firstName);
+		obj.WriteExcel("Customers", CustomerCount, 2, lastName);
+		obj.WriteExcel("Customers", CustomerCount, 3, email);
+		obj.WriteExcel("Customers", CustomerCount, 4, phoneNumber);
+		obj.WriteExcel("Customers", CustomerCount, 5, ID);
 
 	}
 }

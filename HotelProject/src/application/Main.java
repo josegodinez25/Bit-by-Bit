@@ -32,9 +32,11 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) {
-		Customer cus = new Customer();
-		cus.inputUserDetail("Nathan", "Wahba", "nwahba02", "123");
+		Reserve res = new Reserve();
+		//we will change these values with the data we get from the GUI
+		Customer cus = new Customer("Nathan","Wahba","nwahba02","123");
+		Room rom  = new Room ("101","single","open","115");
+		res.reserveRoom(rom, cus);
 		Application.launch(args);
-
 	}
 }
