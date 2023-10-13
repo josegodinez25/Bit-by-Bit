@@ -113,7 +113,7 @@
                      <children>
                         <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../Downloads/icons8-edit-property-96.png" />
+                              <Image url="@../../ImageFolder/icons8-edit-property-96.png" />
                            </image>
                         </ImageView>
                         <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.75" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #332E2E; -fx-background-radius: 15;" text="Change  Reservation" textFill="WHITE">
