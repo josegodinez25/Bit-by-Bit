@@ -133,6 +133,10 @@ public class ReservationPageControllerClass {
 		
 		//there should be some sort of call here to a function in the customer class so the information can be stored on the excel file
 		
+		Reserve res = new Reserve();
+		Room rom  = new Room ("101","single","open","115");
+		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber);
+		res.reserveRoom(rom, cus);
 		//Temporarily returns the user to the main screen on success until we make a reservation review scene
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

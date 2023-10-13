@@ -1,6 +1,9 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -31,12 +34,7 @@ public class Main extends Application {
 		}
 	}
 
-	public static void main(String[] args) {
-		Reserve res = new Reserve();
-		//we will change these values with the data we get from the GUI
-		Customer cus = new Customer("Nathan","Wahba","nwahba02","123");
-		Room rom  = new Room ("101","single","open","115");
-		res.reserveRoom(rom, cus);
+	public static void main(String[] args) throws IOException {
 		Application.launch(args);
 	}
 }
