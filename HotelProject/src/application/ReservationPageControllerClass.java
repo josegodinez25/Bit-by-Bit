@@ -177,7 +177,8 @@ public class ReservationPageControllerClass {
 		//add reservationRoomType reservationCheckIn and reservationCheckOut
 		Reserve res = new Reserve();
 		Room rom  = new Room ("101","single","open","115");
-		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber);
+		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber,reservationCardFirstName,reservationCardLastName,
+                reservationCardPaymentNumber,reservationCardExpMonth,reservationCardZipcode,reservationCardCountry);
 		res.reserveRoom(rom, cus);
 		//Temporarily returns the user to the main screen on success until we make a reservation review scene
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
