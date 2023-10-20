@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -17,6 +20,9 @@ public class ReservationPageControllerClass {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	LocalDate reservationCheckIn;
+	LocalDate reservationCheckOut;
+	
 	
 	@FXML
 	private TextField firstNameTextField;
@@ -48,6 +54,11 @@ public class ReservationPageControllerClass {
 	private Label cardDateError;
 	@FXML
 	private Label cardZipError;
+	@FXML 
+	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
+	@FXML
+	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
+	
 	
 	//The user input from the reservation page will be saved to these variables
 	String reservationFirstName;
@@ -61,7 +72,7 @@ public class ReservationPageControllerClass {
 	int reservationCardExpYear;
 	String reservationCardCountry;
 	int reservationCardZipcode;
-	
+	String reservationRoomType;
 	
 	
 	@FXML
@@ -80,6 +91,37 @@ public class ReservationPageControllerClass {
 			stage.setScene(scene);
 			stage.show();
 	}	
+	
+	@FXML
+	public void setRoomType(ActionEvent event) {
+		if(reservationPageSingle.isSelected()) {
+			reservationRoomType = "Single";
+		}
+		else if(reservationPageDouble.isSelected()) {
+			reservationRoomType = "Double";
+		}
+        else if(reservationPageKing.isSelected()) {
+        	reservationRoomType = "King";
+		}
+        else if(reservationPageSuite.isSelected()) {
+        	reservationRoomType = "Suite";
+        }
+		//test to check if this method works by printing to console
+		//System.out.println(reservationRoomType);
+	}
+	
+	@FXML
+	public void setReservationCheckIn(ActionEvent event) {
+		reservationCheckIn = reservationPageCheckIn.getValue();
+		//test to check if this method works by printing to console
+		System.out.println(reservationCheckIn.toString());
+	}
+	@FXML
+	public void setReservationCheckOut(ActionEvent event) {
+		reservationCheckOut = reservationPageCheckOut.getValue();
+		//test to check if this method works by printing to console
+		System.out.println(reservationCheckOut.toString());
+	}
 	
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
@@ -132,7 +174,7 @@ public class ReservationPageControllerClass {
 		//System.out.println(reservationCardZipcode);
 		
 		//there should be some sort of call here to a function in the customer class so the information can be stored on the excel file
-		
+		//add reservationRoomType reservationCheckIn and reservationCheckOut
 		Reserve res = new Reserve();
 		Room rom  = new Room ("101","single","open","115");
 		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber,reservationCardFirstName,reservationCardLastName,
