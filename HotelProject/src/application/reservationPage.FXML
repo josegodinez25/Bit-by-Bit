@@ -2,9 +2,12 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -97,7 +100,38 @@
                                        <children>
                                           <HBox layoutX="170.0" layoutY="75.0" prefHeight="249.0" prefWidth="599.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
-                                                <Label text="Step 2: Property Details" />
+                                                <VBox prefHeight="250.0" prefWidth="138.0">
+                                                   <children>
+                                                      <Label text="Step 2: Property Details" />
+                                                      <Label />
+                                                      <RadioButton fx:id="reservationPageSingle" mnemonicParsing="false" onAction="#setRoomType" text="Single">
+                                                         <toggleGroup>
+                                                            <ToggleGroup fx:id="Room" />
+                                                         </toggleGroup></RadioButton>
+                                                      <Label />
+                                                      <RadioButton fx:id="reservationPageDouble" mnemonicParsing="false" onAction="#setRoomType" text="Double" toggleGroup="$Room" />
+                                                      <Label />
+                                                      <RadioButton fx:id="reservationPageKing" mnemonicParsing="false" onAction="#setRoomType" text="King" toggleGroup="$Room" />
+                                                      <Label />
+                                                      <RadioButton fx:id="reservationPageSuite" mnemonicParsing="false" onAction="#setRoomType" text="Luxury Suite" toggleGroup="$Room" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="250.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Check-in Date" />
+                                                      <Label />
+                                                      <DatePicker fx:id="reservationPageCheckIn" onAction="#setReservationCheckIn" promptText="Choose check-in date" />
+                                                      <Label />
+                                                   </children>
+                                                </VBox>
+                                                <VBox prefHeight="250.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Label text="Check-out Date" />
+                                                      <Label />
+                                                      <DatePicker fx:id="reservationPageCheckOut" onAction="#setReservationCheckOut" promptText="Choose check-out date" />
+                                                      <Label />
+                                                   </children>
+                                                </VBox>
                                              </children>
                                           </HBox>
                                        </children>
