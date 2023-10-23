@@ -73,6 +73,8 @@ public class ReservationPageControllerClass {
 	String reservationCardCountry;
 	int reservationCardZipcode;
 	String reservationRoomType;
+	String checkIn;
+	String checkOut;
 	
 	
 	@FXML
@@ -114,13 +116,15 @@ public class ReservationPageControllerClass {
 	public void setReservationCheckIn(ActionEvent event) {
 		reservationCheckIn = reservationPageCheckIn.getValue();
 		//test to check if this method works by printing to console
-		System.out.println(reservationCheckIn.toString());
+		checkIn = reservationCheckIn.toString();
+		System.out.println(checkIn);
 	}
 	@FXML
 	public void setReservationCheckOut(ActionEvent event) {
 		reservationCheckOut = reservationPageCheckOut.getValue();
 		//test to check if this method works by printing to console
-		System.out.println(reservationCheckOut.toString());
+		checkOut = reservationCheckOut.toString();
+		System.out.println(checkOut);
 	}
 	
 	@FXML
@@ -176,9 +180,12 @@ public class ReservationPageControllerClass {
 		//there should be some sort of call here to a function in the customer class so the information can be stored on the excel file
 		//add reservationRoomType reservationCheckIn and reservationCheckOut
 		Reserve res = new Reserve();
-		Room rom  = new Room ("101","single","open","115");
+		
+		
+		Room rom  = new Room ("101",reservationRoomType,"open","115",checkIn,"10-29-23");
 		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber,reservationCardFirstName,reservationCardLastName,
                 reservationCardPaymentNumber,reservationCardExpMonth,reservationCardZipcode,reservationCardCountry);
+		
 		res.reserveRoom(rom, cus);
 		//Temporarily returns the user to the main screen on success until we make a reservation review scene
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));

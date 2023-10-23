@@ -56,7 +56,7 @@ public class ReadWriteExcel {
 
 	}
 
-	public boolean isNull(int rNum, int cNum) {
+	public boolean isCustomerNull(int rNum, int cNum) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
 			Workbook wb = WorkbookFactory.create(fis);
@@ -69,4 +69,16 @@ public class ReadWriteExcel {
 		return false;
 	}
 
+	public boolean isRoomNull(int rNum, int cNum) {
+		try {
+			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
+			Workbook wb = WorkbookFactory.create(fis);
+			if (wb.getSheetAt(2).getRow(rNum).getCell(cNum) == null) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
