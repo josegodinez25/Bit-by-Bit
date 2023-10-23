@@ -38,7 +38,7 @@ public class Customer {
         ReadWriteExcel obj = new ReadWriteExcel();
         int CustomerCount = 1;
         //checks if the cell is empty
-        while (obj.isNull(CustomerCount, 1) == false) {
+        while (obj.isCustomerNull(CustomerCount, 1) == false) {
             CustomerCount++;
         }
 
