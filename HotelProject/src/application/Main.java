@@ -35,8 +35,8 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-		Room room = new Room ("Single","Single","Single","Single","10-25-23","10-29-23");
-		room.updateRoom(room);
-		//Application.launch(args);
+		//Room room = new Room ("Single","Single","Single","Single","10-25-23","10-29-23");
+		//room.updateRoom(room);
+		Application.launch(args);
 	}
 }
