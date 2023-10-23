@@ -7,7 +7,7 @@ public class Reserve {
 		
 	//not finished but it "checks" if the room is open or closed
 	public boolean isBooked(Room room) {
-		return true;
+		return false;
 	}
 
 	

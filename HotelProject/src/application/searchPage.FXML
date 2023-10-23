@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -76,13 +77,13 @@
                                                 <VBox prefHeight="106.0" prefWidth="150.0">
                                                    <children>
                                                       <Label prefHeight="29.0" prefWidth="146.0" text="Check-in" />
-                                                      <DatePicker />
+                                                      <DatePicker fx:id="searchPageCheckIn" onAction="#setSearchCheckIn" />
                                                    </children>
                                                 </VBox>
                                                 <VBox prefHeight="102.0" prefWidth="150.0">
                                                    <children>
                                                       <Label prefHeight="30.0" prefWidth="170.0" text="Check-out" />
-                                                      <DatePicker />
+                                                      <DatePicker fx:id="searchPageCheckOut" onAction="#setSearchCheckOut" />
                                                    </children>
                                                 </VBox>
                                              </children>
@@ -98,15 +99,18 @@
                                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                              <children>
-                                                <RadioButton mnemonicParsing="false" text="Single" />
-                                                <RadioButton mnemonicParsing="false" text="King" GridPane.rowIndex="1" />
-                                                <RadioButton mnemonicParsing="false" text="Double" GridPane.columnIndex="1" />
-                                                <RadioButton mnemonicParsing="false" text="Luxury Suite" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <RadioButton fx:id="searchPageSingle" mnemonicParsing="false" onAction="#setSearchRoomType" text="Single">
+                                                   <toggleGroup>
+                                                      <ToggleGroup fx:id="searchRoom" />
+                                                   </toggleGroup></RadioButton>
+                                                <RadioButton fx:id="searchPageKing" mnemonicParsing="false" onAction="#setSearchRoomType" text="King" toggleGroup="$searchRoom" GridPane.rowIndex="1" />
+                                                <RadioButton fx:id="searchPageDouble" mnemonicParsing="false" onAction="#setSearchRoomType" text="Double" toggleGroup="$searchRoom" GridPane.columnIndex="1" />
+                                                <RadioButton fx:id="searchPageSuite" mnemonicParsing="false" onAction="#setSearchRoomType" text="Luxury Suite" toggleGroup="$searchRoom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                           </GridPane>
                                           <Pane prefHeight="61.0" prefWidth="284.0">
                                              <children>
-                                                <Button layoutX="116.0" layoutY="18.0" mnemonicParsing="false" text="Check availability" />
+                                                <Button layoutX="116.0" layoutY="18.0" mnemonicParsing="false" onAction="#searchAvailability" text="Check availability" />
                                              </children>
                                           </Pane>
                                           <Label prefHeight="43.0" prefWidth="284.0" text="*" />

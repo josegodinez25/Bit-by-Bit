@@ -2,6 +2,9 @@ package application;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +25,9 @@ public class ReservationPageControllerClass {
 	private Parent root;
 	LocalDate reservationCheckIn;
 	LocalDate reservationCheckOut;
+	private long longReservationCheckIn;
+	private long longReservationCheckOut;
+	List<LocalDate> reservationTotalDates = new ArrayList<>();
 	
 	
 	@FXML
@@ -59,7 +65,6 @@ public class ReservationPageControllerClass {
 	@FXML
 	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
 	
-	
 	//The user input from the reservation page will be saved to these variables
 	String reservationFirstName;
 	String reservationLastName;
@@ -73,9 +78,8 @@ public class ReservationPageControllerClass {
 	String reservationCardCountry;
 	int reservationCardZipcode;
 	String reservationRoomType;
-	String checkIn;
 	String checkOut;
-	
+	String checkIn;
 	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
@@ -115,17 +119,43 @@ public class ReservationPageControllerClass {
 	@FXML
 	public void setReservationCheckIn(ActionEvent event) {
 		reservationCheckIn = reservationPageCheckIn.getValue();
-		//test to check if this method works by printing to console
+		if (reservationCheckOut != null && reservationCheckIn != null) {
+			reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+		}
 		checkIn = reservationCheckIn.toString();
-		System.out.println(checkIn);
+		//longReservationCheckIn = reservationCheckIn.toEpochDay();
+		//test to check if this method works by printing to console
+		//System.out.println(longReservationCheckIn);
 	}
 	@FXML
 	public void setReservationCheckOut(ActionEvent event) {
 		reservationCheckOut = reservationPageCheckOut.getValue();
-		//test to check if this method works by printing to console
+		if (reservationCheckOut != null && reservationCheckIn != null) {
+			reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+		}
 		checkOut = reservationCheckOut.toString();
-		System.out.println(checkOut);
+		//longReservationCheckOut = reservationCheckOut.toEpochDay();
+		//test to check if this method works by printing to console
+		//System.out.println(longReservationCheckOut);
 	}
+	
+	//function receives information from the search page and sets the room type and date to the radio buttons and date picker of the scene
+	public void receiveRoomFromSearch(){
+			
+	}
+	
+	//function finds the dates in between check in and check out and saves them to a 
+	public void reservationGetDatesBetween(LocalDate startDate, LocalDate endDate){
+		reservationTotalDates.clear();
+		while (!startDate.isAfter(endDate)) {
+		    reservationTotalDates.add(startDate);
+		    startDate = startDate.plusDays(1);
+		}
+		// small test that print the elements of the list
+		//System.out.println(Arrays.toString(reservationTotalDates.toArray()));
+	}
+	
+	
 	
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
@@ -181,12 +211,15 @@ public class ReservationPageControllerClass {
 		//add reservationRoomType reservationCheckIn and reservationCheckOut
 		Reserve res = new Reserve();
 		
-		
-		Room rom  = new Room ("101",reservationRoomType,"open","115",checkIn,"10-29-23");
+		Room rom  = new Room (reservationRoomType,"101","open","115",checkIn,checkOut);
 		Customer cus = new Customer(reservationFirstName,reservationLastName,reservationEmail,reservationPhoneNumber,reservationCardFirstName,reservationCardLastName,
                 reservationCardPaymentNumber,reservationCardExpMonth,reservationCardZipcode,reservationCardCountry);
+
+		
 		
 		res.reserveRoom(rom, cus);
+		rom.updateRoom(rom);
+		
 		//Temporarily returns the user to the main screen on success until we make a reservation review scene
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();

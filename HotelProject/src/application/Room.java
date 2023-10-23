@@ -44,8 +44,6 @@ public class Room {
 				row1 = i;
 			}
 		}
-
-		obj.WriteExcel("Availability", row1, col, "booked");
 		
 		for (int i = 1; i <= rowCount; i++) {
 			if (obj.ReadExcel("Availability", i, 0).equals(room.checkOut) == true) {
@@ -53,13 +51,10 @@ public class Room {
 			}
 		}
 		
-		System.out.println(row2);
-		System.out.println(row1);
 		while (col < end && obj.isRoomNull(row2, col) == false || obj.isRoomNull(row1, col) == false) {
 			col++;
 		}
 		
-		System.out.println(col);
 		if(col == 8) {
 			System.out.println("All rooms are booked");
 		}else {
