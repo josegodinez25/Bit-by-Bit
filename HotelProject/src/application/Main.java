@@ -19,12 +19,6 @@ public class Main extends Application {
 			Parent root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 			Image topIcon = new Image("topLeftLogo.png");
 			Scene mainScreenScene = new Scene(root);
-			// Stage mainScreen = new Stage();
-
-			// stage.setWidth(1366);
-			// stage.setHeight(768);
-			// resize true or false
-			// stage.serResizable(false);
 			stage.getIcons().add(topIcon);
 			stage.setTitle("Asylum Hotel Reservation System");
 			stage.setScene(mainScreenScene);
@@ -35,8 +29,6 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws IOException {
-		//Room room = new Room ("Single","Single","Single","Single","10-25-23","10-29-23");
-		//room.updateRoom(room);
 		Application.launch(args);
 	}
 }

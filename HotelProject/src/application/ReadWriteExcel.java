@@ -69,6 +69,7 @@ public class ReadWriteExcel {
 		return false;
 	}
 
+	
 	public boolean isRoomNull(int rNum, int cNum) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
