@@ -17,6 +17,8 @@ public class Customer {
 
     String roomNumber;
     String roomPrice;
+    String checkIn;
+    String checkOut;
     
 
     Customer(String firstName,String lastName, String email, String phoneNumber,String paymentFirstName, 
@@ -64,7 +66,8 @@ public class Customer {
         obj.WriteExcel("Customers", CustomerCount, 11, ID);
         obj.WriteExcel("Customers", CustomerCount, 12, roomNumber);
         obj.WriteExcel("Customers", CustomerCount, 13, roomPrice);
-   
+        obj.WriteExcel("Customers", CustomerCount, 14, checkIn);
+        obj.WriteExcel("Customers", CustomerCount, 15, checkOut);
         
         
         

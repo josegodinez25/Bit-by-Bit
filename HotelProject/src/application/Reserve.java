@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Reserve {
 
-	// not finished but it "checks" if the room is open or closed
+
 	public boolean isBooked(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 
@@ -15,14 +15,12 @@ public class Reserve {
 
 		if (room.size == "Single") {
 			start = 1;
-			end = 7;
+			end = 6;
 		}
 
 		int col = start;
 		int rowCount = 15;
-//	        while (obj.isRoomNull(rowCount, 0) == false) {
-//	            rowCount++;
-//	        }
+
 
 		for (int i = 1; i <= rowCount; i++) {
 			if (obj.ReadExcel("Availability", i, 0).equals(room.checkIn) == true) {
@@ -38,16 +36,15 @@ public class Reserve {
 		while (col < end && obj.isRoomNull(row2, col) == false || obj.isRoomNull(row1, col) == false) {
 			col++;
 		}
-		if (col == 8) {
+		if (col == 7) {
 			return true;
 		} else {
 			return false;
 		}
 
 	}
-
-	public void reserveRoom(Room room, Customer customer) {
-		// this makes a random 5 character String for the customers ID
+	
+	public String randomGenerator() {
 		String ID;
 		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		int length = 5;
@@ -61,19 +58,24 @@ public class Reserve {
 			randomString.append(randomChar);
 		}
 		ID = randomString.toString();
-		Reserve obj = new Reserve();
+		return ID;
+	}
 
-		// checks if the room they are looking for is booked
-		if (obj.isBooked(room) == false) {
-			// the customer and the room they book have the same ID (will need ID for
-			// review,change,cancel)
+	
+	public void reserveRoom(Room room, Customer customer) {
+		if (isBooked(room) == false) {
+			// the customer gets a unique id (will need ID for review,change,cancel)
+			String ID = randomGenerator();
 			customer.ID = ID;
-			room.ID = ID;
-			// if its not booked then users detailed gets saved and they get an ID
 			room.updateRoom(room);
 			customer.roomNumber = room.number;
 			customer.roomPrice = room.price;
+			customer.checkIn = room.checkIn;
+			customer.checkOut = room.checkOut;
+			
 			customer.inputUserDetail();
+		}else {
+			System.out.println("All rooms are booked");
 		}
 	}
 }
