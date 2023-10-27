@@ -24,7 +24,7 @@ public class SearchPageControllerClass {
 	private RadioButton searchPageSingle, searchPageDouble, searchPageKing, searchPageSuite;
 	@FXML
 	private DatePicker searchPageCheckIn, searchPageCheckOut;
-	
+	availabilitySingleton search = availabilitySingleton.getInstance();
 	
 	@FXML
 	public void setSearchRoomType(ActionEvent event) {
@@ -73,7 +73,7 @@ public class SearchPageControllerClass {
 	@FXML
 	public void switchToReservationScene(ActionEvent event) throws IOException {
 		if(searchPageSingle.isSelected()) {
-		
+		search.
 		}
 		else if(searchPageDouble.isSelected()) {
 			

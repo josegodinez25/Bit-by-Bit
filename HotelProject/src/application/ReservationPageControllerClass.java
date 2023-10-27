@@ -1,14 +1,17 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +22,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ReservationPageControllerClass {
+public class ReservationPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -28,7 +31,7 @@ public class ReservationPageControllerClass {
 	private long longReservationCheckIn;
 	private long longReservationCheckOut;
 	List<LocalDate> reservationTotalDates = new ArrayList<>();
-
+    availabilitySingleton search = availabilitySingleton.getInstance();
 	@FXML
 	private TextField firstNameTextField;
 	@FXML
@@ -63,8 +66,6 @@ public class ReservationPageControllerClass {
 	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
 	@FXML
 	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
-
-	// The user input from the reservation page will be saved to these variables
 	String reservationFirstName;
 	String reservationLastName;
 	String reservationEmail;
@@ -80,6 +81,13 @@ public class ReservationPageControllerClass {
 	String checkOut;
 	String checkIn;
 
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		
+	}
+	
+	
+	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
