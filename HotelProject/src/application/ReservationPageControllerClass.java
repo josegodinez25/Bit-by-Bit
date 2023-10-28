@@ -79,7 +79,9 @@ public class ReservationPageControllerClass {
 	String reservationRoomType;
 	String checkOut;
 	String checkIn;
-
+	String[] totalDates;
+	
+	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
@@ -151,8 +153,6 @@ public class ReservationPageControllerClass {
 			reservationTotalDates.add(startDate);
 			startDate = startDate.plusDays(1);
 		}
-		// small test that print the elements of the list
-		// System.out.println(Arrays.toString(reservationTotalDates.toArray()));
 	}
 
 	@FXML
@@ -192,11 +192,12 @@ public class ReservationPageControllerClass {
 		// there should be some sort of call here to a function in the customer class so
 		// the information can be stored on the excel file
 		Reserve res = new Reserve();
-		Room rom = new Room(reservationRoomType, checkIn, checkOut);
+		Room rom = new Room(reservationRoomType,checkIn,checkOut,reservationTotalDates);
 		Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
 				reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
 				reservationCardExpMonth, reservationCardZipcode, reservationCardCountry);
-
+	
+	
 		res.reserveRoom(rom, cus);
 
 		// Temporarily returns the user to the main screen on success until we make a

@@ -4,46 +4,67 @@ import java.util.Random;
 
 public class Reserve {
 
-
 	public boolean isBooked(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
-
 		int start = 0;
 		int end = 0;
-		int row1 = 1;
-		int row2 = 1;
+		int row = 1;
+		int col = 1;
 
 		if (room.size == "Single") {
 			start = 1;
 			end = 6;
+
+		} else if (room.size == "Double") {
+			start = 7;
+			end = 12;
+
+		} else if (room.size == "King") {
+			start = 13;
+			end = 18;
+
+		} else if (room.size == "Suite") {
+			start = 19;
+			end = 19;
+
 		}
-
-		int col = start;
 		int rowCount = 15;
-
-
+		col = start;
 		for (int i = 1; i <= rowCount; i++) {
 			if (obj.ReadExcel("Availability", i, 0).equals(room.checkIn) == true) {
-				row1 = i;
+				row = i;
 			}
+
 		}
-		for (int i = 1; i <= rowCount; i++) {
-			if (obj.ReadExcel("Availability", i, 0).equals(room.checkOut) == true) {
-				row2 = i;
+		int temp = col;
+		int total = room.totalDates.size();
+		int i = 0;
+		outerLoop:
+		for (int j = start; j <= end; j++) {
+			for (i = row; i < row + room.totalDates.size(); i++) {
+				if (obj.isRoomNull(i, j) == false) {
+					col++;
+					i = row + room.totalDates.size();
+				} else if (col == temp) {
+					if (i == row + total - 1) {
+						break outerLoop;
+					}
+				}
 			}
+			temp++;
 		}
 
-		while (col < end && obj.isRoomNull(row2, col) == false || obj.isRoomNull(row1, col) == false) {
-			col++;
-		}
-		if (col == 7) {
+		if (col > end) {
 			return true;
 		} else {
+			room.row = row;
+			room.col = col;
+			room.total = room.totalDates.size();
 			return false;
 		}
 
 	}
-	
+
 	public String randomGenerator() {
 		String ID;
 		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -61,7 +82,6 @@ public class Reserve {
 		return ID;
 	}
 
-	
 	public void reserveRoom(Room room, Customer customer) {
 		if (isBooked(room) == false) {
 			// the customer gets a unique id (will need ID for review,change,cancel)
@@ -72,9 +92,9 @@ public class Reserve {
 			customer.roomPrice = room.price;
 			customer.checkIn = room.checkIn;
 			customer.checkOut = room.checkOut;
-			
+
 			customer.inputUserDetail();
-		}else {
+		} else {
 			System.out.println("All rooms are booked");
 		}
 	}
