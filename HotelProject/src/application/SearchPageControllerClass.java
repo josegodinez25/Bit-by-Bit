@@ -73,17 +73,21 @@ public class SearchPageControllerClass {
 	@FXML
 	public void switchToReservationScene(ActionEvent event) throws IOException {
 		if(searchPageSingle.isSelected()) {
-		search.
+			search.setAvailabilityString("1");
 		}
 		else if(searchPageDouble.isSelected()) {
-			
+			search.setAvailabilityString("2");
 		}
         else if(searchPageKing.isSelected()) {
-        	
+        	search.setAvailabilityString("3");
 		}
         else if(searchPageSuite.isSelected()) {
-        	
+        	search.setAvailabilityString("4");
         }
+		
+		search.setSearchCheckIn(searchPageCheckIn.getValue());
+		search.setSearchCheckOut(searchPageCheckOut.getValue());
+		
 			root = FXMLLoader.load(getClass().getResource("reservationPage.FXML"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);
