@@ -1,14 +1,17 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.ResourceBundle;
+import java.lang.String;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,7 +22,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ReservationPageControllerClass {
+public class ReservationPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -28,7 +31,8 @@ public class ReservationPageControllerClass {
 	private long longReservationCheckIn;
 	private long longReservationCheckOut;
 	List<LocalDate> reservationTotalDates = new ArrayList<>();
-
+    availabilitySingleton search = availabilitySingleton.getInstance();
+    reviewSingleton review = reviewSingleton.getInstance();
 	@FXML
 	private TextField firstNameTextField;
 	@FXML
@@ -63,8 +67,6 @@ public class ReservationPageControllerClass {
 	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
 	@FXML
 	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
-
-	// The user input from the reservation page will be saved to these variables
 	String reservationFirstName;
 	String reservationLastName;
 	String reservationEmail;
@@ -79,7 +81,26 @@ public class ReservationPageControllerClass {
 	String reservationRoomType;
 	String checkOut;
 	String checkIn;
-	String[] totalDates;
+	String expCombined;
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		if(search.getAvailabilityString()== "1") {
+			reservationPageSingle.setSelected(true);
+		}
+		else if(search.getAvailabilityString()== "2") {
+			reservationPageDouble.setSelected(true);
+		}
+		else if(search.getAvailabilityString()== "3") {
+			reservationPageKing.setSelected(true);
+}
+		else if(search.getAvailabilityString()== "4") {
+			reservationPageSuite.setSelected(true);
+}
+		reservationPageCheckIn.setValue(search.getSearchCheckIn());
+		reservationPageCheckOut.setValue(search.getSearchCheckOut());
+	}
+	
 	
 	
 	@FXML
@@ -153,16 +174,20 @@ public class ReservationPageControllerClass {
 			reservationTotalDates.add(startDate);
 			startDate = startDate.plusDays(1);
 		}
+		// small test that print the elements of the list
+		// System.out.println(Arrays.toString(reservationTotalDates.toArray()));
 	}
 
-	@FXML
-	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
+	public void getCustomerInfo() {
 		reservationFirstName = firstNameTextField.getText();
 		reservationLastName = lastNameTextField.getText();
 		reservationEmail = emailTextField.getText();
 		reservationPhoneNumber = phoneTextField.getText();
 		reservationCardFirstName = firstNameCardTextField.getText();
 		reservationCardLastName = lastNameCardTextField.getText();
+	}
+	
+	public void checkForErrors() {
 		try {
 			reservationCardPaymentNumber = Integer.parseInt(paymentCardNumberTextField.getText());
 		} catch (NumberFormatException e) {
@@ -188,21 +213,28 @@ public class ReservationPageControllerClass {
 			cardZipError.setText("Please enter a valid zipcode");
 			return;
 		}
-
+		expCombined = Integer.toString(reservationCardExpMonth) + Integer.toString(reservationCardExpYear);
+	}
+	
+	@FXML
+	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
+		getCustomerInfo();
+		checkForErrors();
 		// there should be some sort of call here to a function in the customer class so
 		// the information can be stored on the excel file
 		Reserve res = new Reserve();
-		Room rom = new Room(reservationRoomType,checkIn,checkOut,reservationTotalDates);
+		Room rom = new Room(reservationRoomType, checkIn, checkOut,reservationTotalDates);
 		Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
 				reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
 				reservationCardExpMonth, reservationCardZipcode, reservationCardCountry);
-	
-	
-		res.reserveRoom(rom, cus);
 
-		// Temporarily returns the user to the main screen on success until we make a
-		// reservation review scene
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
+		res.reserveRoom(rom, cus);
+		
+		// these next two lines are temporary for testing they set the reservation name and last name for the review page
+		review.setReviewFirstName(reservationFirstName);
+		review.setReviewlastName(reservationLastName);
+		
+		root = FXMLLoader.load(getClass().getResource("reviewPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);
