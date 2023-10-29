@@ -31,8 +31,8 @@ public class ReservationPageControllerClass implements Initializable {
 	private long longReservationCheckIn;
 	private long longReservationCheckOut;
 	List<LocalDate> reservationTotalDates = new ArrayList<>();
-    availabilitySingleton search = availabilitySingleton.getInstance();
-    reviewSingleton review = reviewSingleton.getInstance();
+	 availabilitySingleton search = availabilitySingleton.getInstance();
+	 reviewSingleton review = reviewSingleton.getInstance();
 	@FXML
 	private TextField firstNameTextField;
 	@FXML
