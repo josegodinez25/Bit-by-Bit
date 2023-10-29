@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 public class MainPageControllerClass {
@@ -32,5 +34,26 @@ public class MainPageControllerClass {
 			stage.setScene(scene);
 			stage.show();
 	}
+	
+	@FXML
+	public void openReservationNumberPage(ActionEvent event)throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
+		Parent root = (Parent) FXMLLoader.load();
+		Stage stage = new Stage();
+		stage.setTitle("Reservation Confirmation");
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+	
+	@FXML
+	public void switchToReviewPage(ActionEvent event) throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+		Parent root = (Parent) FXMLLoader.load();
+		Stage stage = new Stage();
+		stage.setTitle("Reservation Confirmation");
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+	
 	
 }

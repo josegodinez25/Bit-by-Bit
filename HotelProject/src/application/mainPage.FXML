@@ -96,7 +96,7 @@
                               <Insets top="20.0" />
                            </HBox.margin>
                         </ImageView>
-                      <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" opacity="0.75" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #332E2E; -fx-background-radius: 15;" text="Review Reservation" textFill="WHITE">
+                      <Button maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: #332E2E; -fx-background-radius: 15;" text="Review Reservation" textFill="WHITE">
                            <font>
                               <Font name="SansSerif Regular" size="14.0" />
                            </font>
