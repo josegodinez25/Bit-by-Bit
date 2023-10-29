@@ -33,4 +33,24 @@ public class MainPageControllerClass {
 			stage.show();
 	}
 	
+	@FXML
+	public void openReservationNumberPage(ActionEvent event)throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
+		Parent root = (Parent) FXMLLoader.load();
+		Stage stage = new Stage();
+		stage.setTitle("Reservation Confirmation");
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+	
+	@FXML
+	public void switchToReviewPage(ActionEvent event) throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+		Parent root = (Parent) FXMLLoader.load();
+		Stage stage = new Stage();
+		stage.setTitle("Reservation Confirmation");
+		stage.setScene(new Scene(root));
+		stage.show();
+	}
+
 }
