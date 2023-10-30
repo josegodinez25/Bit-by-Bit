@@ -21,7 +21,7 @@ public class ReadWriteExcel {
 	public String ReadExcel(String SheetName, int rNum, int cNum) {
 		String data = "";
 		try {
-			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
+			FileInputStream fis = new FileInputStream("C:\\Users\\joseg\\Desktop\\Hotel Project.xlsx");
 			Workbook wb = WorkbookFactory.create(fis);
 			Sheet s = wb.getSheet(SheetName);
 			Row r = s.getRow(rNum);
