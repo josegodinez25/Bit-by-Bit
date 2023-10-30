@@ -14,6 +14,7 @@ import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
 public class SearchPageControllerClass {
+	availabilitySingleton search = availabilitySingleton.getInstance();
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
@@ -72,18 +73,9 @@ public class SearchPageControllerClass {
 	
 	@FXML
 	public void switchToReservationScene(ActionEvent event) throws IOException {
-		if(searchPageSingle.isSelected()) {
-		
-		}
-		else if(searchPageDouble.isSelected()) {
-			
-		}
-        else if(searchPageKing.isSelected()) {
-        	
-		}
-        else if(searchPageSuite.isSelected()) {
-        	
-        }
+		    search.setAvailabilityString(searchPageRoomType);
+		    search.setSearchCheckIn(searchCheckIn);
+		    search.setSearchCheckOut(searchCheckOut);
 			root = FXMLLoader.load(getClass().getResource("reservationPage.FXML"));
 			stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 			scene = new Scene(root);

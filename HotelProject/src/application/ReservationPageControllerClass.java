@@ -85,16 +85,16 @@ public class ReservationPageControllerClass implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		if(search.getAvailabilityString()== "1") {
+		if(search.getAvailabilityString()== "Single") {
 			reservationPageSingle.setSelected(true);
 		}
-		else if(search.getAvailabilityString()== "2") {
+		else if(search.getAvailabilityString()== "Double") {
 			reservationPageDouble.setSelected(true);
 		}
-		else if(search.getAvailabilityString()== "3") {
+		else if(search.getAvailabilityString()== "King") {
 			reservationPageKing.setSelected(true);
 }
-		else if(search.getAvailabilityString()== "4") {
+		else if(search.getAvailabilityString()== "Suite") {
 			reservationPageSuite.setSelected(true);
 }
 		reservationPageCheckIn.setValue(search.getSearchCheckIn());
