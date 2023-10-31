@@ -32,7 +32,15 @@ public class ReviewPageControllerClass implements Initializable{
 	private Label reviewLastName;
 	
 	@Override
-	public void initialize(URL url, ResourceBundle resourcebundle) {
+	public void initialize(URL url, ResourceBundle resourcebundle) {	
+		Reserve res = new Reserve();
+		
+	//code will look like this but we need the ID the user types in saved into a string on this class	
+//		res.findCustomerID("ID");
+//		reviewFirstName.setText(res.findCustomerID("ID").firstName);
+//		reviewFirstName.setText(res.findCustomerID("ID").lastName);
+		
+		
 		reviewFirstName.setText(review.getReviewFirstName());
 		reviewLastName.setText(review.getReviewLastName());
 	}

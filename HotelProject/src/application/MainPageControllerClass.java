@@ -50,15 +50,21 @@ public class MainPageControllerClass {
 	
 	@FXML
 	public void switchToReviewPage(ActionEvent event) throws IOException {
+		Reserve res = new Reserve();
 		reservationID = reservationIDtextField.getText();
 		
+		// if the id the user puts in exists then switches to the review scene
+		if(res.checkID(reservationID) == true) {
+			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+			Parent root = (Parent) FXMLLoader.load();
+			Stage stage = new Stage();
+			stage.setTitle("Reservation Confirmation");
+			stage.setScene(new Scene(root));
+			stage.show();
+		}else {
+			//show a red label saying ID does not exist
+		}
 		
-		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
-		Parent root = (Parent) FXMLLoader.load();
-		Stage stage = new Stage();
-		stage.setTitle("Reservation Confirmation");
-		stage.setScene(new Scene(root));
-		stage.show();
 	}
 
 }

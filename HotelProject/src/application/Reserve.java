@@ -141,7 +141,7 @@ public class Reserve {
 		}	
 	}
 
-	private Customer findCustomerID(String customerID) {
+	public Customer findCustomerID(String customerID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 15;
 			
@@ -165,6 +165,17 @@ public class Reserve {
 			}
 		}
 		return null;
+	}
+	
+	public boolean checkID(String ID) {
+		ReadWriteExcel obj = new ReadWriteExcel();
+		if(obj.ReadExcel(ID, 0, 0) ==  "hi") {
+			
+		}
+		
+		
+		
+		return false;
 	}
 	private void clearCustomerInfo(Customer customer) {
 		// TODO Auto-generated method stub
