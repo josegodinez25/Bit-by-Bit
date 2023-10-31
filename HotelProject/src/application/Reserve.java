@@ -169,13 +169,13 @@ public class Reserve {
 	
 	public boolean checkID(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
-		if(obj.ReadExcel(ID, 0, 0) ==  "hi") {
+		if(obj.ReadExcel(ID, 0, 0) ==  ID) {
 			
 		}
 		
 		
 		
-		return false;
+		return true;
 	}
 	private void clearCustomerInfo(Customer customer) {
 		// TODO Auto-generated method stub
