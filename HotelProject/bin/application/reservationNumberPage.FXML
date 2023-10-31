@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="470.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainPageControllerClass">
+   <children>
+      <Button layoutX="209.0" layoutY="129.0" mnemonicParsing="false" onAction="#switchToReviewPage" text="Button" />
+      <Label layoutX="156.0" layoutY="62.0" text="enter you reservation number" />
+      <TextField fx:id="reservationIDtextField" layoutX="161.0" layoutY="92.0" />
+   </children>
+</AnchorPane>
