@@ -8,12 +8,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainPageControllerClass {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	String reservationID;
+	@FXML
+	private TextField reservationIDtextField;
+	
 	
 	@FXML
 	public void switchToSearchScene(ActionEvent event) throws IOException {
@@ -45,6 +50,9 @@ public class MainPageControllerClass {
 	
 	@FXML
 	public void switchToReviewPage(ActionEvent event) throws IOException {
+		reservationID = reservationIDtextField.getText();
+		
+		
 		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
 		Parent root = (Parent) FXMLLoader.load();
 		Stage stage = new Stage();
