@@ -28,7 +28,7 @@ public class Reserve {
 			end = 19;
 
 		}
-		int rowCount = 15;
+		int rowCount = 134;
 		col = start;
 		for (int i = 1; i <= rowCount; i++) {
 			if (obj.ReadExcel("Availability", i, 0).equals(room.checkIn) == true) {
@@ -39,8 +39,7 @@ public class Reserve {
 		int temp = col;
 		int total = room.totalDates.size();
 		int i = 0;
-		outerLoop:
-		for (int j = start; j <= end; j++) {
+		outerLoop: for (int j = start; j <= end; j++) {
 			for (i = row; i < row + room.totalDates.size(); i++) {
 				if (obj.isRoomNull(i, j) == false) {
 					col++;
@@ -68,7 +67,7 @@ public class Reserve {
 	private boolean IdNotSame(String generatedID) {
 		return false;
 	}
-	
+
 	public String randomGenerator() {
 		String ID = null;
 		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -76,31 +75,30 @@ public class Reserve {
 
 		Random random = new Random();
 		StringBuilder randomString = new StringBuilder();
-		
-		
+
 		boolean sameID = false;
-		
-		//makes sure ID is not the same and keeps generating until the id is unique
+
+		// makes sure ID is not the same and keeps generating until the id is unique
 		while (!sameID) {
-			//just generates a new id
+			// just generates a new id
 			randomString.setLength(0);
-		
+
 			for (int i = 0; i < length; i++) {
 				int randomIndex = random.nextInt(characterSet.length());
 				char randomChar = characterSet.charAt(randomIndex);
 				randomString.append(randomChar);
 			}
-			
+
 			ID = randomString.toString();
-			
+
 			// checks if the id is not the same
 			if (!IdNotSame(ID)) {
-				sameID = true;		
+				sameID = true;
 			}
 		}
 		return ID;
-	}	
-	
+	}
+
 	public void reserveRoom(Room room, Customer customer) {
 		if (isBooked(room) == false) {
 			// the customer gets a unique id (will need ID for review,change,cancel)
@@ -111,78 +109,89 @@ public class Reserve {
 			customer.roomPrice = room.price;
 			customer.checkIn = room.checkIn;
 			customer.checkOut = room.checkOut;
-			
+
 			customer.inputUserDetail();
-		}else {
+		} else {
 			System.out.println("All rooms are booked");
 		}
 	}
-	
-	public void cancel (String customerID) {
-		//it will find the customer id
+
+	public void cancel(String customerID) {
+		// it will find the customer id
 		Customer customer = findCustomerID(customerID);
-		
+
 		if (customer != null) {
 			Room room = findCustomerRoom(customer);
-			
+
 			if (room != null) {
-				//sets room to available
+				// sets room to available
 				room.availability = "available";
 				clearCustomerInfo(customer);
-				System.out.println("Reservation associated with customer id " +
-				customerID + " has been cancelled");
-			}
-			else {
+				System.out.println("Reservation associated with customer id " + customerID + " has been cancelled");
+			} else {
 				System.out.println("Room with associated ID " + customerID + " does not exist");
 			}
-		}
-		else {
+		} else {
 			System.out.println("Customer with following ID " + customerID + " is not found");
-		}	
+		}
 	}
 
 	public Customer findCustomerID(String customerID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
-		int rowCount = 15;
-			
-		for (int i = 1; i<= rowCount; i++) {
-			String storedID = obj.ReadExcel("Customer", i , 11);
+		int rowCount = 1;
+		// checks if the cell is empty
+		while (obj.isCustomerNull(rowCount, 1) == false) {
+			rowCount++;
+		}
+		
+		rowCount = rowCount - 1;
+		for (int i = 1; i <= rowCount; i++) {
+			String storedID = obj.ReadExcel("Customers", i, 11);
 			if (storedID.equals(customerID)) {
-	            
-				String firstName = obj.ReadExcel("Customers", i, 1);
-	            String lastName = obj.ReadExcel("Customers", i, 2);
-	            String email = obj.ReadExcel("Customers", i, 3);
-	            String phoneNumber = obj.ReadExcel("Customers", i, 4);
-	            String paymentFirstName = obj.ReadExcel("Customers", i, 5);
-	            String paymentLastName = obj.ReadExcel("Customers", i, 6);
-	            int cardNumber = Integer.parseInt(obj.ReadExcel("Customers", i, 7));
-	            int expDate = Integer.parseInt(obj.ReadExcel("Customers", i, 8));
-	            int zipCode = Integer.parseInt(obj.ReadExcel("Customers", i, 10));
-	            String country = obj.ReadExcel("Customers", i, 9);
 
-	            return new Customer(firstName, lastName, email, phoneNumber, paymentFirstName, paymentLastName,
-	                    cardNumber, expDate, zipCode, country);
+				String firstName = obj.ReadExcel("Customers", i, 1);
+				String lastName = obj.ReadExcel("Customers", i, 2);
+				String email = obj.ReadExcel("Customers", i, 3);
+				String phoneNumber = obj.ReadExcel("Customers", i, 4);
+				String paymentFirstName = obj.ReadExcel("Customers", i, 5);
+				String paymentLastName = obj.ReadExcel("Customers", i, 6);
+				int cardNumber = Integer.parseInt(obj.ReadExcel("Customers", i, 7));
+				int expDate = Integer.parseInt(obj.ReadExcel("Customers", i, 8));
+				int zipCode = Integer.parseInt(obj.ReadExcel("Customers", i, 10));
+				String country = obj.ReadExcel("Customers", i, 9);
+
+				return new Customer(firstName, lastName, email, phoneNumber, paymentFirstName, paymentLastName,
+						cardNumber, expDate, zipCode, country);
 			}
 		}
 		return null;
 	}
-	
+//method not done
 	public boolean checkID(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
-		if(obj.ReadExcel(ID, 0, 0) ==  ID) {
-			
-		}
-		
-		
-		
+		int rowCount = 1;
+		// checks if the cell is empty
+		//while (obj.isCustomerNull(rowCount, 1) == false) {
+			rowCount++;
+	//	}
+
+		//for (int i = 1; i < rowCount; i++) {
+		//	if (obj.ReadExcel("Customers", i, 11) == ID) {
+
+		//		return true;
+		//	}
+		//}
+
 		return true;
 	}
+
 	private void clearCustomerInfo(Customer customer) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	private Room findCustomerRoom(Customer customer) {
 		// TODO Auto-generated method stub
 		return null;
-		}
+	}
 }
