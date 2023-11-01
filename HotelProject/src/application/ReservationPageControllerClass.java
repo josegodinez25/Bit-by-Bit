@@ -1,6 +1,8 @@
 package application;
 
 import java.io.IOException;
+import java.time.ZoneId;
+import java.util.Date;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -135,33 +137,43 @@ public class ReservationPageControllerClass implements Initializable {
 		// test to check if this method works by printing to console
 		// System.out.println(reservationRoomType);
 	}
-
+	
+	
+	// need to give error an confirming reservation when incorrect date is picked
+	// so it does not move on to next scene
 	@FXML
 	public void setReservationCheckIn(ActionEvent event) {
-		reservationCheckIn = reservationPageCheckIn.getValue();
-		if (reservationCheckOut != null && reservationCheckIn != null) {
-			reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-		}
-		checkIn = reservationCheckIn.toString();
-		// longReservationCheckIn = reservationCheckIn.toEpochDay();
-		// test to check if this method works by printing to console
-		// System.out.println(longReservationCheckIn);
-	}
+		LocalDate today = LocalDate.now();
+	    LocalDate selectedDate = reservationPageCheckIn.getValue();
 
+	    if (selectedDate != null && !selectedDate.isBefore(today)) {
+	        reservationCheckIn = selectedDate;
+	        if (reservationCheckOut != null) {
+	            reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+	        }
+	        checkIn = reservationCheckIn.toString();
+	    } else {
+	        // Need error for when date is not available or valid
+	    	
+	    }
+	}
+	// same error for this part where it needs an error pop up on GUI program where it does not allow to move to next scene
 	@FXML
 	public void setReservationCheckOut(ActionEvent event) {
-		reservationCheckOut = reservationPageCheckOut.getValue();
-		if (reservationCheckOut != null && reservationCheckIn != null) {
-			reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-		}
-		checkOut = reservationCheckOut.toString();
-		// longReservationCheckOut = reservationCheckOut.toEpochDay();
-		// test to check if this method works by printing to console
-		// System.out.println(longReservationCheckOut);
+		LocalDate today = LocalDate.now();
+	    LocalDate selectedDate = reservationPageCheckOut.getValue();
+
+	    if (selectedDate != null && !selectedDate.isBefore(today)) {
+	        reservationCheckOut = selectedDate;
+	        if (reservationCheckIn != null) {
+	            reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+	        }
+	        checkOut = reservationCheckOut.toString();
+	    } else {
+	        // Need error for when date is not available or valid
+	    }
 	}
 
-	// function receives information from the search page and sets the room type and
-	// date to the radio buttons and date picker of the scene
 	public void receiveRoomFromSearch() {
 
 	}
@@ -200,12 +212,19 @@ public class ReservationPageControllerClass implements Initializable {
 			cardDateError.setText("Please enter a valid date");
 			return;
 		}
+		
 		try {
 			reservationCardExpYear = Integer.parseInt(expYearCardTextField.getText());
-		} catch (NumberFormatException e) {
-			cardDateError.setText("Please enter a valid date");
+			int currentYear = LocalDate.now().getYear();
+			
+			if (reservationCardExpYear < currentYear) {
+				cardDateError.setText("Please enter a valid expiration year");
+				return;
+			}
+		} catch  (NumberFormatException e) {
+			cardDateError.setText("Please enter a valid year");
 			return;
-		}
+	}
 		reservationCardCountry = countryCardTextField.getText();
 		try {
 			reservationCardZipcode = Integer.parseInt(zipcodeCardTextField.getText());
