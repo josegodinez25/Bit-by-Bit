@@ -18,7 +18,7 @@ public class MainPageControllerClass {
 	String reservationID;
 	@FXML
 	private TextField reservationIDtextField;
-	
+	reviewSingleton review = reviewSingleton.getInstance();
 	
 	@FXML
 	public void switchToSearchScene(ActionEvent event) throws IOException {
@@ -54,7 +54,9 @@ public class MainPageControllerClass {
 		reservationID = reservationIDtextField.getText();
 		
 		// if the id the user puts in exists then switches to the review scene
+		//checkID method is not finished (always returns true)
 		if(res.checkID(reservationID) == true) {
+			review.setID(reservationID);
 			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
 			Parent root = (Parent) FXMLLoader.load();
 			Stage stage = new Stage();
