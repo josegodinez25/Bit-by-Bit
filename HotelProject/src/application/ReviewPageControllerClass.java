@@ -30,7 +30,7 @@ public class ReviewPageControllerClass implements Initializable{
 	@FXML
 	private Label reviewFirstName, reviewLastName, reviewEmail, reviewPhone, reviewRoomType, 
 	reviewRoomNumber,reviewCheckIn, reviewCheckOut, reviewCCfirstName, reviewCClastName, 
-	reviewCCnumber, reviewCCexperation, reviewCCcountry, reviewCCzip, reviewCCsecurity;
+	reviewCCnumber, reviewCCexperation, reviewCCcountry, reviewCCzip, reviewCCsecurity, reviewReservationNumber;
 
 	//crate labels for each customers information
 	
