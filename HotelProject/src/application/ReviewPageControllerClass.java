@@ -32,7 +32,6 @@ public class ReviewPageControllerClass implements Initializable{
 	reviewRoomNumber,reviewCheckIn, reviewCheckOut, reviewCCfirstName, reviewCClastName, 
 	reviewCCnumber, reviewCCexperation, reviewCCcountry, reviewCCzip, reviewCCsecurity, reviewReservationNumber;
 
-	//crate labels for each customers information
 	
 	private String ID;
 	
@@ -43,11 +42,24 @@ public class ReviewPageControllerClass implements Initializable{
 		Reserve res = new Reserve();
 		ID = review.getID();
 		
-	//code will look like this but we need the ID the user types in saved into a string on this class	
 		res.findCustomerID(ID);
+		reviewReservationNumber.setText(ID);
 		reviewFirstName.setText(res.findCustomerID(ID).firstName);
 		reviewLastName.setText(res.findCustomerID(ID).lastName);
+		reviewEmail.setText(res.findCustomerID(ID).email);
+		reviewPhone.setText(res.findCustomerID(ID).phoneNumber);		
+		//we are going to have to change the excel sheet for room type since its not on there
+		//reviewRoomType.setText(res.findCustomerID(ID).phoneNumber);
+		reviewRoomNumber.setText(res.findCustomerID(ID).roomNumber);
 		
+		
+		//when we create labels for these then remove comments
+		
+		//reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
+		//reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
+		//reviewCCcountry.setText(res.findCustomerID(ID).country);
+		//reviewCCzip.setText(res.findCustomerID(ID).zipCode);
+		//reviewCCsecurity.setText(res.findCustomerID(ID).expDate);
 	}
 	
 	@FXML

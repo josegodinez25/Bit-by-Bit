@@ -143,8 +143,8 @@ public class Reserve {
 		while (obj.isCustomerNull(rowCount, 1) == false) {
 			rowCount++;
 		}
-		
-		rowCount = rowCount - 1;
+
+		// rowCount = rowCount - 1;
 		for (int i = 1; i <= rowCount; i++) {
 			String storedID = obj.ReadExcel("Customers", i, 11);
 			if (storedID.equals(customerID)) {
@@ -159,30 +159,38 @@ public class Reserve {
 				int expDate = Integer.parseInt(obj.ReadExcel("Customers", i, 8));
 				int zipCode = Integer.parseInt(obj.ReadExcel("Customers", i, 10));
 				String country = obj.ReadExcel("Customers", i, 9);
+				String roomNumber = obj.ReadExcel("Customers", i, 12);
+				String price = obj.ReadExcel("Customers", i, 13);
+				String startDate = obj.ReadExcel("Customers", i, 14);
+				String endDate = obj.ReadExcel("Customers", i, 15);
 
-				return new Customer(firstName, lastName, email, phoneNumber, paymentFirstName, paymentLastName,
-						cardNumber, expDate, zipCode, country);
+				Customer customer = new Customer(firstName, lastName, email, phoneNumber, paymentFirstName,
+						paymentLastName, cardNumber, expDate, zipCode, country);
+				customer.checkIn = startDate;
+				customer.roomNumber = roomNumber;
+				customer.roomPrice = price;
+				customer.checkOut = endDate;
+
+				return customer;
 			}
 		}
 		return null;
 	}
-//method not done
+
 	public boolean checkID(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
-		// checks if the cell is empty
-		//while (obj.isCustomerNull(rowCount, 1) == false) {
+		while (obj.isCustomerNull(rowCount, 1) == false) {
 			rowCount++;
-	//	}
+		}
+		
+		for (int i = 1; i < rowCount; i++) {
+			if (obj.ReadExcel("Customers", i, 11).equals(ID) == true) {
+				return true;
+			}
+		}
 
-		//for (int i = 1; i < rowCount; i++) {
-		//	if (obj.ReadExcel("Customers", i, 11) == ID) {
-
-		//		return true;
-		//	}
-		//}
-
-		return true;
+		return false;
 	}
 
 	private void clearCustomerInfo(Customer customer) {

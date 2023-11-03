@@ -14,7 +14,7 @@ public class Customer {
     String country;
 
     String ID;
-
+    String roomType;
     String roomNumber;
     String roomPrice;
     String checkIn;

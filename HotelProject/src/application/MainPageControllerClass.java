@@ -57,7 +57,6 @@ public class MainPageControllerClass {
 		reservationID = reservationIDtextField.getText();
 		
 		// if the id the user puts in exists then switches to the review scene
-		//checkID method is not finished (always returns true)
 		if(res.checkID(reservationID) == true) {
 			review.setID(reservationID);
 			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
@@ -67,7 +66,6 @@ public class MainPageControllerClass {
 			stage.setScene(new Scene(root));
 			stage.show();
 		}else {
-			//show a red label saying ID does not exist
 			reservationIDerror.setText("Please enter a valid reservation number");
 		}
 		
