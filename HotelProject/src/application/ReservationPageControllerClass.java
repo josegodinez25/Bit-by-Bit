@@ -66,6 +66,8 @@ public class ReservationPageControllerClass implements Initializable {
 	@FXML
 	private Label cardZipError;
 	@FXML
+	private Label totalCost;
+	@FXML
 	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
 	@FXML
 	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
@@ -144,6 +146,7 @@ public class ReservationPageControllerClass implements Initializable {
 			reservationCheckIn = selectedDate;
 			if (reservationCheckOut != null) {
 				reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+				totalCost.setText("The total cost of your stay is " + reservationTotalDates.size()*200);
 			}
 			checkIn = reservationCheckIn.toString();
 		} else {
@@ -163,6 +166,7 @@ public class ReservationPageControllerClass implements Initializable {
 			reservationCheckOut = selectedDate;
 			if (reservationCheckIn != null) {
 				reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+				totalCost.setText("The total cost of your stay is " + reservationTotalDates.size()*200);
 			}
 			checkOut = reservationCheckOut.toString();
 		} else {
