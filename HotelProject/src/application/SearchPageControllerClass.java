@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
@@ -21,11 +24,21 @@ public class SearchPageControllerClass {
 	String searchPageRoomType;
 	LocalDate searchCheckIn;
 	LocalDate searchCheckOut;
+	List<LocalDate> searchTotalDates = new ArrayList<>();
 	@FXML 
 	private RadioButton searchPageSingle, searchPageDouble, searchPageKing, searchPageSuite;
 	@FXML
 	private DatePicker searchPageCheckIn, searchPageCheckOut;
+	@FXML
+	private Label roomAvailabilityMessage;
 	
+	public void searchGetDatesBetween(LocalDate startDate, LocalDate endDate) {
+		searchTotalDates.clear();
+		while (!startDate.isAfter(endDate)) {
+			searchTotalDates.add(startDate);
+			startDate = startDate.plusDays(1);
+		}
+	}
 	
 	@FXML
 	public void setSearchRoomType(ActionEvent event) {
@@ -59,7 +72,9 @@ public class SearchPageControllerClass {
 	
 	@FXML
 	public void searchAvailability(ActionEvent event) throws IOException {
-		 
+		searchGetDatesBetween(searchCheckIn, searchCheckOut);
+		roomAvailabilityMessage.setText("I'm sorry we don't have any rooms of this type available for the chosen dates");	 
+		roomAvailabilityMessage.setText("This room is available click here to reserve this room!");
 	}
 	
 	@FXML

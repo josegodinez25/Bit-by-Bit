@@ -28,9 +28,10 @@ public class ReviewPageControllerClass implements Initializable{
 	private Scene scene;
 	private Parent root;
 	@FXML
-	private Label reviewFirstName;
-	@FXML
-	private Label reviewLastName;
+	private Label reviewFirstName, reviewLastName, reviewEmail, reviewPhone, reviewRoomType, 
+	reviewRoomNumber,reviewCheckIn, reviewCheckOut, reviewCCfirstName, reviewCClastName, 
+	reviewCCnumber, reviewCCexperation, reviewCCcountry, reviewCCzip, reviewCCsecurity, reviewReservationNumber;
+
 	//crate labels for each customers information
 	
 	private String ID;

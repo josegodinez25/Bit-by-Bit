@@ -8,17 +8,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class MainPageControllerClass {
+	reviewSingleton review = reviewSingleton.getInstance();
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	String reservationID;
 	@FXML
 	private TextField reservationIDtextField;
-	reviewSingleton review = reviewSingleton.getInstance();
+	@FXML
+	private Label reservationIDerror;
 	
 	@FXML
 	public void switchToSearchScene(ActionEvent event) throws IOException {
@@ -65,6 +68,7 @@ public class MainPageControllerClass {
 			stage.show();
 		}else {
 			//show a red label saying ID does not exist
+			reservationIDerror.setText("Please enter a valid reservation number");
 		}
 		
 	}
