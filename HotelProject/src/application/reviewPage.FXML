@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReviewPageControllerClass">
    <children>
@@ -20,35 +22,92 @@
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1366.0">
                <children>
-                  <HBox layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="1366.0" style="-fx-background-color: WHITE;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="101.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../ImageFolder/Asylum%20Hotel-logos_black.png" />
-                           </image></ImageView>
-                        <VBox prefHeight="200.0" prefWidth="1289.0">
+                        <VBox prefHeight="100.0" prefWidth="1376.0">
                            <children>
                               <Pane prefHeight="48.0" prefWidth="1223.0" style="-fx-background-color: #322E2E;" />
-                              <HBox prefHeight="60.0" prefWidth="1265.0" style="-fx-background-color: #322E2E;">
+                              <HBox prefHeight="60.0" prefWidth="1303.0" style="-fx-background-color: #8f9779;">
                                  <children>
-                                    <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="60.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../ImageFolder/icons8-reception-50.png" />
+                                          <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
                                        </image>
                                     </ImageView>
-                                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="62.0" prefWidth="100.0" style="-fx-background-color: #322E2E;" text="Return to menu" textFill="WHITE" />
-                                    <ImageView fitHeight="56.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                    <SplitPane prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
+                                       <items>
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="60.0" prefWidth="147.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Return to menu" textFill="WHITE">
+                                             <graphic>
+                                                <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../ImageFolder/icons8-reception-50.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic></Button>
+                                       </items>
+                                    </SplitPane>
+                                    <Pane prefHeight="59.0" prefWidth="30.0" />
+                                    <SplitPane prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
+                                       <items>
+                                          <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Edit reservation" textFill="WHITE">
+                                             <graphic>
+                                                <ImageView fitHeight="56.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../ImageFolder/icons8-edit-property-96.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
+                                       </items>
+                                    </SplitPane>
+                                    <Pane prefHeight="57.0" prefWidth="30.0" />
+                                    <SplitPane prefHeight="66.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
+                                       <items>
+                                          <Button alignment="CENTER" mnemonicParsing="false" prefHeight="56.0" prefWidth="243.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Cancel Reservation" textFill="WHITE">
+                                             <font>
+                                                <Font name="SansSerif Regular" size="12.0" />
+                                             </font>
+                                             <graphic>
+                                                <ImageView fitHeight="59.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../ImageFolder/icons8-cancel-subscription-96.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
+                                       </items>
+                                    </SplitPane>
+                                    <Pane prefHeight="57.0" prefWidth="30.0" />
+                                    <Pane prefHeight="60.0" prefWidth="713.0">
+                                       <children>
+                                          <GridPane layoutX="-31.0" layoutY="-15.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <ImageView fitHeight="220.0" fitWidth="307.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                                                   <image>
+                                                      <Image url="@../../ImageFolder/Asylum%20Hotel-logos_transparent.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </GridPane>
+                                       </children></Pane>
+                                    <ImageView fitHeight="60.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../ImageFolder/icons8-edit-property-96.png" />
+                                          <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
                                        </image>
                                     </ImageView>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="70.0" prefWidth="100.0" style="-fx-background-color: #322E2E;" text="Edit reservation" textFill="WHITE" />
-                                    <ImageView fitHeight="59.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../ImageFolder/icons8-cancel-subscription-96.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="73.0" prefWidth="100.0" style="-fx-background-color: #322E2E;" text="Cancel Reservation" textFill="WHITE" />
                                  </children>
                               </HBox>
                            </children>
@@ -69,48 +128,288 @@
                         <HBox prefHeight="50.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" BorderPane.alignment="CENTER" />
                      </bottom>
                      <top>
-                        <HBox prefHeight="50.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" BorderPane.alignment="CENTER" />
+                        <HBox prefHeight="50.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="117.0" prefWidth="1498.0" text="Asylum Hotel" textFill="WHITE">
+                                 <font>
+                                    <Font name="SansSerif Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children></HBox>
                      </top>
                      <center>
-                        <GridPane BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="First Name" GridPane.rowIndex="1" />
-                              <Label text="Last Name" GridPane.rowIndex="2" />
-                              <Label fx:id="reviewFirstName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="reviewLastName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <center>
+                              <GridPane prefHeight="325.0" prefWidth="1009.0" BorderPane.alignment="CENTER">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="182.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="164.0" minWidth="10.0" prefWidth="156.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
                                  <children>
-                                    <Label text="Reservation Number" />
-                                    <Label fx:id="reviewReservationNumber" text="Label" />
+                                    <Label text="First Name" textFill="#322e2e" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font></Label>
+                                    <Label fx:id="reviewFirstName" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font></Label>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Label text="Card Holder Name:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Card Number:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Expiration Date:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Country:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #8f9779; -fx-background-radius: 10;" text="Guest Information:" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="140.0" style="-fx-background-color: #8f9779; -fx-background-radius: 10;" text="Payment Information:" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCClastName" text="Label" textFill="#322e2e" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCfirstName" text="Label" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCnumber" text="XXXX-XXXX-XXXX-label" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Security Code:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Zip Code:" textFill="#322e2e" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCsecurity" text="XXX" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCexperation" text="Label" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCcountry" text="Label" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCCzip" text="Label" textFill="#322e2e" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Last Name:" textFill="#322e2e" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="E-Mail:" textFill="#322e2e" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Phone Number:" textFill="#322e2e" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Room Size:" textFill="#322e2e" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Room Number:" textFill="#322e2e" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewLastName" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewEmail" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewPhone" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewRoomType" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewRoomNumber" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCheckIn" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="reviewCheckOut" text="Label" textFill="#322e2e" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Check-In Date:" textFill="#322e2e" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Check-Out Date:" textFill="#322e2e" GridPane.rowIndex="9">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="12.0" />
+                                       </font>
+                                    </Label>
                                  </children>
-                              </VBox>
-                              <Label text="E-mail" GridPane.rowIndex="3" />
-                              <Label fx:id="reviewEmail" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label text="Phone Number" GridPane.rowIndex="4" />
-                              <Label fx:id="reviewPhone" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label text="Room Size" GridPane.rowIndex="5" />
-                              <Label fx:id="reviewRoomType" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="Room Number" GridPane.rowIndex="6" />
-                              <Label fx:id="reviewRoomNumber" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                           </children>
-                        </GridPane>
+                              </GridPane>
+                           </center>
+                           <top>
+                              <Pane prefHeight="64.0" prefWidth="1266.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox prefHeight="68.0" prefWidth="1265.0">
+                                       <children>
+                                          <Pane prefHeight="68.0" prefWidth="629.0" style="-fx-background-color: #8f9779;">
+                                             <children>
+                                                <Label alignment="CENTER" layoutX="-3.0" layoutY="-2.0" prefHeight="72.0" prefWidth="632.0" text="Asylum Hotel Reservation" textAlignment="CENTER" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="SansSerif Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </Pane>
+                                          <Label alignment="CENTER" prefHeight="79.0" prefWidth="191.0" text="Reservation Number:" textFill="#322e2e">
+                                             <font>
+                                                <Font name="SansSerif Regular" size="12.0" />
+                                             </font></Label>
+                                          <Label fx:id="reviewReservationNumber" prefHeight="93.0" prefWidth="168.0" text="Label" textFill="#322e2e">
+                                             <font>
+                                                <Font name="SansSerif Regular" size="12.0" />
+                                             </font></Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </top>
+                           <bottom>
+                              <Pane prefHeight="150.0" prefWidth="1266.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox layoutX="1.0" layoutY="-17.0" prefHeight="158.0" prefWidth="1265.0">
+                                       <children>
+                                          <VBox prefHeight="158.0" prefWidth="220.0">
+                                             <children>
+                                                <Label alignment="BOTTOM_CENTER" prefHeight="51.0" prefWidth="159.0" text="Hotel Reservation Policy" textAlignment="CENTER" textFill="#322e2e" wrapText="true">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="14.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="145.0" style="-fx-background-color: #8f9779;" text="Check- In Time:" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="Sans Serif Collection" size="12.0" />
+                                                   </font></Label>
+                                                <Label prefHeight="30.0" prefWidth="144.0" text="12:00 P.M. Noon" textFill="#322e2e">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="12.0" />
+                                                   </font></Label>
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="143.0" style="-fx-background-color: #8f9779;" text="Check-Out Time:" textFill="WHITE" />
+                                                <Label text="11:00 A.M." textFill="#322e2e">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="12.0" />
+                                                   </font></Label>
+                                             </children>
+                                          </VBox>
+                                          <VBox prefHeight="157.0" prefWidth="1129.0">
+                                             <children>
+                                                <Pane prefHeight="30.0" prefWidth="1121.0" />
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="1126.0" text="We ask that guests contact the hotel as far in advance as possible regarding early arrivals and late departures. If the hotel is unable to accommodate your request, your luggage can be securely stored at the hotel with our compliments." textAlignment="CENTER" textFill="#322e2e" wrapText="true">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="1126.0" text="Cancellations/amendments made after 12 noon, 24hrs prior to the check-in date: One night’s room rate will be charged to the guest’s credit card used to guarantee the reservation." textFill="#322e2e">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="1126.0" text="For security purposes, please provide a valid government or state-issued photo ID at check-in" textFill="#322e2e">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="1126.0" text="The Asylum Hotel is a smoke free enviroment" textFill="#322e2e">
+                                                   <font>
+                                                      <Font name="SansSerif Regular" size="10.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </Pane>
+                           </bottom>
+                           <left>
+                              <Pane prefHeight="394.0" prefWidth="196.0" BorderPane.alignment="CENTER" />
+                           </left>
+                           <right>
+                              <Pane prefHeight="394.0" prefWidth="54.0" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
                      </center>
                   </BorderPane>
                </children>
