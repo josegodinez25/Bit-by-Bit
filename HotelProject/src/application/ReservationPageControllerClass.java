@@ -77,11 +77,11 @@ public class ReservationPageControllerClass implements Initializable {
 	String reservationPhoneNumber;
 	String reservationCardFirstName;
 	String reservationCardLastName;
-	int reservationCardPaymentNumber;
-	int reservationCardExpMonth;
-	int reservationCardExpYear;
+	String reservationCardPaymentNumber;
+	String reservationCardExpMonth;
+	String reservationCardExpYear;
 	String reservationCardCountry;
-	int reservationCardZipcode;
+	String reservationCardZipcode;
 	String reservationRoomType;
 	String checkOut;
 	String checkIn;
@@ -197,52 +197,59 @@ public class ReservationPageControllerClass implements Initializable {
 		reservationPhoneNumber = phoneTextField.getText();
 		reservationCardFirstName = firstNameCardTextField.getText();
 		reservationCardLastName = lastNameCardTextField.getText();
-	}
-
-	public void checkForErrors() {
-		try {
-			reservationCardPaymentNumber = Integer.parseInt(paymentCardNumberTextField.getText());
-		} catch (NumberFormatException e) {
-			cardNumberError.setText("Please enter a valid card number");
-
-		}
-		try {
-			reservationCardExpMonth = Integer.parseInt(expMonthCardTextField.getText());
-		} catch (NumberFormatException e) {
-			cardDateError.setText("Please enter a valid date");
-
-		}
-
-		try {
-			reservationCardExpYear = Integer.parseInt(expYearCardTextField.getText());
-			int currentYear = LocalDate.now().getYear();
-
-			if (reservationCardExpYear < currentYear) {
-				cardDateError.setText("Please enter a valid expiration year");
-			}
-		} catch (NumberFormatException e) {
-			cardDateError.setText("Please enter a valid year");
-		}
+		reservationCardPaymentNumber = paymentCardNumberTextField.getText();
+		reservationCardExpMonth = expMonthCardTextField.getText();
+		reservationCardExpYear = expYearCardTextField.getText();
 		reservationCardCountry = countryCardTextField.getText();
-		try {
-			reservationCardZipcode = Integer.parseInt(zipcodeCardTextField.getText());
-		} catch (NumberFormatException e) {
-			cardZipError.setText("Please enter a valid zipcode");
-		}
-		expCombined = Integer.toString(reservationCardExpMonth) + Integer.toString(reservationCardExpYear);
+		reservationCardZipcode = zipcodeCardTextField.getText();
+		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
+
+//	public void checkForErrors() {
+//		try {
+//			reservationCardPaymentNumber = paymentCardNumberTextField.getText();
+//		} catch (NumberFormatException e) {
+//			cardNumberError.setText("Please enter a valid card number");
+//
+//		}
+//		try {
+//			reservationCardExpMonth = expMonthCardTextField.getText();
+//		} catch (NumberFormatException e) {
+//			cardDateError.setText("Please enter a valid date");
+//
+//		}
+//
+//		try {
+//			reservationCardExpYear = expYearCardTextField.getText();
+//			int currentYear = LocalDate.now().getYear();
+//
+//			if (reservationCardExpYear < currentYear) {
+//				cardDateError.setText("Please enter a valid expiration year");
+//			}
+//		} catch (NumberFormatException e) {
+//			cardDateError.setText("Please enter a valid year");
+//		}
+//		reservationCardCountry = countryCardTextField.getText();
+//		try {
+//			reservationCardZipcode = zipcodeCardTextField.getText();
+//		} catch (NumberFormatException e) {
+//			cardZipError.setText("Please enter a valid zipcode");
+//		}
+//		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
+//	}
 
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
 		getCustomerInfo();
-		checkForErrors();
+		//checkForErrors();
 		// there should be some sort of call here to a function in the customer class so
 		// the information can be stored on the excel file
+	
 		Reserve res = new Reserve();
 		Room rom = new Room(reservationRoomType, checkIn, checkOut, reservationTotalDates);
 		Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
 				reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
-				reservationCardExpMonth, reservationCardZipcode, reservationCardCountry);
+				expCombined, reservationCardZipcode, reservationCardCountry);
 
 		res.reserveRoom(rom, cus);
 

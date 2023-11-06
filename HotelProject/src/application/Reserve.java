@@ -158,9 +158,9 @@ public class Reserve {
 				String phoneNumber = obj.ReadExcel("Customers", i, 4);
 				String paymentFirstName = obj.ReadExcel("Customers", i, 5);
 				String paymentLastName = obj.ReadExcel("Customers", i, 6);
-				int cardNumber = Integer.parseInt(obj.ReadExcel("Customers", i, 7));
-				int expDate = Integer.parseInt(obj.ReadExcel("Customers", i, 8));
-				int zipCode = Integer.parseInt(obj.ReadExcel("Customers", i, 10));
+				String cardNumber = obj.ReadExcel("Customers", i, 7);
+				String expDate = obj.ReadExcel("Customers", i, 8);
+				String zipCode = obj.ReadExcel("Customers", i, 10);
 				String country = obj.ReadExcel("Customers", i, 9);
 				String roomNumber = obj.ReadExcel("Customers", i, 12);
 				String price = obj.ReadExcel("Customers", i, 13);
