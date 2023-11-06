@@ -8,6 +8,7 @@ public class reviewSingleton {
 
 	private String reviewFirstName;
 	private String reviewLastName;
+	
 	private String ID;
 	
 	private reviewSingleton() {
