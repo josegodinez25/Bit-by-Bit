@@ -32,6 +32,9 @@ public class SearchPageControllerClass {
 	@FXML
 	private Label roomAvailabilityMessage;
 	
+	String checkIn;
+	String checkOut;
+	
 	public void searchGetDatesBetween(LocalDate startDate, LocalDate endDate) {
 		searchTotalDates.clear();
 		while (!startDate.isAfter(endDate)) {
@@ -60,12 +63,14 @@ public class SearchPageControllerClass {
 	@FXML
 	public void setSearchCheckIn(ActionEvent event) {
 		searchCheckIn = searchPageCheckIn.getValue();
+		checkIn = searchCheckIn.toString();
 		//test to check if this method works by printing to console
 		//System.out.println(searchCheckIn.toString());
 	}
 	@FXML
 	public void setSearchCheckOut(ActionEvent event) {
 		searchCheckOut = searchPageCheckOut.getValue();
+		checkOut = searchCheckOut.toString();
 		//test to check if this method works by printing to console
 		//System.out.println(searchCheckOut.toString());
 	}
@@ -73,8 +78,14 @@ public class SearchPageControllerClass {
 	@FXML
 	public void searchAvailability(ActionEvent event) throws IOException {
 		searchGetDatesBetween(searchCheckIn, searchCheckOut);
-		roomAvailabilityMessage.setText("I'm sorry we don't have any rooms of this type available for the chosen dates");	 
-		roomAvailabilityMessage.setText("This room is available click here to reserve this room!");
+		Reserve res = new Reserve();
+		Room room = new Room(searchPageRoomType,checkIn,checkOut,searchTotalDates);
+		
+		if(res.isBooked(room) == true) {
+			roomAvailabilityMessage.setText("I'm sorry we don't have any rooms of this type available for the chosen dates");
+		}else {
+			roomAvailabilityMessage.setText("This room is available click here to reserve this room!");
+		}
 	}
 	
 	@FXML
