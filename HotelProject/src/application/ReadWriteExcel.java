@@ -82,4 +82,19 @@ public class ReadWriteExcel {
 		}
 		return false;
 	}
+	
+	public Cell getCell(String SheetName,int rNum, int cNum) {
+		Cell c = null;
+		try {
+			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
+			Workbook wb = WorkbookFactory.create(fis);
+			Sheet s = wb.getSheet(SheetName);
+			Row r = s.getRow(rNum);
+			c = r.getCell(cNum);
+		} catch (Exception e) {
+			System.out.println("getCell catch block");
+			e.printStackTrace();
+		}
+		return c;
+	}
 }

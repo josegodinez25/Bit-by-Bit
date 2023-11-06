@@ -1,6 +1,8 @@
 package application;
 
 import java.util.Random;
+import java.text.SimpleDateFormat;  
+import java.util.Date;  
 
 public class Reserve {
 
@@ -10,7 +12,8 @@ public class Reserve {
 		int end = 0;
 		int row = 1;
 		int col = 1;
-
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		
 		if (room.size == "Single") {
 			start = 1;
 			end = 6;
@@ -28,10 +31,11 @@ public class Reserve {
 			end = 19;
 
 		}
+		
 		int rowCount = 134;
 		col = start;
 		for (int i = 1; i <= rowCount; i++) {
-			if (obj.ReadExcel("Availability", i, 0).equals(room.checkIn) == true) {
+			if (df.format(obj.getCell("Availability", i, 0).getDateCellValue()).equals(room.checkIn) == true) {
 				row = i;
 			}
 
@@ -52,7 +56,6 @@ public class Reserve {
 			}
 			temp++;
 		}
-
 		if (col > end) {
 			return true;
 		} else {
