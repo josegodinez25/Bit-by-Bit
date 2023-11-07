@@ -255,8 +255,8 @@ public class ReservationPageControllerClass implements Initializable {
 
 		// these next two lines are temporary for testing they set the reservation name
 		// and last name for the review page
-		review.setReviewFirstName(reservationFirstName);
-		review.setReviewlastName(reservationLastName);
+		//review.setReviewFirstName(reservationFirstName);
+		//review.setReviewlastName(reservationLastName);
 
 		root = FXMLLoader.load(getClass().getResource("reviewPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

@@ -49,7 +49,7 @@
                                     <Pane prefHeight="59.0" prefWidth="30.0" />
                                     <SplitPane prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
                                        <items>
-                                          <Button alignment="CENTER" mnemonicParsing="false" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Edit reservation" textFill="WHITE">
+                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToEditPage" prefHeight="60.0" prefWidth="187.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Edit reservation" textFill="WHITE">
                                              <graphic>
                                                 <ImageView fitHeight="56.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
