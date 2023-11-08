@@ -20,14 +20,14 @@ public class Customer {
     String checkIn;
     String checkOut;
     
-
+    //constructor of Customer Class
+    //contains all of their information
     Customer(String firstName,String lastName, String email, String phoneNumber,String paymentFirstName, 
             String paymentLastName, String cardNumber, String expDate, String zipCode,String country){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-
         this.paymentFirstName = paymentFirstName;
         this.paymentLastName = paymentLastName;
         this.cardNumber = cardNumber;
@@ -37,18 +37,16 @@ public class Customer {
 
         ID = "";
     }
-
+    
+    //writes all the customers information into an Excel file
     public void inputUserDetail() {
 
         ReadWriteExcel obj = new ReadWriteExcel();
         int CustomerCount = 1;
         //checks if the cell is empty
-        while (obj.isCustomerNull(CustomerCount, 1) == false) {
+        while (obj.isNull(CustomerCount, 1,0) == false) {
             CustomerCount++;
         }
-
-       
-
 
         //if the cell is empty then write the info in excel
         obj.WriteExcel("Customers", CustomerCount, 1, firstName);

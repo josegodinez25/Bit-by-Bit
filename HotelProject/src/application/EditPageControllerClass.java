@@ -114,5 +114,10 @@ public class EditPageControllerClass implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
+	public void editConfirmation(ActionEvent event)throws IOException{
+		Reserve reserve = new Reserve();
+		//reserve.changeReservation(ID, Customer);
+	}
 
 }

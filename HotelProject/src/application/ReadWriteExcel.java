@@ -12,12 +12,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ReadWriteExcel {
-
-	public static void main(String[]args) {
-		ReadWriteExcel obj = new ReadWriteExcel();
-		obj.WriteExcel("Customers", 0, 5, "ID");
-	}
 	
+	//obtains information from the excel sheet
+	//it needs the sheet name, row, and column
 	public String ReadExcel(String SheetName, int rNum, int cNum) {
 		String data = "";
 		try {
@@ -36,6 +33,8 @@ public class ReadWriteExcel {
 		return data;
 	}
 
+	//prints data into the excel sheet
+	//needs the sheet name, row, column, and the String you want to print
 	public void WriteExcel(String SheetName, int rNum, int cNum, String DATA) {
 		try {
 
@@ -56,11 +55,13 @@ public class ReadWriteExcel {
 
 	}
 
-	public boolean isCustomerNull(int rNum, int cNum) {
+	//checks if the the cell is null
+	//needs row, column, and the index of the sheet you want to check
+	public boolean isNull(int rNum, int cNum, int index) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
 			Workbook wb = WorkbookFactory.create(fis);
-			if (wb.getSheetAt(1).getRow(rNum).getCell(cNum) == null) {
+			if (wb.getSheetAt(index).getRow(rNum).getCell(cNum) == null) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -69,20 +70,8 @@ public class ReadWriteExcel {
 		return false;
 	}
 
-	
-	public boolean isRoomNull(int rNum, int cNum) {
-		try {
-			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
-			Workbook wb = WorkbookFactory.create(fis);
-			if (wb.getSheetAt(2).getRow(rNum).getCell(cNum) == null) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
+
+	//returns a cell from a certain sheet
 	public Cell getCell(String SheetName,int rNum, int cNum) {
 		Cell c = null;
 		try {

@@ -52,15 +52,13 @@ public class ReviewPageControllerClass implements Initializable {
 			reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
 			reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
 			reviewCCcountry.setText(res.findCustomerID(ID).country);
-		
-				//these three need to be converted to Strings
-		//	reviewCCnumber.setText(res.findCustomerID(ID).cardNumber);
-		//	reviewCCzip.setText(res.findCustomerID(ID).zipCode);
-		//	reviewCCexperation.setText(res.findCustomerID(ID).expDate);
+			reviewCCnumber.setText(res.findCustomerID(ID).cardNumber);
+			reviewCCzip.setText(res.findCustomerID(ID).zipCode);
+			reviewCCexperation.setText(res.findCustomerID(ID).expDate);
 		} else {
 			ReadWriteExcel obj = new ReadWriteExcel();
 	        int CustomerCount = 1;
-	        while (obj.isCustomerNull(CustomerCount, 1) == false) {
+	        while (obj.isNull(CustomerCount, 1,0) == false) {
 	            CustomerCount++;
 	        }
 	        CustomerCount--;
