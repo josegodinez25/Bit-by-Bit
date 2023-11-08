@@ -58,6 +58,8 @@ public class ReservationPageControllerClass implements Initializable {
 	@FXML
 	private TextField zipcodeCardTextField;
 	@FXML
+	private TextField securityCode;
+	@FXML
 	private Button confirmTransactionButton;
 	@FXML
 	private Label cardNumberError;
@@ -86,6 +88,7 @@ public class ReservationPageControllerClass implements Initializable {
 	String checkOut;
 	String checkIn;
 	String expCombined;
+	String reservationsecurityCode;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -202,6 +205,7 @@ public class ReservationPageControllerClass implements Initializable {
 		reservationCardExpYear = expYearCardTextField.getText();
 		reservationCardCountry = countryCardTextField.getText();
 		reservationCardZipcode = zipcodeCardTextField.getText();
+		reservationsecurityCode = securityCode.getText();
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
@@ -255,8 +259,8 @@ public class ReservationPageControllerClass implements Initializable {
 
 		// these next two lines are temporary for testing they set the reservation name
 		// and last name for the review page
-		review.setReviewFirstName(reservationFirstName);
-		review.setReviewlastName(reservationLastName);
+		//review.setReviewFirstName(reservationFirstName);
+		//review.setReviewlastName(reservationLastName);
 
 		root = FXMLLoader.load(getClass().getResource("reviewPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

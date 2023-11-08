@@ -46,6 +46,7 @@ public class MainPageControllerClass {
 		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
 		Parent root = (Parent) FXMLLoader.load();
 		Stage stage = new Stage();
+		stage.setResizable(false);
 		stage.setTitle("Reservation Confirmation");
 		stage.setScene(new Scene(root));
 		stage.show();
@@ -62,7 +63,7 @@ public class MainPageControllerClass {
 			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
 			Parent root = (Parent) FXMLLoader.load();
 			Stage stage = new Stage();
-			stage.setTitle("Reservation Confirmation");
+			stage.setResizable(false);
 			stage.setScene(new Scene(root));
 			stage.show();
 		}else {
