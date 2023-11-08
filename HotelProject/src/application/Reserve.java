@@ -1,23 +1,25 @@
 package application;
 
 import java.util.Random;
-import java.text.SimpleDateFormat;  
-import java.util.Date;  
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Reserve {
 
+	
+	//returns true or false if the room is booked or not
 	public boolean isBooked(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		int start = 0;
 		int end = 0;
 		int row = 1;
 		int col = 1;
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		
+
+		//sets the size to the correct size the customer picked
 		if (room.size == "Single") {
 			start = 1;
 			end = 6;
-
 		} else if (room.size == "Double") {
 			start = 7;
 			end = 12;
@@ -29,23 +31,26 @@ public class Reserve {
 		} else if (room.size == "Suite") {
 			start = 19;
 			end = 19;
-
 		}
-		
+
+		//how many dates we have
 		int rowCount = 134;
 		col = start;
+		
+		//finds the row where the customers check in date is
 		for (int i = 1; i <= rowCount; i++) {
 			if (df.format(obj.getCell("Availability", i, 0).getDateCellValue()).equals(room.checkIn) == true) {
 				row = i;
 			}
-
 		}
+		
 		int temp = col;
 		int total = room.totalDates.size();
 		int i = 0;
+		//uses nested loop to check if the dates the customer wants is booked
 		outerLoop: for (int j = start; j <= end; j++) {
 			for (i = row; i < row + room.totalDates.size(); i++) {
-				if (obj.isRoomNull(i, j) == false) {
+				if (obj.isNull(i, j, 1) == false) {
 					col++;
 					i = row + room.totalDates.size();
 				} else if (col == temp) {
@@ -67,10 +72,13 @@ public class Reserve {
 
 	}
 
+	//function that does not allow for duplicate IDs
 	private boolean IdNotSame(String generatedID) {
 		return false;
 	}
 
+	//returns a 5 digit random String
+	//this is the customers ID
 	public String randomGenerator() {
 		String ID = null;
 		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -93,8 +101,6 @@ public class Reserve {
 			}
 
 			ID = randomString.toString();
-
-			// checks if the id is not the same
 			if (!IdNotSame(ID)) {
 				sameID = true;
 			}
@@ -102,6 +108,7 @@ public class Reserve {
 		return ID;
 	}
 
+	//if the room the customer selected is available then it saves all the data into an Excel Sheet
 	public void reserveRoom(Room room, Customer customer) {
 		if (isBooked(room) == false) {
 			// the customer gets a unique id (will need ID for review,change,cancel)
@@ -119,35 +126,14 @@ public class Reserve {
 		}
 	}
 
-	public void cancel(String customerID) {
-		// it will find the customer id
-		Customer customer = findCustomerID(customerID);
-
-		if (customer != null) {
-			Room room = findCustomerRoom(customer);
-
-			if (room != null) {
-				// sets room to available
-				room.availability = "available";
-				clearCustomerInfo(customer);
-				System.out.println("Reservation associated with customer id " + customerID + " has been cancelled");
-			} else {
-				System.out.println("Room with associated ID " + customerID + " does not exist");
-			}
-		} else {
-			System.out.println("Customer with following ID " + customerID + " is not found");
-		}
-	}
-
+	//scans the excel sheet for the ID that is inputed then returns that Customer
 	public Customer findCustomerID(String customerID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
-		// checks if the cell is empty
-		while (obj.isCustomerNull(rowCount, 1) == false) {
+		while (obj.isNull(rowCount, 1, 0) == false) {
 			rowCount++;
 		}
 
-		// rowCount = rowCount - 1;
 		for (int i = 1; i <= rowCount; i++) {
 			String storedID = obj.ReadExcel("Customers", i, 11);
 			if (storedID.equals(customerID)) {
@@ -180,29 +166,79 @@ public class Reserve {
 		return null;
 	}
 
+	//returns true or false if the ID that is inputed exists or not
 	public boolean checkID(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
-		while (obj.isCustomerNull(rowCount, 1) == false) {
+		while (obj.isNull(rowCount, 1, 0) == false) {
 			rowCount++;
 		}
-		
 		for (int i = 1; i < rowCount; i++) {
 			if (obj.ReadExcel("Customers", i, 11).equals(ID) == true) {
 				return true;
 			}
 		}
-
 		return false;
 	}
 
-	private void clearCustomerInfo(Customer customer) {
-		// TODO Auto-generated method stub
+	//finds which customer is trying to edit info using the String ID
+	//then updates their information with the new information
+	public void changeReservation(String ID, Customer cus) {
+		ReadWriteExcel obj = new ReadWriteExcel();
+		int rowCount = 1;
+		while (obj.isNull(rowCount, 1, 0) == false) {
+			rowCount++;
+		}
 
+		for (int i = 1; i <= rowCount; i++) {
+			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
+				obj.WriteExcel("Customers", rowCount, 1, cus.firstName);
+				obj.WriteExcel("Customers", rowCount, 2, cus.lastName);
+				obj.WriteExcel("Customers", rowCount, 3, cus.email);
+				obj.WriteExcel("Customers", rowCount, 4, cus.phoneNumber);
+				obj.WriteExcel("Customers", rowCount, 5, cus.paymentFirstName);
+				obj.WriteExcel("Customers", rowCount, 6, cus.paymentLastName);
+				obj.WriteExcel("Customers", rowCount, 7, cus.cardNumber);
+				obj.WriteExcel("Customers", rowCount, 8, cus.expDate);
+				obj.WriteExcel("Customers", rowCount, 9, cus.country);
+				obj.WriteExcel("Customers", rowCount, 10, cus.zipCode);
+				obj.WriteExcel("Customers", rowCount, 11, cus.ID);
+				obj.WriteExcel("Customers", rowCount, 12, cus.roomNumber);
+				obj.WriteExcel("Customers", rowCount, 13, cus.roomPrice);
+				obj.WriteExcel("Customers", rowCount, 14, cus.checkIn);
+				obj.WriteExcel("Customers", rowCount, 15, cus.checkOut);
+			}
+		}
 	}
 
-	private Room findCustomerRoom(Customer customer) {
-		// TODO Auto-generated method stub
-		return null;
+	//finds which customer is trying to edit info using the String ID
+	//then sets all their information back to null
+	public void clearCustomerInfo(String ID, Customer cus) {
+		ReadWriteExcel obj = new ReadWriteExcel();
+		int rowCount = 1;
+		while (obj.isNull(rowCount, 1, 0) == false) {
+			rowCount++;
+		}
+
+		for (int i = 1; i <= rowCount; i++) {
+			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
+				obj.WriteExcel("Customers", rowCount, 1, null);
+				obj.WriteExcel("Customers", rowCount, 2, null);
+				obj.WriteExcel("Customers", rowCount, 3, null);
+				obj.WriteExcel("Customers", rowCount, 4, null);
+				obj.WriteExcel("Customers", rowCount, 5, null);
+				obj.WriteExcel("Customers", rowCount, 6, null);
+				obj.WriteExcel("Customers", rowCount, 7, null);
+				obj.WriteExcel("Customers", rowCount, 8, null);
+				obj.WriteExcel("Customers", rowCount, 9, null);
+				obj.WriteExcel("Customers", rowCount, 10, null);
+				obj.WriteExcel("Customers", rowCount, 11, null);
+				obj.WriteExcel("Customers", rowCount, 12, null);
+				obj.WriteExcel("Customers", rowCount, 13, null);
+				obj.WriteExcel("Customers", rowCount, 14, null);
+				obj.WriteExcel("Customers", rowCount, 15, null);
+			}
+		}
+
 	}
 }

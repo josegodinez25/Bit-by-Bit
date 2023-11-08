@@ -16,6 +16,7 @@ public class Room {
 	int row;
 	int col;
 
+	//constructor for room
 	public Room(String size, String checkIn, String checkOut, List<LocalDate> totalDates) {
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -23,6 +24,7 @@ public class Room {
 		this.size = size;
 	}
 
+	//writes booked on the excel sheet for the correct dates and size the customer picks
 	public void updateRoom(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 
