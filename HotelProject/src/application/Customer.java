@@ -37,6 +37,9 @@ public class Customer {
 
         ID = "";
     }
+    public String getEmail() {
+    	return email;
+    }
     
     //writes all the customers information into an Excel file
     public void inputUserDetail() {
