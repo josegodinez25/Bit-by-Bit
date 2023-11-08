@@ -23,6 +23,7 @@ public class Main extends Application {
 			stage.setTitle("Asylum Hotel Reservation System");
 			stage.setScene(mainScreenScene);
 			stage.show();
+			stage.setResizable(false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

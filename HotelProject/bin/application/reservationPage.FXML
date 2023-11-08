@@ -80,11 +80,18 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <ImageView fitHeight="183.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                                       <image>
-                                          <Image url="@../../ImageFolder/Asylum%20Hotel-logos_transparent.png" />
-                                       </image>
-                                    </ImageView>
+                                    <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: CLEAR;" GridPane.rowIndex="1">
+                                       <graphic>
+                                          <ImageView fitHeight="183.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../ImageFolder/Asylum%20Hotel-logos_transparent.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Button>
                                  </children>
                               </GridPane>
                               <Pane prefHeight="67.0" prefWidth="504.0" />
@@ -266,6 +273,12 @@
                                           <Label fx:id="cardNumberError" layoutX="179.0" layoutY="183.0" prefHeight="25.0" prefWidth="257.0" textFill="RED" />
                                           <Label fx:id="cardDateError" layoutX="121.0" layoutY="234.0" prefHeight="24.0" prefWidth="211.0" textFill="RED" />
                                           <Label fx:id="cardZipError" layoutX="340.0" layoutY="162.0" prefHeight="23.0" prefWidth="250.0" textFill="RED" />
+                                          <Label layoutX="340.0" layoutY="165.0" text="Security Code*" />
+                                          <TextField fx:id="securityCode" layoutX="340.0" layoutY="183.0">
+                                             <cursor>
+                                                <Cursor fx:constant="TEXT" />
+                                             </cursor>
+                                          </TextField>
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="643.0">

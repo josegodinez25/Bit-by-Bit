@@ -26,44 +26,71 @@
         <items>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="1366.0">
                <children>
-                  <HBox layoutX="45.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="1366.0" style="-fx-background-color: #8f9779;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <VBox layoutX="-2.0" layoutY="2.0" prefHeight="100.0" prefWidth="1366.0">
                      <children>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
-                           </image>
-                        </ImageView>
-                        <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="1357.0">
+                        <HBox prefHeight="35.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" />
+                        <HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="61.0" prefWidth="1365.0" style="-fx-background-color: #8f9779;">
                            <children>
-                              <ImageView fitHeight="100.0" fitWidth="155.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="84.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
                                  </image>
                               </ImageView>
-                              <GridPane prefHeight="112.0" prefWidth="949.0">
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="159.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="370.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="449.0" minWidth="10.0" prefWidth="196.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="227.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
+                              <HBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="100.0" prefWidth="1357.0">
                                  <children>
-                                    <ImageView fitHeight="196.0" fitWidth="176.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                    <ImageView fitHeight="82.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../ImageFolder/Asylum%20Hotel-logos_transparent.png" />
+                                          <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
                                        </image>
                                     </ImageView>
+                                    <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#switchToMainScene" prefHeight="98.0" prefWidth="302.0" style="-fx-background-color: #8f9779;" text="Return To Main" textAlignment="CENTER" textFill="#322e2e" wrapText="true">
+                                       <font>
+                                          <Font name="SansSerif Regular" size="24.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                       <graphic>
+                                          <ImageView fitHeight="72.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../ImageFolder/icons8-reception-100.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <GridPane prefHeight="84.0" prefWidth="868.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="540.0" minWidth="10.0" prefWidth="159.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="84.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="459.0" minWidth="10.0" prefWidth="430.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="430.0" minWidth="10.0" prefWidth="199.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: CLEAR;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                             <graphic>
+                                                <ImageView fitHeight="198.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../ImageFolder/Asylum%20Hotel-logos_transparent.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </GridPane>
                                  </children>
-                              </GridPane>
+                              </HBox>
                            </children>
                         </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </AnchorPane>
           <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="668.0" prefWidth="1366.0">
@@ -167,21 +194,6 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor></Button>
                               <Pane prefHeight="127.0" prefWidth="230.0" />
-                              <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="83.0" prefWidth="220.0" style="-fx-background-color: WHITE;" text="Return To Main" textAlignment="CENTER" textFill="#322e2e" wrapText="true">
-                                 <font>
-                                    <Font name="SansSerif Regular" size="24.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                                 <graphic>
-                                    <ImageView fitHeight="82.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../ImageFolder/icons8-reception-100.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
                            </children></VBox>
                      </left>
                      <top>
