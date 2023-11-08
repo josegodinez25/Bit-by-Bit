@@ -85,6 +85,22 @@ public class ReviewPageControllerClass implements Initializable {
 	}
 
 	@FXML
+	public void switchToEditPage(ActionEvent event) throws IOException {
+		//review.setID(ID);
+		root = FXMLLoader.load(getClass().getResource("editPage.FXML"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+		
+	}
+	
+	@FXML
+	public void cancelReservation(ActionEvent event) throws IOException {
+		
+	}
+	
+	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
