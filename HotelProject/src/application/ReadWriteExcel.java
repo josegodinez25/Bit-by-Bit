@@ -86,4 +86,23 @@ public class ReadWriteExcel {
 		}
 		return c;
 	}
+	public String getEmail(String customerID) {
+		try {
+			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
+			Workbook wb = WorkbookFactory.create(fis);
+			Sheet sheet = wb.getSheet("Customers");
+			
+			for (Row row : sheet) {
+				String id = row.getCell(3).getStringCellValue();
+				if (id.equals(customerID) ) {
+					return row.getCell(3).getStringCellValue();
+				}
+			}
+			
+			} catch (Exception e ) {
+				e.printStackTrace();
+		}
+		return null;
+	}
+
 }

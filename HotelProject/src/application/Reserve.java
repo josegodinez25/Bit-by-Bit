@@ -124,6 +124,41 @@ public class Reserve {
 		} else {
 			System.out.println("All rooms are booked");
 		}
+		// after sys print all room are booked
+		// public void reserveRoom(Room room, Customer customer) {
+
+		// confirmation email based on reservationPageControllerClass or SearchPageControllerClass
+				// change the values here for searchPageController variables	
+				// if any of these variables are null it will print this email
+				if (room.number == null || room.checkIn == null || room.checkOut == null) {
+					// change 
+					String subject = "Reservation Confirmation";
+					String messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
+		                + "Your reservation has been confirmed. Here are the details:\n"
+		                + "Room Number: " + room.number + "\n"
+		                + "Check-In Date: " + room.checkIn + "\n"
+		                + "Check-Out Date: " + room.checkOut + "\n"
+		                + "Total Price: " + room.price + "\n"
+		                + "Reservation ID: " + customer.ID + "\n\n"
+		                + "Thank you for choosing Asylum Hotel for your stay!\n";
+
+					EmailSend emailSender = new EmailSend();
+					emailSender.sendEmailToCustomer(customer.email, subject, messageText);	
+				} 
+				// if the variables are not null then this message will send 
+				else {
+					String subject = "Reservation Confirmation";
+			        String messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
+			                + "Your reservation has been confirmed. Here are the details:\n"
+			                + "Room Number: " + room.number + "\n"
+			                + "Check-In Date: " + room.checkIn + "\n"
+			                + "Check-Out Date: " + room.checkOut + "\n"
+			                + "Total Price: " + room.price + "\n"
+			                + "Reservation ID: " + customer.ID + "\n\n"
+			                + "Thank you for choosing Asylum Hotel for your stay!\n";
+			        EmailSend emailSender = new EmailSend();
+					emailSender.sendEmailToCustomer(customer.email, subject, messageText);
+				}
 	}
 
 	//scans the excel sheet for the ID that is inputed then returns that Customer
