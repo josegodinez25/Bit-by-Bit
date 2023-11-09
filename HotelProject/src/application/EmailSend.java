@@ -13,7 +13,7 @@ public class EmailSend {
 	public void sendEmailToCustomer(String customerID, String subject, String messageText) {
         ReadWriteExcel excel = new ReadWriteExcel();
         String to = excel.getEmail(customerID);
-
+        //comment saved
         if (to != null) { // Check if the email is a Gmail address
         	// Company Email
             String from = "asylumhotelcoporation@gmail.com";
