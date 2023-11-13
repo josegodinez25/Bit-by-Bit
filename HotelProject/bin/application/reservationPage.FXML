@@ -80,7 +80,7 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: CLEAR;" GridPane.rowIndex="1">
+                                    <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: transparent;" GridPane.rowIndex="1">
                                        <graphic>
                                           <ImageView fitHeight="183.0" fitWidth="294.0" pickOnBounds="true" preserveRatio="true">
                                              <image>

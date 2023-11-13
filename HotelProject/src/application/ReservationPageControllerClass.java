@@ -94,15 +94,22 @@ public class ReservationPageControllerClass implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		if (search.getAvailabilityString() == "Single") {
 			reservationPageSingle.setSelected(true);
+			reservationPageCheckIn.setValue(search.getSearchCheckIn());
+			reservationPageCheckOut.setValue(search.getSearchCheckOut());
 		} else if (search.getAvailabilityString() == "Double") {
 			reservationPageDouble.setSelected(true);
+			reservationPageCheckIn.setValue(search.getSearchCheckIn());
+			reservationPageCheckOut.setValue(search.getSearchCheckOut());
 		} else if (search.getAvailabilityString() == "King") {
 			reservationPageKing.setSelected(true);
+			reservationPageCheckIn.setValue(search.getSearchCheckIn());
+			reservationPageCheckOut.setValue(search.getSearchCheckOut());
 		} else if (search.getAvailabilityString() == "Suite") {
 			reservationPageSuite.setSelected(true);
+			reservationPageCheckIn.setValue(search.getSearchCheckIn());
+			reservationPageCheckOut.setValue(search.getSearchCheckOut());
 		}
-		reservationPageCheckIn.setValue(search.getSearchCheckIn());
-		reservationPageCheckOut.setValue(search.getSearchCheckOut());
+		
 	}
 
 	@FXML
@@ -134,6 +141,7 @@ public class ReservationPageControllerClass implements Initializable {
 		} else if (reservationPageSuite.isSelected()) {
 			reservationRoomType = "Suite";
 		}
+		search.setAvailabilityString(reservationRoomType);
 		// test to check if this method works by printing to console
 		// System.out.println(reservationRoomType);
 	}
@@ -152,6 +160,7 @@ public class ReservationPageControllerClass implements Initializable {
 				totalCost.setText("The total cost of your stay is " + reservationTotalDates.size()*200);
 			}
 			checkIn = reservationCheckIn.toString();
+			search.setSearchCheckIn(reservationCheckIn);
 		} else {
 			// Need error for when date is not available or valid
 
@@ -172,6 +181,7 @@ public class ReservationPageControllerClass implements Initializable {
 				totalCost.setText("The total cost of your stay is " + reservationTotalDates.size()*200);
 			}
 			checkOut = reservationCheckOut.toString();
+			search.setSearchCheckOut(reservationCheckOut);
 		} else {
 			// Need error for when date is not available or valid
 		}
@@ -207,6 +217,11 @@ public class ReservationPageControllerClass implements Initializable {
 		reservationCardZipcode = zipcodeCardTextField.getText();
 		reservationsecurityCode = securityCode.getText();
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
+		reservationRoomType = search.getAvailabilityString();
+		reservationCheckIn = search.getSearchCheckIn();
+		reservationCheckOut = search.getSearchCheckOut();
+		checkIn = reservationCheckIn.toString();
+		checkOut = reservationCheckOut.toString();
 	}
 
 //	public void checkForErrors() {
