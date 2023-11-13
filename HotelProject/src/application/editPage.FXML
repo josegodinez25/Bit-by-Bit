@@ -228,6 +228,7 @@
                                           <TextField prefHeight="25.0" prefWidth="29.0" />
                                        </children>
                                     </HBox>
+                                    <Button mnemonicParsing="false" onAction="#confirmChanges" prefHeight="26.0" prefWidth="192.0" text="Confirm Changes" GridPane.columnIndex="4" GridPane.rowIndex="9" />
                                  </children>
                               </GridPane>
                            </center>
