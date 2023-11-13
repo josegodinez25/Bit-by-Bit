@@ -71,7 +71,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: CLEAR;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                          <Button mnemonicParsing="false" onAction="#switchToMainScene" style="-fx-background-color: transparent;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                              <cursor>
                                                 <Cursor fx:constant="HAND" />
                                              </cursor>
