@@ -54,6 +54,7 @@ public class EditPageControllerClass implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
+		editFirstName.setText("123");
 		/**
 		 * Reserve res = new Reserve();
 		 
@@ -106,6 +107,14 @@ public class EditPageControllerClass implements Initializable {
 		
 	}
 
+	
+	@FXML
+	public void confirmChanges(ActionEvent event) throws IOException {
+		Reserve reserve = new Reserve();
+		//reserve.changeReservation(ID, Customer);
+	}
+	
+	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
@@ -113,11 +122,6 @@ public class EditPageControllerClass implements Initializable {
 		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-	}
-	
-	public void editConfirmation(ActionEvent event)throws IOException{
-		Reserve reserve = new Reserve();
-		//reserve.changeReservation(ID, Customer);
 	}
 
 }
