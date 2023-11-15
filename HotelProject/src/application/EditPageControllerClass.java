@@ -29,7 +29,9 @@ public class EditPageControllerClass implements Initializable {
 
 	@FXML
 	private TextField editFirstName, editLastName, editEmail, editPhone, editCCfirstName, editCClastName, editCCnumber,
-			editCCexperationMonth,editCCexperationYear, editCCcountry, editCCzip, editCCsecurity, editReservationNumber;
+			editCCexperationMonth,editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
+	@FXML
+	private Label editReservationNumber;
 	@FXML
 	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
 	@FXML
@@ -59,16 +61,15 @@ public class EditPageControllerClass implements Initializable {
 
 		ID = review.getID();
 		if (res.checkID(ID) == true) {
-			//reservationNumber needs to be switched to a label instead of textField
-			//editReservationNumber.setText(ID);
+			editReservationNumber.setText(ID);
 			editFirstName.setText(res.findCustomerID(ID).firstName);
 			editLastName.setText(res.findCustomerID(ID).lastName);
 			editEmail.setText(res.findCustomerID(ID).email);
 			editPhone.setText(res.findCustomerID(ID).phoneNumber);
 
 			// I need to edit this to fit a radio button
-			// reviewRoomType.setText(res.findCustomerID(ID).phoneNumber);
-			// reviewRoomNumber.setText(res.findCustomerID(ID).roomNumber);
+			// reviewRoomType.setText(res.findCustomerID(ID).roomType);
+			
 			editCCfirstName.setText(res.findCustomerID(ID).firstName);
 			editCClastName.setText(res.findCustomerID(ID).lastName);
 			// I need to edit this to fit a datpicker object
@@ -79,7 +80,8 @@ public class EditPageControllerClass implements Initializable {
 
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
-			// editCCexperation.setText(res.findCustomerID(ID).expDate);
+			//editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
+			//editCCexperationYear.setText(res.findCustomerID(ID).expDate);
 		} else {
 			ReadWriteExcel obj = new ReadWriteExcel();
 			int CustomerCount = 1;
@@ -95,16 +97,16 @@ public class EditPageControllerClass implements Initializable {
 			editCCfirstName.setText(obj.ReadExcel("Customers", CustomerCount, 5));
 			editCClastName.setText(obj.ReadExcel("Customers", CustomerCount, 6));
 			editCCnumber.setText(obj.ReadExcel("Customers", CustomerCount, 7));
+			//figure out how to make the month and year separate
+			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			editCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			editCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
-			// editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 11));
-			// reviewRoomNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
-			// reviewPrice.
+			editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 11));
 			// reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
 			// reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 15));
+			// make a size in excel
 		}
-
 	}
 
 	public void roomType() {
@@ -119,7 +121,7 @@ public class EditPageControllerClass implements Initializable {
 		}
 	}
 	public void setNewChanges() {
-		roomType();
+		//roomType();
 		
 		reservationFirstName = editFirstName.getText();
 		reservationLastName = editLastName.getText();
@@ -128,13 +130,12 @@ public class EditPageControllerClass implements Initializable {
 		reservationCardFirstName = editCCfirstName.getText();
 		reservationCardLastName = editCClastName.getText();
 		reservationCardPaymentNumber = editCCnumber.getText();
-		//reservationCardExpMonth = editCCexperation.getText();
-		//reservationCardExpYear = editCCexperation.getText();
+		reservationCardExpMonth = editCCexperationMonth.getText();
+		reservationCardExpYear = editCCexperationYear.getText();
 		reservationCardCountry = editCCcountry.getText();
 		reservationCardZipcode = editCCzip.getText();
 		
 		//reservationRoomType = editRoomType.getText();
-		
 		//change to get a date value
 		//checkOut = reservationPageCheckOut.getText();
 		//checkIn = reservationPageCheckIn.getText();

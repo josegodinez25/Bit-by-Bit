@@ -237,7 +237,7 @@ public class Reserve {
 			rowCount++;
 		}
 
-		for (int i = 1; i <= rowCount; i++) {
+		for (int i = 1; i < rowCount; i++) {
 			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
 				obj.WriteExcel("Customers", i, 1, null);
 				obj.WriteExcel("Customers", i, 2, null);
