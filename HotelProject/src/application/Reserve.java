@@ -122,7 +122,7 @@ public class Reserve {
 
 			customer.inputUserDetail();
 			//we can comment this line out when we want to test the program so we dont get a bunch of emails
-			sendEmail(customer,room);
+			//sendEmail(customer,room);
 		} else {
 			System.out.println("All rooms are booked");
 		}
@@ -205,24 +205,25 @@ public class Reserve {
 		while (obj.isNull(rowCount, 1, 0) == false) {
 			rowCount++;
 		}
+		
 
-		for (int i = 1; i <= rowCount; i++) {
+		for (int i = 1; i < rowCount; i++) {
 			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
-				obj.WriteExcel("Customers", rowCount, 1, cus.firstName);
-				obj.WriteExcel("Customers", rowCount, 2, cus.lastName);
-				obj.WriteExcel("Customers", rowCount, 3, cus.email);
-				obj.WriteExcel("Customers", rowCount, 4, cus.phoneNumber);
-				obj.WriteExcel("Customers", rowCount, 5, cus.paymentFirstName);
-				obj.WriteExcel("Customers", rowCount, 6, cus.paymentLastName);
-				obj.WriteExcel("Customers", rowCount, 7, cus.cardNumber);
-				obj.WriteExcel("Customers", rowCount, 8, cus.expDate);
-				obj.WriteExcel("Customers", rowCount, 9, cus.country);
-				obj.WriteExcel("Customers", rowCount, 10, cus.zipCode);
-				obj.WriteExcel("Customers", rowCount, 11, cus.ID);
-				obj.WriteExcel("Customers", rowCount, 12, cus.roomNumber);
-				obj.WriteExcel("Customers", rowCount, 13, cus.roomPrice);
-				obj.WriteExcel("Customers", rowCount, 14, cus.checkIn);
-				obj.WriteExcel("Customers", rowCount, 15, cus.checkOut);
+				obj.WriteExcel("Customers", i, 1, cus.firstName);
+				obj.WriteExcel("Customers", i, 2, cus.lastName);
+				obj.WriteExcel("Customers", i, 3, cus.email);
+				obj.WriteExcel("Customers", i, 4, cus.phoneNumber);
+				obj.WriteExcel("Customers", i, 5, cus.paymentFirstName);
+				obj.WriteExcel("Customers", i, 6, cus.paymentLastName);
+				obj.WriteExcel("Customers", i, 7, cus.cardNumber);
+				obj.WriteExcel("Customers", i, 8, cus.expDate);
+				obj.WriteExcel("Customers", i, 9, cus.country);
+				obj.WriteExcel("Customers", i, 10, cus.zipCode);
+				obj.WriteExcel("Customers", i, 11, cus.ID);
+				obj.WriteExcel("Customers", i, 12, cus.roomNumber);
+				obj.WriteExcel("Customers", i, 13, cus.roomPrice);
+				obj.WriteExcel("Customers", i, 14, cus.checkIn);
+				obj.WriteExcel("Customers", i, 15, cus.checkOut);
 			}
 		}
 	}
@@ -236,23 +237,23 @@ public class Reserve {
 			rowCount++;
 		}
 
-		for (int i = 1; i <= rowCount; i++) {
+		for (int i = 1; i < rowCount; i++) {
 			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
-				obj.WriteExcel("Customers", rowCount, 1, null);
-				obj.WriteExcel("Customers", rowCount, 2, null);
-				obj.WriteExcel("Customers", rowCount, 3, null);
-				obj.WriteExcel("Customers", rowCount, 4, null);
-				obj.WriteExcel("Customers", rowCount, 5, null);
-				obj.WriteExcel("Customers", rowCount, 6, null);
-				obj.WriteExcel("Customers", rowCount, 7, null);
-				obj.WriteExcel("Customers", rowCount, 8, null);
-				obj.WriteExcel("Customers", rowCount, 9, null);
-				obj.WriteExcel("Customers", rowCount, 10, null);
-				obj.WriteExcel("Customers", rowCount, 11, null);
-				obj.WriteExcel("Customers", rowCount, 12, null);
-				obj.WriteExcel("Customers", rowCount, 13, null);
-				obj.WriteExcel("Customers", rowCount, 14, null);
-				obj.WriteExcel("Customers", rowCount, 15, null);
+				obj.WriteExcel("Customers", i, 1, null);
+				obj.WriteExcel("Customers", i, 2, null);
+				obj.WriteExcel("Customers", i, 3, null);
+				obj.WriteExcel("Customers", i, 4, null);
+				obj.WriteExcel("Customers", i, 5, null);
+				obj.WriteExcel("Customers", i, 6, null);
+				obj.WriteExcel("Customers", i, 7, null);
+				obj.WriteExcel("Customers", i, 8, null);
+				obj.WriteExcel("Customers", i, 9, null);
+				obj.WriteExcel("Customers", i, 10, null);
+				obj.WriteExcel("Customers", i, 11, null);
+				obj.WriteExcel("Customers", i, 12, null);
+				obj.WriteExcel("Customers", i, 13, null);
+				obj.WriteExcel("Customers", i, 14, null);
+				obj.WriteExcel("Customers", i, 15, null);
 			}
 		}
 
