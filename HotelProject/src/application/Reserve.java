@@ -230,7 +230,7 @@ public class Reserve {
 
 	//finds which customer is trying to edit info using the String ID
 	//then sets all their information back to null
-	public void clearCustomerInfo(String ID, Customer cus) {
+	public void clearCustomerInfo(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
 		while (obj.isNull(rowCount, 1, 0) == false) {

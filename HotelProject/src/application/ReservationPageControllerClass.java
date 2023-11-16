@@ -216,39 +216,6 @@ public class ReservationPageControllerClass implements Initializable {
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
-//	public void checkForErrors() {
-//		try {
-//			reservationCardPaymentNumber = paymentCardNumberTextField.getText();
-//		} catch (NumberFormatException e) {
-//			cardNumberError.setText("Please enter a valid card number");
-//
-//		}
-//		try {
-//			reservationCardExpMonth = expMonthCardTextField.getText();
-//		} catch (NumberFormatException e) {
-//			cardDateError.setText("Please enter a valid date");
-//
-//		}
-//
-//		try {
-//			reservationCardExpYear = expYearCardTextField.getText();
-//			int currentYear = LocalDate.now().getYear();
-//
-//			if (reservationCardExpYear < currentYear) {
-//				cardDateError.setText("Please enter a valid expiration year");
-//			}
-//		} catch (NumberFormatException e) {
-//			cardDateError.setText("Please enter a valid year");
-//		}
-//		reservationCardCountry = countryCardTextField.getText();
-//		try {
-//			reservationCardZipcode = zipcodeCardTextField.getText();
-//		} catch (NumberFormatException e) {
-//			cardZipError.setText("Please enter a valid zipcode");
-//		}
-//		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
-//	}
-	
 	public boolean checkForErrors() {
 	    boolean hasErrors = false;
 
@@ -320,20 +287,14 @@ public class ReservationPageControllerClass implements Initializable {
 	    return zipCode.matches(regex);
 	}
 
-	//@FXML
-	//public void setCustomerReservationInformation(ActionEvent event) throws IOException {
-		//getCustomerInfo();
-		//checkForErrors();
-		// there should be some sort of call here to a function in the customer class so
-		// the information can be stored on the excel file
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
 	    getCustomerInfo();
 
-	    if (checkForErrors()) {
-	        // If errors are found, stop processing and show error messages
-	        return;
-	    }
+//	    if (checkForErrors()) {
+//	        // If errors are found, stop processing and show error messages
+//	        return;
+//	    }
 
 	    // Proceed with the reservation process if no errors are found
 	    Reserve res = new Reserve();
@@ -344,10 +305,6 @@ public class ReservationPageControllerClass implements Initializable {
 
 	    res.reserveRoom(rom, cus);
 
-	    // these next two lines are temporary for testing they set the reservation name
-	    // and last name for the review page
-	    //review.setReviewFirstName(reservationFirstName);
-	    //review.setReviewlastName(reservationLastName);
 
 	    // Switch to the review page
 	    root = FXMLLoader.load(getClass().getResource("reviewPage.FXML"));
