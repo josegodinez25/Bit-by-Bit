@@ -33,9 +33,11 @@ public class EditPageControllerClass implements Initializable {
 	@FXML
 	private Label editReservationNumber;
 	@FXML
-	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
+	private DatePicker editPageCheckIn, editPageCheckOut;
 	@FXML
-	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
+	private RadioButton editPageSingle, editPageDouble, editPageKing, editPageSuite;
+	@FXML
+	private Label emailError, phoneError, cardError, dateError, zipError, securityError;
 
 	String reservationFirstName;
 	String reservationLastName;
@@ -110,16 +112,17 @@ public class EditPageControllerClass implements Initializable {
 	}
 
 	public void roomType() {
-		if (reservationPageSingle.isSelected()) {
+		if (editPageSingle.isSelected()) {
 			reservationRoomType = "Single";
-		} else if (reservationPageDouble.isSelected()) {
+		} else if (editPageDouble.isSelected()) {
 			reservationRoomType = "Double";
-		} else if (reservationPageKing.isSelected()) {
+		} else if (editPageKing.isSelected()) {
 			reservationRoomType = "King";
-		} else if (reservationPageSuite.isSelected()) {
+		} else if (editPageSuite.isSelected()) {
 			reservationRoomType = "Suite";
 		}
 	}
+	
 	public void setNewChanges() {
 		//roomType();
 		

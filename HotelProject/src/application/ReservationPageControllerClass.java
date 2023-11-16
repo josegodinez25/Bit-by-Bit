@@ -62,11 +62,7 @@ public class ReservationPageControllerClass implements Initializable {
 	@FXML
 	private Button confirmTransactionButton;
 	@FXML
-	private Label cardNumberError;
-	@FXML
-	private Label cardDateError;
-	@FXML
-	private Label cardZipError;
+	private Label cardNumberError, cardDateError, cardZipError, emailError, phoneError, securityError, countryError;
 	@FXML
 	private Label totalCost;
 	@FXML
