@@ -12,20 +12,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainPageControllerClass  extends Application {
 	reviewSingleton review = reviewSingleton.getInstance();
 	private Stage stage, stage2;
 	private Scene scene;
-	private Parent root;
+	private Parent root, root2;
 	String reservationID;
 	@FXML
 	private TextField reservationIDtextField;
 	@FXML
 	private Label reservationIDerror;
 	@FXML
-	private Button closeButton, confirmButton;
+	private Button closeButton, confirmButton, reviewButton;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -65,11 +66,12 @@ public class MainPageControllerClass  extends Application {
 	@FXML
 	public void openReservationNumberPage(ActionEvent event)throws IOException {
 		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
-		Parent root = (Parent) FXMLLoader.load();
+		root2 = (Parent) FXMLLoader.load();
 		Stage stage2 = new Stage();
 		stage2.setResizable(false);
+		stage2.initModality(Modality.APPLICATION_MODAL);
 		stage2.setTitle("Reservation Confirmation");
-		stage2.setScene(new Scene(root));
+		stage2.setScene(new Scene(root2));
 		stage2.show();
 	}
 	

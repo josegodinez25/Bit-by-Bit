@@ -38,7 +38,9 @@ public class EditPageControllerClass implements Initializable {
 	private RadioButton editPageSingle, editPageDouble, editPageKing, editPageSuite;
 	@FXML
 	private Label emailError, phoneError, cardError, dateError, zipError, securityError;
-
+	@FXML
+	private Button exitButton;
+	
 	String reservationFirstName;
 	String reservationLastName;
 	String reservationEmail;
@@ -155,20 +157,14 @@ public class EditPageControllerClass implements Initializable {
 		customer.ID = ID;
 		reserve.changeReservation(ID, customer);
 		// returns back to main page
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 }

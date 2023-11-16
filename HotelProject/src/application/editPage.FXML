@@ -38,7 +38,7 @@
                                     </ImageView>
                                     <SplitPane prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
                                        <items>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="63.0" prefWidth="178.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Return to menu" textFill="WHITE">
+                                          <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="63.0" prefWidth="178.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Return to menu" textFill="WHITE">
                                              <graphic>
                                                 <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -101,7 +101,7 @@
                      <top>
                         <HBox prefHeight="50.0" prefWidth="1366.0" style="-fx-background-color: #322E2E;" BorderPane.alignment="CENTER">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="117.0" prefWidth="1498.0" text="Asylum Hotel" textFill="WHITE">
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="117.0" prefWidth="1498.0" text="ALL CHANGES SUBJECT TO AVAILABILITY" textFill="WHITE">
                                  <font>
                                     <Font name="SansSerif Bold" size="18.0" />
                                  </font>

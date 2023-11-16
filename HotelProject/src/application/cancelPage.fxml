@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CancelPageControllerClass">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CancelPageControllerClass">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="14.0" layoutY="47.0" orientation="VERTICAL" prefHeight="768.0" prefWidth="1366.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -35,7 +35,7 @@
                                     </ImageView>
                                     <SplitPane prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;">
                                        <items>
-                                          <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="63.0" prefWidth="178.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Return to menu" textFill="WHITE">
+                                          <Button fx:id="exitButton" alignment="CENTER" mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="63.0" prefWidth="178.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Return to menu" textFill="WHITE">
                                              <graphic>
                                                 <ImageView fitHeight="55.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
                                                    <image>
@@ -178,6 +178,7 @@
                                           <Font name="SansSerif Regular" size="18.0" />
                                        </font>
                                     </Label>
+                                    <Button layoutX="378.0" layoutY="270.0" mnemonicParsing="false" onAction="#switchToMainScene" text="Keep Reservation" />
                                  </children>
                               </Pane>
                            </center>
