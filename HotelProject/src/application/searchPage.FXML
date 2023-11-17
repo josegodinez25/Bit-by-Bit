@@ -186,7 +186,7 @@
                                  </cursor></Button>
                               <Label fx:id="roomAvailabilityMessage" prefHeight="43.0" prefWidth="284.0" textAlignment="CENTER" textFill="RED" wrapText="true">
                                  <font>
-                                    <Font name="SansSerif Bold" size="14.0" />
+                                    <Font name="SansSerif Regular" size="14.0" />
                                  </font>
                               </Label>
                               <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToReservationScene" text="Book this room">

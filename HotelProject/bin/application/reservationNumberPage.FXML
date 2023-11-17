@@ -25,7 +25,7 @@
          <center>
             <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <top>
-                  <Label prefHeight="48.0" prefWidth="297.0" text="Please enter your 6 digit reservation number" textFill="WHITE" BorderPane.alignment="CENTER">
+                  <Label prefHeight="48.0" prefWidth="297.0" text="Please enter your 5 digit reservation number" textFill="WHITE" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="SansSerif Bold" size="14.0" />
                      </font>
@@ -39,7 +39,7 @@
                         <Pane prefHeight="200.0" prefWidth="200.0" />
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #322E2E;" text="Cancel" textFill="WHITE">
+                              <Button fx:id="closeButton" mnemonicParsing="false" onAction="#closeSceneAction" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #322E2E;" text="Cancel" textFill="WHITE">
                                  <font>
                                     <Font name="SansSerif Bold" size="14.0" />
                                  </font>
@@ -86,7 +86,7 @@
                      <children>
                         <Label fx:id="reservationIDerror" alignment="CENTER" contentDisplay="CENTER" prefHeight="50.0" prefWidth="444.0" textAlignment="CENTER" textFill="RED">
                            <font>
-                              <Font name="SansSerif Bold" size="18.0" />
+                              <Font name="SansSerif Regular" size="14.0" />
                            </font>
                         </Label>
                      </children>

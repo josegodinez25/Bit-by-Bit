@@ -45,7 +45,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                                  <graphic>
-                                    <ImageView fitHeight="53.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="50.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../ImageFolder/icons8-reception-100.png" />
                                        </image>
@@ -61,7 +61,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                                  <graphic>
-                                    <ImageView fitHeight="58.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="50.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../ImageFolder/icons8-hotel-64.png" />
                                        </image>
@@ -178,6 +178,16 @@
                                                             <Cursor fx:constant="TEXT" />
                                                          </cursor>
                                                       </TextField>
+                                                      <Label fx:id="emailError" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="phoneError" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -270,15 +280,34 @@
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
                                           </TextField>
-                                          <Label fx:id="cardNumberError" layoutX="179.0" layoutY="183.0" prefHeight="25.0" prefWidth="257.0" textFill="RED" />
-                                          <Label fx:id="cardDateError" layoutX="121.0" layoutY="234.0" prefHeight="24.0" prefWidth="211.0" textFill="RED" />
-                                          <Label fx:id="cardZipError" layoutX="340.0" layoutY="162.0" prefHeight="23.0" prefWidth="250.0" textFill="RED" />
+                                          <Label fx:id="cardNumberError" layoutX="179.0" layoutY="183.0" prefHeight="25.0" prefWidth="150.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font></Label>
+                                          <Label fx:id="cardDateError" layoutX="121.0" layoutY="234.0" prefHeight="24.0" prefWidth="150.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font></Label>
+                                          <Label fx:id="cardZipError" layoutX="498.0" layoutY="133.0" prefHeight="23.0" prefWidth="150.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font></Label>
                                           <Label layoutX="340.0" layoutY="165.0" text="Security Code*" />
                                           <TextField fx:id="securityCode" layoutX="340.0" layoutY="183.0">
                                              <cursor>
                                                 <Cursor fx:constant="TEXT" />
                                              </cursor>
                                           </TextField>
+                                          <Label fx:id="countryError" layoutX="499.0" layoutY="84.0" prefHeight="24.0" prefWidth="149.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="securityError" layoutX="499.0" layoutY="183.0" prefHeight="23.0" prefWidth="150.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane maxHeight="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="213.0" prefWidth="643.0">

@@ -21,7 +21,7 @@ public class Customer {
     String checkOut;
     
     //constructor of Customer Class
-    //contains all of their information
+    //contains all of their information (10 Strings)
     Customer(String firstName,String lastName, String email, String phoneNumber,String paymentFirstName, 
             String paymentLastName, String cardNumber, String expDate, String zipCode,String country){
         this.firstName = firstName;
