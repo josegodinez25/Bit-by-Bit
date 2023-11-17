@@ -85,7 +85,7 @@ public class ReservationPageControllerClass implements Initializable {
 	String checkOut;
 	String checkIn;
 	String expCombined;
-	String reservationsecurityCode;
+	String reservationSecurityCode;
 
 	@Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -209,7 +209,7 @@ public class ReservationPageControllerClass implements Initializable {
 		reservationCardExpYear = expYearCardTextField.getText();
 		reservationCardCountry = countryCardTextField.getText();
 		reservationCardZipcode = zipcodeCardTextField.getText();
-		reservationsecurityCode = securityCode.getText();
+		reservationSecurityCode = securityCode.getText();
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
@@ -299,7 +299,7 @@ public class ReservationPageControllerClass implements Initializable {
 	    Room rom = new Room(reservationRoomType, checkIn, checkOut, reservationTotalDates);
 	    Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
 	            reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
-	            expCombined, reservationCardZipcode, reservationCardCountry);
+	            expCombined, reservationCardZipcode, reservationCardCountry, reservationSecurityCode);
 
 	    res.reserveRoom(rom, cus);
 
