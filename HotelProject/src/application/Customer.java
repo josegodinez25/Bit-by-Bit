@@ -11,6 +11,7 @@ public class Customer {
     String cardNumber;
     String expDate;
     String zipCode;
+    String secCode;
     String country;
 
     String ID;
@@ -19,11 +20,12 @@ public class Customer {
     String roomPrice;
     String checkIn;
     String checkOut;
+  
     
     //constructor of Customer Class
-    //contains all of their information (10 Strings)
+    //contains all of their information (11 Strings)
     Customer(String firstName,String lastName, String email, String phoneNumber,String paymentFirstName, 
-            String paymentLastName, String cardNumber, String expDate, String zipCode,String country){
+            String paymentLastName, String cardNumber, String expDate, String zipCode,String country,String secCode){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -34,6 +36,7 @@ public class Customer {
         this.expDate = expDate;
         this.zipCode = zipCode;
         this.country = country;
+        this.secCode = secCode;
 
         ID = "";
     }
@@ -62,11 +65,13 @@ public class Customer {
         obj.WriteExcel("Customers", CustomerCount, 8, expDate);
         obj.WriteExcel("Customers", CustomerCount, 9, country);
         obj.WriteExcel("Customers", CustomerCount, 10, zipCode);
-        obj.WriteExcel("Customers", CustomerCount, 11, ID);
-        obj.WriteExcel("Customers", CustomerCount, 12, roomNumber);
-        obj.WriteExcel("Customers", CustomerCount, 13, roomPrice);
-        obj.WriteExcel("Customers", CustomerCount, 14, checkIn);
-        obj.WriteExcel("Customers", CustomerCount, 15, checkOut);
+        obj.WriteExcel("Customers", CustomerCount, 11, secCode);
+        obj.WriteExcel("Customers", CustomerCount, 12, ID);
+        obj.WriteExcel("Customers", CustomerCount, 13, roomNumber);
+        obj.WriteExcel("Customers", CustomerCount, 14, roomType);
+        obj.WriteExcel("Customers", CustomerCount, 15, roomPrice);
+        obj.WriteExcel("Customers", CustomerCount, 16, checkIn);
+        obj.WriteExcel("Customers", CustomerCount, 17, checkOut);
         
         
         

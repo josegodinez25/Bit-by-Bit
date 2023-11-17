@@ -47,13 +47,14 @@ public class ReviewPageControllerClass implements Initializable {
 			reviewEmail.setText(res.findCustomerID(ID).email);
 			reviewPhone.setText(res.findCustomerID(ID).phoneNumber);
 			
-			// reviewRoomType.setText(res.findCustomerID(ID).phoneNumber);
+			reviewRoomType.setText(res.findCustomerID(ID).roomType);
 			reviewRoomNumber.setText(res.findCustomerID(ID).roomNumber);
 			reviewCCfirstName.setText(res.findCustomerID(ID).firstName);
 			reviewCClastName.setText(res.findCustomerID(ID).lastName);
 			reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
 			reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
 			reviewCCcountry.setText(res.findCustomerID(ID).country);
+			reviewCCsecurity.setText(res.findCustomerID(ID).secCode);
 			reviewCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			reviewCCzip.setText(res.findCustomerID(ID).zipCode);
 			reviewCCexperation.setText(res.findCustomerID(ID).expDate);
@@ -76,11 +77,13 @@ public class ReviewPageControllerClass implements Initializable {
 			reviewCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			reviewCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			reviewCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
-			reviewReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 11));
-			reviewRoomNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
+			reviewCCsecurity.setText(obj.ReadExcel("Customers", CustomerCount, 11));
+			reviewReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
+			reviewRoomNumber.setText(obj.ReadExcel("Customers", CustomerCount, 13));
+			reviewRoomType.setText(obj.ReadExcel("Customers", CustomerCount, 14));
 			//reviewPrice.
-			reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
-			reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 15));
+			reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 16));
+			reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 17));
 		}
 	}
 
