@@ -115,6 +115,8 @@ public class Reserve {
 			String ID = randomGenerator();
 			customer.ID = ID;
 			room.updateRoom(room);
+			
+			customer.roomType = room.size;
 			customer.roomNumber = room.number;
 			customer.roomPrice = room.price;
 			customer.checkIn = room.checkIn;
@@ -151,7 +153,7 @@ public class Reserve {
 		}
 
 		for (int i = 1; i <= rowCount; i++) {
-			String storedID = obj.ReadExcel("Customers", i, 11);
+			String storedID = obj.ReadExcel("Customers", i, 12);
 			if (storedID.equals(customerID)) {
 
 				String firstName = obj.ReadExcel("Customers", i, 1);
@@ -162,20 +164,24 @@ public class Reserve {
 				String paymentLastName = obj.ReadExcel("Customers", i, 6);
 				String cardNumber = obj.ReadExcel("Customers", i, 7);
 				String expDate = obj.ReadExcel("Customers", i, 8);
-				String zipCode = obj.ReadExcel("Customers", i, 10);
 				String country = obj.ReadExcel("Customers", i, 9);
-				String roomNumber = obj.ReadExcel("Customers", i, 12);
-				String price = obj.ReadExcel("Customers", i, 13);
-				String startDate = obj.ReadExcel("Customers", i, 14);
-				String endDate = obj.ReadExcel("Customers", i, 15);
+				String zipCode = obj.ReadExcel("Customers", i, 10);
+				String secCode = obj.ReadExcel("Customers", i, 11);
+				//12 is the ID
+				String roomNumber = obj.ReadExcel("Customers", i, 13);
+				String roomType = obj.ReadExcel("Customers", i, 14);
+				String price = obj.ReadExcel("Customers", i, 15);
+				String startDate = obj.ReadExcel("Customers", i, 16);
+				String endDate = obj.ReadExcel("Customers", i, 17);
 
 				Customer customer = new Customer(firstName, lastName, email, phoneNumber, paymentFirstName,
-						paymentLastName, cardNumber, expDate, zipCode, country);
+						paymentLastName, cardNumber, expDate, zipCode, country,secCode);
+				customer.ID = customerID;
 				customer.checkIn = startDate;
 				customer.roomNumber = roomNumber;
 				customer.roomPrice = price;
 				customer.checkOut = endDate;
-
+				customer.roomType = roomType;
 				return customer;
 			}
 		}
@@ -190,7 +196,7 @@ public class Reserve {
 			rowCount++;
 		}
 		for (int i = 1; i < rowCount; i++) {
-			if (obj.ReadExcel("Customers", i, 11).equals(ID) == true) {
+			if (obj.ReadExcel("Customers", i, 12).equals(ID) == true) {
 				return true;
 			}
 		}
@@ -208,7 +214,7 @@ public class Reserve {
 		
 
 		for (int i = 1; i < rowCount; i++) {
-			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
+			if (obj.ReadExcel("Customers", i, 12).equals(ID)) {
 				obj.WriteExcel("Customers", i, 1, cus.firstName);
 				obj.WriteExcel("Customers", i, 2, cus.lastName);
 				obj.WriteExcel("Customers", i, 3, cus.email);
@@ -219,11 +225,13 @@ public class Reserve {
 				obj.WriteExcel("Customers", i, 8, cus.expDate);
 				obj.WriteExcel("Customers", i, 9, cus.country);
 				obj.WriteExcel("Customers", i, 10, cus.zipCode);
-				obj.WriteExcel("Customers", i, 11, cus.ID);
-				obj.WriteExcel("Customers", i, 12, cus.roomNumber);
-				obj.WriteExcel("Customers", i, 13, cus.roomPrice);
-				obj.WriteExcel("Customers", i, 14, cus.checkIn);
-				obj.WriteExcel("Customers", i, 15, cus.checkOut);
+				obj.WriteExcel("Customers", i, 11, cus.secCode);
+				obj.WriteExcel("Customers", i, 12, cus.ID);
+				obj.WriteExcel("Customers", i, 13, cus.roomNumber);
+				obj.WriteExcel("Customers", i, 14, cus.roomType);
+				obj.WriteExcel("Customers", i, 15, cus.roomPrice);
+				obj.WriteExcel("Customers", i, 16, cus.checkIn);
+				obj.WriteExcel("Customers", i, 17, cus.checkOut);
 			}
 		}
 	}
@@ -238,7 +246,7 @@ public class Reserve {
 		}
 
 		for (int i = 1; i < rowCount; i++) {
-			if (obj.ReadExcel("Customers", i, 11).equals(ID)) {
+			if (obj.ReadExcel("Customers", i, 12).equals(ID)) {
 				obj.WriteExcel("Customers", i, 1, null);
 				obj.WriteExcel("Customers", i, 2, null);
 				obj.WriteExcel("Customers", i, 3, null);
@@ -254,6 +262,8 @@ public class Reserve {
 				obj.WriteExcel("Customers", i, 13, null);
 				obj.WriteExcel("Customers", i, 14, null);
 				obj.WriteExcel("Customers", i, 15, null);
+				obj.WriteExcel("Customers", i, 16, null);
+				obj.WriteExcel("Customers", i, 17, null);
 			}
 		}
 
