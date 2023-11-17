@@ -27,6 +27,8 @@ public class ReviewPageControllerClass implements Initializable {
 	private Scene scene;
 	private Parent root;
 	@FXML
+	private Button exitButton;
+	@FXML
 	private Label reviewFirstName, reviewLastName, reviewEmail, reviewPhone, reviewRoomType, reviewRoomNumber,
 			reviewCheckIn, reviewCheckOut, reviewCCfirstName, reviewCClastName, reviewCCnumber, reviewCCexperation,
 			reviewCCcountry, reviewCCzip, reviewCCsecurity, reviewReservationNumber;
@@ -104,11 +106,8 @@ public class ReviewPageControllerClass implements Initializable {
 	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 }

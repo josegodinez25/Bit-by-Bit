@@ -26,17 +26,21 @@ public class EditPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
+	private LocalDate dateIn, dateOut;
 	@FXML
 	private TextField editFirstName, editLastName, editEmail, editPhone, editCCfirstName, editCClastName, editCCnumber,
 			editCCexperationMonth,editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
 	@FXML
 	private Label editReservationNumber;
 	@FXML
-	private DatePicker reservationPageCheckIn, reservationPageCheckOut;
+	private DatePicker editPageCheckIn, editPageCheckOut;
 	@FXML
-	private RadioButton reservationPageSingle, reservationPageDouble, reservationPageKing, reservationPageSuite;
-
+	private RadioButton editPageSingle, editPageDouble, editPageKing, editPageSuite;
+	@FXML
+	private Label emailError, phoneError, cardError, dateError, zipError, securityError;
+	@FXML
+	private Button exitButton;
+	
 	String reservationFirstName;
 	String reservationLastName;
 	String reservationEmail;
@@ -53,6 +57,7 @@ public class EditPageControllerClass implements Initializable {
 	String checkIn;
 	String expCombined;
 	private String ID;
+	String editRoomType;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
@@ -68,19 +73,28 @@ public class EditPageControllerClass implements Initializable {
 			editPhone.setText(res.findCustomerID(ID).phoneNumber);
 
 			// I need to edit this to fit a radio button
-			// reviewRoomType.setText(res.findCustomerID(ID).roomType);
+			/**editRoomType=(res.findCustomerID(ID).roomType);
+			if (editRoomType == "Single") {
+				editPageSingle.setSelected(true);
+	        } else if (editRoomType == "Double") {
+	        	editPageDouble.setSelected(true);
+	        } else if (editRoomType == "King") {
+	        	editPageKing.setSelected(true);
+	        } else if (editRoomType == "Suite") {
+	        	editPageSuite.setSelected(true);
+	        }**/
 			
 			editCCfirstName.setText(res.findCustomerID(ID).firstName);
 			editCClastName.setText(res.findCustomerID(ID).lastName);
 			// I need to edit this to fit a datpicker object
 			// reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
 			// I need to edit this to fit a datpicker object
-			// reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
+			//Eric tried this but it didn't work
+			//editPageCheckOut.setValue(editPageCheckOut.getConverter().fromString(res.findCustomerID(ID).checkOut));
 			editCCcountry.setText(res.findCustomerID(ID).country);
-
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
-			//editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
+			editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
 			//editCCexperationYear.setText(res.findCustomerID(ID).expDate);
 		} else {
 			ReadWriteExcel obj = new ReadWriteExcel();
@@ -98,28 +112,29 @@ public class EditPageControllerClass implements Initializable {
 			editCClastName.setText(obj.ReadExcel("Customers", CustomerCount, 6));
 			editCCnumber.setText(obj.ReadExcel("Customers", CustomerCount, 7));
 			//figure out how to make the month and year separate
-			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
+			editCCexperationMonth.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			editCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			editCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
 			editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 11));
-			// reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
-			// reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 15));
+			// editCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
+			//editPageCheckOut.setValue(LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 15))));
 			// make a size in excel
 		}
 	}
 
 	public void roomType() {
-		if (reservationPageSingle.isSelected()) {
+		if (editPageSingle.isSelected()) {
 			reservationRoomType = "Single";
-		} else if (reservationPageDouble.isSelected()) {
+		} else if (editPageDouble.isSelected()) {
 			reservationRoomType = "Double";
-		} else if (reservationPageKing.isSelected()) {
+		} else if (editPageKing.isSelected()) {
 			reservationRoomType = "King";
-		} else if (reservationPageSuite.isSelected()) {
+		} else if (editPageSuite.isSelected()) {
 			reservationRoomType = "Suite";
 		}
 	}
+	
 	public void setNewChanges() {
 		//roomType();
 		
@@ -152,20 +167,14 @@ public class EditPageControllerClass implements Initializable {
 		customer.ID = ID;
 		reserve.changeReservation(ID, customer);
 		// returns back to main page
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 }

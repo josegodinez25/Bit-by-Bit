@@ -108,7 +108,7 @@
                                        </graphic>
                                     </Button>
                                     <Pane prefHeight="45.0" prefWidth="20.0" />
-                                  <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Review Reservation" textAlignment="CENTER" textFill="#332e2e">
+                                  <Button fx:id="reviewButton" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Review Reservation" textAlignment="CENTER" textFill="#332e2e">
                                        <font>
                                           <Font name="SansSerif Bold" size="14.0" />
                                        </font>
