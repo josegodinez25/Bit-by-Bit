@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -18,6 +19,10 @@ public class CancelPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	@FXML
+	private Button exitButton;
+	
+	
 	reviewSingleton review = reviewSingleton.getInstance();
 	String ID;
 	
@@ -45,11 +50,8 @@ public class CancelPageControllerClass implements Initializable {
 	
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 }
