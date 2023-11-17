@@ -220,7 +220,7 @@
                                           <TextField fx:id="editCCexperationYear" prefHeight="25.0" prefWidth="29.0" />
                                        </children>
                                     </HBox>
-                                    <Button mnemonicParsing="false" onAction="#confirmChanges" prefHeight="26.0" prefWidth="192.0" text="Confirm Changes" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                                    <Button mnemonicParsing="false" onAction="#confirmChanges" prefHeight="30.0" prefWidth="140.0" text="Confirm Changes" GridPane.columnIndex="5" GridPane.rowIndex="9" />
                                     <Label text="Check-Out Date:" textFill="#322e2e" GridPane.rowIndex="9">
                                        <font>
                                           <Font name="SansSerif Regular" size="12.0" />
@@ -262,6 +262,7 @@
                                           <Font size="10.0" />
                                        </font>
                                     </Label>
+                                    <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="30.0" prefWidth="140.0" text="Cancel changes" GridPane.columnIndex="4" GridPane.rowIndex="9" />
                                  </children>
                               </GridPane>
                            </center>

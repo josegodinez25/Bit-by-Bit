@@ -26,7 +26,7 @@ public class EditPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
+	private LocalDate dateIn, dateOut;
 	@FXML
 	private TextField editFirstName, editLastName, editEmail, editPhone, editCCfirstName, editCClastName, editCCnumber,
 			editCCexperationMonth,editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
@@ -57,6 +57,7 @@ public class EditPageControllerClass implements Initializable {
 	String checkIn;
 	String expCombined;
 	private String ID;
+	String editRoomType;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
@@ -72,19 +73,28 @@ public class EditPageControllerClass implements Initializable {
 			editPhone.setText(res.findCustomerID(ID).phoneNumber);
 
 			// I need to edit this to fit a radio button
-			// reviewRoomType.setText(res.findCustomerID(ID).roomType);
+			/**editRoomType=(res.findCustomerID(ID).roomType);
+			if (editRoomType == "Single") {
+				editPageSingle.setSelected(true);
+	        } else if (editRoomType == "Double") {
+	        	editPageDouble.setSelected(true);
+	        } else if (editRoomType == "King") {
+	        	editPageKing.setSelected(true);
+	        } else if (editRoomType == "Suite") {
+	        	editPageSuite.setSelected(true);
+	        }**/
 			
 			editCCfirstName.setText(res.findCustomerID(ID).firstName);
 			editCClastName.setText(res.findCustomerID(ID).lastName);
 			// I need to edit this to fit a datpicker object
 			// reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
 			// I need to edit this to fit a datpicker object
-			// reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
+			//Eric tried this but it didn't work
+			//editPageCheckOut.setValue(editPageCheckOut.getConverter().fromString(res.findCustomerID(ID).checkOut));
 			editCCcountry.setText(res.findCustomerID(ID).country);
-
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
-			//editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
+			editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
 			//editCCexperationYear.setText(res.findCustomerID(ID).expDate);
 		} else {
 			ReadWriteExcel obj = new ReadWriteExcel();
@@ -102,13 +112,13 @@ public class EditPageControllerClass implements Initializable {
 			editCClastName.setText(obj.ReadExcel("Customers", CustomerCount, 6));
 			editCCnumber.setText(obj.ReadExcel("Customers", CustomerCount, 7));
 			//figure out how to make the month and year separate
-			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
+			editCCexperationMonth.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			// editCCexperation.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			editCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			editCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
 			editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 11));
-			// reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
-			// reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 15));
+			// editCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 14));
+			//editPageCheckOut.setValue(LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 15))));
 			// make a size in excel
 		}
 	}

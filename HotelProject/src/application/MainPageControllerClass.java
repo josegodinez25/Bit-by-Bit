@@ -13,11 +13,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class MainPageControllerClass  extends Application {
 	reviewSingleton review = reviewSingleton.getInstance();
-	private Stage stage, stage2;
+	private Stage stage;
 	private Scene scene;
 	private Parent root, root2;
 	String reservationID;
@@ -33,6 +35,7 @@ public class MainPageControllerClass  extends Application {
 		// Group root = new Group();
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
+			stage = new Stage();
 			Image topIcon = new Image("topLeftLogo.png");
 			Scene mainScreenScene = new Scene(root);
 			stage.getIcons().add(topIcon);
@@ -65,14 +68,15 @@ public class MainPageControllerClass  extends Application {
 	
 	@FXML
 	public void openReservationNumberPage(ActionEvent event)throws IOException {
+	
 		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
 		root2 = (Parent) FXMLLoader.load();
 		Stage stage2 = new Stage();
 		stage2.setResizable(false);
+		stage2.initOwner(stage);
 		stage2.initModality(Modality.APPLICATION_MODAL);
-		stage2.setTitle("Reservation Confirmation");
 		stage2.setScene(new Scene(root2));
-		stage2.show();
+		stage2.showAndWait();
 	}
 	
 	@FXML

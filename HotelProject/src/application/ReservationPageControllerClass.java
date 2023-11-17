@@ -22,12 +22,13 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ReservationPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
-	private Parent root;
+	private Parent root, root2;
 	LocalDate reservationCheckIn;
 	LocalDate reservationCheckOut;
 	private long longReservationCheckIn;
@@ -285,6 +286,7 @@ public class ReservationPageControllerClass implements Initializable {
 
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
+		confirmTransactionButton.setDisable(true);
 	    getCustomerInfo();
 
 //	    if (checkForErrors()) {
@@ -301,12 +303,20 @@ public class ReservationPageControllerClass implements Initializable {
 
 	    res.reserveRoom(rom, cus);
 
-
+	    confirmTransactionButton.setDisable(false);
 	    // Switch to the review page
-	    root = FXMLLoader.load(getClass().getResource("reviewPage.FXML"));
+	    root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 	    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 	    scene = new Scene(root);
 	    stage.setScene(scene);
 	    stage.show();
+	    FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+		root2 = (Parent) FXMLLoader.load();
+		Stage stage2 = new Stage();
+		stage2.setResizable(false);
+		stage2.initOwner(stage);
+		stage2.initModality(Modality.APPLICATION_MODAL);
+		stage2.setScene(new Scene(root2));
+		stage2.showAndWait();
 	}
 }
