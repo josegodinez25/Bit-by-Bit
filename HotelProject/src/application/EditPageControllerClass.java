@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +30,7 @@ public class EditPageControllerClass implements Initializable {
 	private LocalDate dateIn, dateOut;
 	@FXML
 	private TextField editFirstName, editLastName, editEmail, editPhone, editCCfirstName, editCClastName, editCCnumber,
-			editCCexperationMonth,editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
+			editCCexperationMonth, editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
 	@FXML
 	private Label editReservationNumber;
 	@FXML
@@ -40,7 +41,7 @@ public class EditPageControllerClass implements Initializable {
 	private Label emailError, phoneError, cardError, dateError, zipError, securityError;
 	@FXML
 	private Button exitButton;
-	
+
 	String reservationFirstName;
 	String reservationLastName;
 	String reservationEmail;
@@ -62,7 +63,7 @@ public class EditPageControllerClass implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
-
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		Reserve res = new Reserve();
 
 		ID = review.getID();
@@ -71,25 +72,27 @@ public class EditPageControllerClass implements Initializable {
 			editFirstName.setText(res.findCustomerID(ID).firstName);
 			editLastName.setText(res.findCustomerID(ID).lastName);
 			editEmail.setText(res.findCustomerID(ID).email);
-			editPhone.setText(res.findCustomerID(ID).phoneNumber);	
+			editPhone.setText(res.findCustomerID(ID).phoneNumber);
 			editRoomType = (res.findCustomerID(ID).roomType);
-			
+
 			if (editRoomType.equals("Single") == true) {
 				editPageSingle.setSelected(true);
-	        } else if (editRoomType.equals("Double") == true) {
-	        	editPageDouble.setSelected(true);
-	        } else if (editRoomType.equals("King") == true) {
-	        	editPageKing.setSelected(true);
-	        } else if (editRoomType.equals("Suite") == true) {
-	        	editPageSuite.setSelected(true);
-	        }
+			} else if (editRoomType.equals("Double") == true) {
+				editPageDouble.setSelected(true);
+			} else if (editRoomType.equals("King") == true) {
+				editPageKing.setSelected(true);
+			} else if (editRoomType.equals("Suite") == true) {
+				editPageSuite.setSelected(true);
+			}
 
 			editCCfirstName.setText(res.findCustomerID(ID).firstName);
 			editCClastName.setText(res.findCustomerID(ID).lastName);
+
+			dateIn = LocalDate.parse((res.findCustomerID(ID).checkIn), formatter);
+			dateOut = LocalDate.parse((res.findCustomerID(ID).checkOut), formatter);
+			editPageCheckIn.setValue(dateIn);
+			editPageCheckIn.setValue(dateOut);
 			
-			// reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
-			//Eric tried this but it didn't work
-			//editPageCheckOut.setValue(editPageCheckOut.getConverter().fromString(res.findCustomerID(ID).checkOut));
 			editCCcountry.setText(res.findCustomerID(ID).country);
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
@@ -104,9 +107,6 @@ public class EditPageControllerClass implements Initializable {
 			}
 			CustomerCount--;
 
-			
-			System.out.println(obj.ReadExcel("Customers", CustomerCount, 11));
-			
 			editFirstName.setText(obj.ReadExcel("Customers", CustomerCount, 1));
 			editLastName.setText(obj.ReadExcel("Customers", CustomerCount, 2));
 			editEmail.setText(obj.ReadExcel("Customers", CustomerCount, 3));
@@ -114,31 +114,29 @@ public class EditPageControllerClass implements Initializable {
 			editCCfirstName.setText(obj.ReadExcel("Customers", CustomerCount, 5));
 			editCClastName.setText(obj.ReadExcel("Customers", CustomerCount, 6));
 			editCCnumber.setText(obj.ReadExcel("Customers", CustomerCount, 7));
-			//figure out how to make the month and year separate
+			// figure out how to make the month and year separate
 			editCCexperationMonth.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			editCCexperationYear.setText(obj.ReadExcel("Customers", CustomerCount, 8));
 			editCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			editCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
 			editCCsecurity.setText(obj.ReadExcel("Customers", CustomerCount, 11));
 			editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
-			//skip room number
-			editRoomType = (obj.ReadExcel("Customers", CustomerCount, 14));	
+			// skip room number
+			editRoomType = (obj.ReadExcel("Customers", CustomerCount, 14));
 			if (editRoomType.equals("Single") == true) {
 				editPageSingle.setSelected(true);
-	        } else if (editRoomType.equals("Double") == true) {
-	        	editPageDouble.setSelected(true);
-	        } else if (editRoomType.equals("King") == true) {
-	        	editPageKing.setSelected(true);
-	        } else if (editRoomType.equals("Suite") == true) {
-	        	editPageSuite.setSelected(true);
-	        }
-			//skips price
-			// editCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 16));
-			// editPageCheckOut.setValue(LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 17))));
-			
-			
-			
-			// make a size in excel
+			} else if (editRoomType.equals("Double") == true) {
+				editPageDouble.setSelected(true);
+			} else if (editRoomType.equals("King") == true) {
+				editPageKing.setSelected(true);
+			} else if (editRoomType.equals("Suite") == true) {
+				editPageSuite.setSelected(true);
+			}
+			// skips price
+			dateIn = LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 16)), formatter);
+			dateOut = LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 17)), formatter);
+			editPageCheckIn.setValue(dateIn);
+			editPageCheckOut.setValue(dateOut);
 		}
 	}
 
@@ -153,10 +151,10 @@ public class EditPageControllerClass implements Initializable {
 			reservationRoomType = "Suite";
 		}
 	}
-	
+
 	public void setNewChanges() {
-		//roomType();
-		
+		// roomType();
+
 		reservationFirstName = editFirstName.getText();
 		reservationLastName = editLastName.getText();
 		reservationEmail = editEmail.getText();
@@ -169,12 +167,12 @@ public class EditPageControllerClass implements Initializable {
 		reservationCardCountry = editCCcountry.getText();
 		reservationCardZipcode = editCCzip.getText();
 		reservationCardSecurity = editCCsecurity.getText();
-		
-		//reservationRoomType = editRoomType.getText();
-		//change to get a date value
-		//checkOut = reservationPageCheckOut.getText();
-		//checkIn = reservationPageCheckIn.getText();
-		
+
+		// reservationRoomType = editRoomType.getText();
+		// change to get a date value
+		// checkOut = reservationPageCheckOut.getText();
+		// checkIn = reservationPageCheckIn.getText();
+
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
@@ -182,8 +180,9 @@ public class EditPageControllerClass implements Initializable {
 	public void confirmChanges(ActionEvent event) throws IOException {
 		setNewChanges();
 		Reserve reserve = new Reserve();
-		Customer customer = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber, reservationCardFirstName, 
-				reservationCardLastName, reservationCardPaymentNumber,expCombined, reservationCardZipcode, reservationCardCountry,reservationCardSecurity);
+		Customer customer = new Customer(reservationFirstName, reservationLastName, reservationEmail,
+				reservationPhoneNumber, reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
+				expCombined, reservationCardZipcode, reservationCardCountry, reservationCardSecurity);
 		customer.ID = ID;
 		reserve.changeReservation(ID, customer);
 		// returns back to main page
