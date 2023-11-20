@@ -124,24 +124,46 @@ public class Reserve {
 
 			customer.inputUserDetail();
 			//we can comment this line out when we want to test the program so we dont get a bunch of emails
-			//sendEmail(customer,room);
+			sendEmail(customer, room, "reserveRoom");
 		} else {
 			System.out.println("All rooms are booked");
 		}
 	}
-	
-	public void sendEmail(Customer customer, Room room) {
-		String subject = "Reservation Confirmation";
-        String messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
-                + "Your reservation has been confirmed. Here are the details:\n"
-                + "Room Number: " + room.number + "\n"
-                + "Check-In Date: " + room.checkIn + "\n"
-                + "Check-Out Date: " + room.checkOut + "\n"
-                + "Total Price: " + room.price + "\n"
-                + "Reservation ID: " + customer.ID + "\n\n"
-                + "Thank you for choosing Asylum Hotel for your stay!\n";
-        EmailSend emailSender = new EmailSend();
-		emailSender.sendEmailToCustomer(customer.email, subject, messageText);
+	// have to adjust the price of the hotel that is sent in the email
+	// only sends the price of the room type 
+	public void sendEmail(Customer customer, Room room, String method) {
+	    String subject = "Reservation Confirmation";
+	    String messageText = "";
+
+	    if (method.equals("clearCustomerInfo")) {
+	        subject = "Customer Information Cleared";
+	        messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
+	                + "Your customer information has been cleared from our records.\n\n"
+	                + "If this was not intentional, please contact us for further assistance.\n\n"
+	                + "Thank you.\n";
+	    } else if (method.equals("changeReservation")) {
+	        subject = "Reservation Updated";
+	        messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
+	                + "Your reservation details have been updated successfully:\n"
+	                + "Room Number: " + room.number + "\n"
+	                + "Check-In Date: " + room.checkIn + "\n"
+	                + "Check-Out Date: " + room.checkOut + "\n"
+	                + "Total Price: " + room.price + "\n"
+	                + "Reservation ID: " + customer.ID + "\n\n"
+	                + "Thank you for choosing Asylum Hotel for your stay!\n";
+	    } else {
+	        messageText = "Dear " + customer.firstName + " " + customer.lastName + ",\n\n"
+	                + "Your reservation has been confirmed. Here are the details:\n"
+	                + "Room Number: " + room.number + "\n"
+	                + "Check-In Date: " + room.checkIn + "\n"
+	                + "Check-Out Date: " + room.checkOut + "\n"
+	                + "Total Price: " + room.price + "\n"
+	                + "Reservation ID: " + customer.ID + "\n\n"
+	                + "Thank you for choosing Asylum Hotel for your stay!\n";
+	    }
+
+	    EmailSend emailSender = new EmailSend();
+	    emailSender.sendEmailToCustomer(customer.email, subject, messageText);
 	}
 
 	//scans the excel sheet for the ID that is inputed then returns that Customer
@@ -205,7 +227,7 @@ public class Reserve {
 
 	//finds which customer is trying to edit info using the String ID
 	//then updates their information with the new information
-	public void changeReservation(String ID, Customer cus) {
+	public void changeReservation(String ID, Customer cus, Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
 		while (obj.isNull(rowCount, 1, 0) == false) {
@@ -233,6 +255,7 @@ public class Reserve {
 				obj.WriteExcel("Customers", i, 16, cus.checkIn);
 				obj.WriteExcel("Customers", i, 17, cus.checkOut);
 			}
+			sendEmail(cus, room, "changeReservation");
 		}
 	}
 
@@ -244,7 +267,7 @@ public class Reserve {
 		while (obj.isNull(rowCount, 1, 0) == false) {
 			rowCount++;
 		}
-
+		sendEmail(findCustomerID(ID), null, "clearCustomerInfo");
 		for (int i = 1; i < rowCount; i++) {
 			if (obj.ReadExcel("Customers", i, 12).equals(ID)) {
 				obj.WriteExcel("Customers", i, 1, null);

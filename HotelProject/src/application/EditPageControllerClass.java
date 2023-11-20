@@ -184,7 +184,7 @@ public class EditPageControllerClass implements Initializable {
 				reservationPhoneNumber, reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
 				expCombined, reservationCardZipcode, reservationCardCountry, reservationCardSecurity);
 		customer.ID = ID;
-		reserve.changeReservation(ID, customer);
+		reserve.changeReservation(ID, customer, null);
 		// returns back to main page
 		Stage stage = (Stage) exitButton.getScene().getWindow();
 		stage.close();
