@@ -28,6 +28,7 @@ public class EditPageControllerClass implements Initializable {
 	private Scene scene;
 	private Parent root;
 	private LocalDate dateIn, dateOut;
+	List<LocalDate> totalDates = new ArrayList<>();
 	@FXML
 	private TextField editFirstName, editLastName, editEmail, editPhone, editCCfirstName, editCClastName, editCCnumber,
 			editCCexperationMonth, editCCexperationYear, editCCcountry, editCCzip, editCCsecurity;
@@ -85,14 +86,14 @@ public class EditPageControllerClass implements Initializable {
 				editPageSuite.setSelected(true);
 			}
 
-			editCCfirstName.setText(res.findCustomerID(ID).firstName);
-			editCClastName.setText(res.findCustomerID(ID).lastName);
+			editCCfirstName.setText(res.findCustomerID(ID).paymentFirstName);
+			editCClastName.setText(res.findCustomerID(ID).paymentLastName);
 
 			dateIn = LocalDate.parse((res.findCustomerID(ID).checkIn), formatter);
 			dateOut = LocalDate.parse((res.findCustomerID(ID).checkOut), formatter);
 			editPageCheckIn.setValue(dateIn);
-			editPageCheckIn.setValue(dateOut);
-			
+			editPageCheckOut.setValue(dateOut);
+
 			editCCcountry.setText(res.findCustomerID(ID).country);
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
@@ -152,8 +153,44 @@ public class EditPageControllerClass implements Initializable {
 		}
 	}
 
+	@FXML
+	public void setReservationCheckIn(ActionEvent event) {
+		LocalDate today = LocalDate.now();
+		LocalDate selectedDate = editPageCheckIn.getValue();
+
+		if (selectedDate != null && !selectedDate.isBefore(today)) {
+			dateIn = selectedDate;
+			if (editPageCheckOut != null) {
+				getDatesBetween(dateIn, dateOut);
+			}
+			checkIn = dateIn.toString();
+		}
+	}
+
+	@FXML
+	public void setReservationCheckOut(ActionEvent event) {
+		LocalDate today = LocalDate.now();
+		LocalDate selectedDate = editPageCheckOut.getValue();
+
+		if (selectedDate != null && !selectedDate.isBefore(today)) {
+			dateOut = selectedDate;
+			if (editPageCheckIn != null) {
+				getDatesBetween(dateIn, dateOut);
+			}
+			checkOut = dateOut.toString();
+		}
+	}
+
+	public void getDatesBetween(LocalDate startDate, LocalDate endDate) {
+		totalDates.clear();
+		while (!startDate.isAfter(endDate)) {
+			totalDates.add(startDate);
+			startDate = startDate.plusDays(1);
+		}
+	}
+
 	public void setNewChanges() {
-		// roomType();
+		roomType();
 
 		reservationFirstName = editFirstName.getText();
 		reservationLastName = editLastName.getText();
@@ -167,12 +204,6 @@ public class EditPageControllerClass implements Initializable {
 		reservationCardCountry = editCCcountry.getText();
 		reservationCardZipcode = editCCzip.getText();
 		reservationCardSecurity = editCCsecurity.getText();
-
-		// reservationRoomType = editRoomType.getText();
-		// change to get a date value
-		// checkOut = reservationPageCheckOut.getText();
-		// checkIn = reservationPageCheckIn.getText();
-
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
@@ -184,7 +215,16 @@ public class EditPageControllerClass implements Initializable {
 				reservationPhoneNumber, reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
 				expCombined, reservationCardZipcode, reservationCardCountry, reservationCardSecurity);
 		customer.ID = ID;
-		reserve.changeReservation(ID, customer);
+		customer.checkIn = checkIn;
+		customer.checkOut = checkOut;
+		customer.roomType = reservationRoomType;
+		// will change later
+		customer.roomNumber = "1";
+		customer.roomPrice = "1";
+
+		Room room = new Room(reservationRoomType, checkIn, checkOut, totalDates);
+
+		reserve.changeReservation(ID, customer, room);
 		// returns back to main page
 		Stage stage = (Stage) exitButton.getScene().getWindow();
 		stage.close();

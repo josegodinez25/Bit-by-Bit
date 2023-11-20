@@ -150,11 +150,19 @@ public class ReservationPageControllerClass implements Initializable {
             reservationCheckIn = selectedDate;
             if (reservationCheckOut != null) {
                 reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-                totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 200);
+                if (reservationRoomType.equals("Single")) {
+                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 115 + "$");
+                } else if (reservationRoomType.equals("Double")) {
+                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 160 + "$");
+                } else if (reservationRoomType.equals("King")) {
+                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 224 + "$");
+                } else if (reservationRoomType.equals("Suite")) {
+                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 1000 + "$");
+                }
             }
             checkIn = reservationCheckIn.toString();
         } else {
-            // Display an error message for invalid dates
+        	// Display an error message for invalid dates
             // Example: setting a text to a label
             // You can customize this part as per your UI design
             totalCost.setText("Selected check-in date is not valid.");
@@ -172,14 +180,21 @@ public class ReservationPageControllerClass implements Initializable {
 	            reservationCheckOut = selectedDate;
 	            if (reservationCheckIn != null) {
 	                reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-	                totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 200);
+	                if (reservationRoomType.equals("Single")) {
+	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 115 + "$");
+	                } else if (reservationRoomType.equals("Double")) {
+	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 160 + "$");
+	                } else if (reservationRoomType.equals("King")) {
+	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 224 + "$");
+	                } else if (reservationRoomType.equals("Suite")) {
+	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 1000 + "$");
+	                }
 	            }
 	            checkOut = reservationCheckOut.toString();
 	        } else {
-	            // Display an error message for invalid dates
 	            totalCost.setText("Selected check-out date is not valid.");
 	        }
-	    }
+	 }
 
 	public void receiveRoomFromSearch() {
 
