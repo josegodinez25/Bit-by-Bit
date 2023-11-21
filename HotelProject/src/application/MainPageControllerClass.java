@@ -32,6 +32,7 @@ public class MainPageControllerClass  extends Application {
 	
 	/**
 	 * This override method is called by main and loads the mainPage.FXML to generate the main scene of the application
+	 * @throws IOException
 	 */
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -53,6 +54,7 @@ public class MainPageControllerClass  extends Application {
 	
 	/**
 	 * This method is an action that is taken when the user presses the search for a room button and switches the scene to the search page.
+     * @throws IOException
 	 */
 	@FXML
 	public void switchToSearchScene(ActionEvent event) throws IOException {
@@ -65,6 +67,7 @@ public class MainPageControllerClass  extends Application {
 	
 	/**
 	 * This method is an action that is taken when the user presses the make a reservation button and switches the scene to the reservation page.
+     * @throws IOException
 	 */
 	@FXML
 	public void switchToReservationScene(ActionEvent event) throws IOException {
@@ -78,6 +81,7 @@ public class MainPageControllerClass  extends Application {
 	/**
 	 * This method is an action that is taken when the user presses the review reservation, change reservation, or cancel reservation buttons.
 	 * It brings up a pop up window where users can enter their reservation ID
+	 * @throws IOException
 	 */
 	@FXML
 	public void openReservationNumberPage(ActionEvent event)throws IOException {
@@ -95,6 +99,7 @@ public class MainPageControllerClass  extends Application {
 	/**
 	 * This method is an action that is taken when the user presses the cancel button in the reservation number page.
 	 * It simply closes the page and the user is back at the main page.
+	 * @throws IOException
 	 */
 	@FXML
 	public void closeSceneAction(ActionEvent event)throws IOException {
@@ -109,6 +114,7 @@ public class MainPageControllerClass  extends Application {
 	 * If a match is found the pop up closes and the reservation ID is sent to the review singleton to create in instance for this ID
 	 * The scene then changes to the review page based on the information associated with that ID
 	 * If a match is not found an error message is printed
+	 * @throws IOException
 	 */
 	@FXML
 	public void switchToReviewPage(ActionEvent event) throws IOException {

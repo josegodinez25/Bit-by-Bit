@@ -19,6 +19,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method returns this instance
+	 * @return
 	 */
 	public static availabilitySingleton getInstance() {
 		return instance;
@@ -26,6 +27,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method returns the room type for this instance.
+	 * @return
 	 */
 	public String getAvailabilityString() {
 		return availabilityString;
@@ -33,6 +35,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method returns a check-in date for this instance.
+	 * @return
 	 */
 	public LocalDate getSearchCheckIn() {
 		return searchCheckIn;
@@ -40,6 +43,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method returns a check-out date for this instance.
+	 * @return
 	 */
 	public LocalDate getSearchCheckOut() {
 		return searchCheckOut;
@@ -47,6 +51,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method sets the room type for this instance.
+	 * @param availabilityString
 	 */
 	public void setAvailabilityString(String availabilityString) {
 		this.availabilityString = availabilityString;
@@ -54,6 +59,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method sets a check-in date for this instance.
+	 * @param searchCheckIn
 	 */
 	public void setSearchCheckIn(LocalDate searchCheckIn) {
 		this.searchCheckIn = searchCheckIn;
@@ -61,6 +67,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method sets a check-out date for this instance.
+	 * @param searchCheckOut
 	 */
 	public void setSearchCheckOut(LocalDate searchCheckOut) {
 		this.searchCheckOut = searchCheckOut;

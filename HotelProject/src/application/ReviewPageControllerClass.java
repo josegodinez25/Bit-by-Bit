@@ -32,7 +32,10 @@ public class ReviewPageControllerClass implements Initializable {
 
 	
 	/**
-	 * This override method calls a method in the reviewSingleton to get a reservation id and generate a scene based on that reservations information.
+	 * If the user is trying to access this page from the reservation number page then this override method calls a method in the reviewSingleton to get a reservation id and generate a scene based on the reservation information for that instance.
+	 * Else this page is being accessed from the reservation page and generates the scene based on the information from that reservation.
+	 * @param url
+	 * @param resourcebundle
 	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
@@ -88,6 +91,7 @@ public class ReviewPageControllerClass implements Initializable {
 
 	/**
 	 * This method is an action that is taken when the user presses the edit reservation button and switches the scene to the edit page.
+	 * @throws IOException
 	 */
 	@FXML
 	public void switchToEditPage(ActionEvent event) throws IOException {
@@ -101,6 +105,7 @@ public class ReviewPageControllerClass implements Initializable {
 	
 	/**
 	 * This method is an action that is taken when the user presses the cancel reservation button and switches the scene to the cancel page.
+	 * @throws IOException
 	 */
 	@FXML
 	public void switchToCancelPage(ActionEvent event) throws IOException {
@@ -114,6 +119,7 @@ public class ReviewPageControllerClass implements Initializable {
 	
 	/**
 	 * This method is an action that is taken when the user presses the return to menu  button which closes the stage leaving the user back at the main page.
+	 * @throws IOException
 	 */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
