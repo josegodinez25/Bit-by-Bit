@@ -16,6 +16,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 /**
  * This class is associated with the mainPage.FXML and reservationNumberPage.FXML.
+ * @author Eric
+ * @version 11-21-23
  */
 public class MainPageControllerClass  extends Application {
 	reviewSingleton review = reviewSingleton.getInstance();

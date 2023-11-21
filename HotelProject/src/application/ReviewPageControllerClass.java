@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 /**
  * This class is associated with the reviewPage.FXML.
+ * @author Eric, Nathan
+ * @version 11-21-23
  */
 public class ReviewPageControllerClass implements Initializable {
 	reviewSingleton review = reviewSingleton.getInstance();

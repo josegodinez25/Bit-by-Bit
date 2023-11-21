@@ -3,6 +3,8 @@ package application;
  * The purpose of this singleton class is to manage a reservation ID when a user navigates between scenes.
  * The reservation ID is used when generating the review, edit, and cancel reservation scenes.
  * The reservation ID is set in the reservation number page or in the review page depending on how the user is accessing the review, edit, and cancel reservation pages.
+ * @author Eric
+ * @version 11-21-23
  */
 public class reviewSingleton {
 
@@ -66,7 +68,7 @@ public class reviewSingleton {
 
 	/**
 	 * This method sets the reservation ID for this instance.
-	 * @param ID
+	 * @param ID used to set the reservation ID
 	 */
 	public void setID(String ID) {
 		this.ID = ID;

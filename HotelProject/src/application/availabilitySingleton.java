@@ -5,6 +5,8 @@ import java.time.LocalDate;
  * The purpose of this singleton class is to create an instance for passing information from one scene to another
  * The user will set the room type and check-in check-out dates in the search page
  * The reservation page will get the room type and check-in check-out dates and initialize based on this information
+ * @author Eric
+ * @version 11-21-23
  */
 public class availabilitySingleton {
 
@@ -51,7 +53,7 @@ public class availabilitySingleton {
 
 	/**
 	 * This method sets the room type for this instance.
-	 * @param availabilityString
+	 * @param availabilityString used for the room type
 	 */
 	public void setAvailabilityString(String availabilityString) {
 		this.availabilityString = availabilityString;
