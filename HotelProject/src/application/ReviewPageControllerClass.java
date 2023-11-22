@@ -2,10 +2,6 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,12 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
+/**
+ * This class is associated with the reviewPage.FXML.
+ * @author Eric, Nathan
+ * @version 11-21-23
+ */
 public class ReviewPageControllerClass implements Initializable {
 	reviewSingleton review = reviewSingleton.getInstance();
 	private Stage stage;
@@ -35,6 +32,13 @@ public class ReviewPageControllerClass implements Initializable {
 
 	private String ID;
 
+	
+	/**
+	 * If the user is trying to access this page from the reservation number page then this override method calls a method in the reviewSingleton to get a reservation id and generate a scene based on the reservation information for that instance.
+	 * Else this page is being accessed from the reservation page and generates the scene based on the information from that reservation.
+	 * @param url
+	 * @param resourcebundle
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
 		Reserve res = new Reserve();
@@ -87,6 +91,10 @@ public class ReviewPageControllerClass implements Initializable {
 		}
 	}
 
+	/**
+	 * This method is an action that is taken when the user presses the edit reservation button and switches the scene to the edit page.
+	 * @throws IOException
+	 */
 	@FXML
 	public void switchToEditPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("editPage.FXML"));
@@ -97,6 +105,10 @@ public class ReviewPageControllerClass implements Initializable {
 		
 	}
 	
+	/**
+	 * This method is an action that is taken when the user presses the cancel reservation button and switches the scene to the cancel page.
+	 * @throws IOException
+	 */
 	@FXML
 	public void switchToCancelPage(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("cancelPage.FXML"));
@@ -107,6 +119,10 @@ public class ReviewPageControllerClass implements Initializable {
 		
 	}
 	
+	/**
+	 * This method is an action that is taken when the user presses the return to menu  button which closes the stage leaving the user back at the main page.
+	 * @throws IOException
+	 */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		Stage stage = (Stage) exitButton.getScene().getWindow();
