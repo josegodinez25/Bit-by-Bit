@@ -2,7 +2,10 @@ package application;
 
 import java.time.LocalDate;
 import java.util.List;
-
+/**
+ * @author Nathan
+ * @version 11/20/23
+ */
 public class Room {
 	String size;
 	String price;
@@ -16,7 +19,14 @@ public class Room {
 	int row;
 	int col;
 
-	//constructor for room
+
+	/**
+	 * constructor for Room class
+	 * @param size the room size
+	 * @param checkIn their check in date
+	 * @param checkOut their check out date
+	 * @param totalDates an array of all the dates they are staying
+	 */
 	public Room(String size, String checkIn, String checkOut, List<LocalDate> totalDates) {
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
@@ -24,7 +34,10 @@ public class Room {
 		this.size = size;
 	}
 
-	//writes booked on the excel sheet for the correct dates and size the customer picks
+	/**
+	 * writes booked on the excel sheet for the correct dates and size the customer picks
+	 * @param room the room the customer is trying to book
+	 */
 	public void updateRoom(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 
