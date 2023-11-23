@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -20,13 +21,14 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EditPageControllerClass implements Initializable {
 	reviewSingleton review = reviewSingleton.getInstance();
 	private Stage stage;
 	private Scene scene;
-	private Parent root;
+	private Parent root,root2;
 	private LocalDate dateIn, dateOut;
 	List<LocalDate> totalDates = new ArrayList<>();
 	@FXML
@@ -98,8 +100,10 @@ public class EditPageControllerClass implements Initializable {
 			editCCnumber.setText(res.findCustomerID(ID).cardNumber);
 			editCCzip.setText(res.findCustomerID(ID).zipCode);
 			editCCsecurity.setText(res.findCustomerID(ID).secCode);
-			editCCexperationMonth.setText(res.findCustomerID(ID).expDate);
-			editCCexperationYear.setText(res.findCustomerID(ID).expDate);
+			
+			String[] split = res.findCustomerID(ID).expDate.split("/");
+			editCCexperationMonth.setText(split[0]);
+			editCCexperationYear.setText(split[1]);
 		} else {
 			ReadWriteExcel obj = new ReadWriteExcel();
 			int CustomerCount = 1;
@@ -115,14 +119,13 @@ public class EditPageControllerClass implements Initializable {
 			editCCfirstName.setText(obj.ReadExcel("Customers", CustomerCount, 5));
 			editCClastName.setText(obj.ReadExcel("Customers", CustomerCount, 6));
 			editCCnumber.setText(obj.ReadExcel("Customers", CustomerCount, 7));
-			// figure out how to make the month and year separate
-			editCCexperationMonth.setText(obj.ReadExcel("Customers", CustomerCount, 8));
-			editCCexperationYear.setText(obj.ReadExcel("Customers", CustomerCount, 8));
+			String[] split = obj.ReadExcel("Customers", CustomerCount, 8).split("/");
+			editCCexperationMonth.setText(split[0]);
+			editCCexperationYear.setText(split[1]);
 			editCCcountry.setText(obj.ReadExcel("Customers", CustomerCount, 9));
 			editCCzip.setText(obj.ReadExcel("Customers", CustomerCount, 10));
 			editCCsecurity.setText(obj.ReadExcel("Customers", CustomerCount, 11));
 			editReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
-			// skip room number
 			editRoomType = (obj.ReadExcel("Customers", CustomerCount, 14));
 			if (editRoomType.equals("Single") == true) {
 				editPageSingle.setSelected(true);
@@ -133,7 +136,6 @@ public class EditPageControllerClass implements Initializable {
 			} else if (editRoomType.equals("Suite") == true) {
 				editPageSuite.setSelected(true);
 			}
-			// skips price
 			dateIn = LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 16)), formatter);
 			dateOut = LocalDate.parse((obj.ReadExcel("Customers", CustomerCount, 17)), formatter);
 			editPageCheckIn.setValue(dateIn);
@@ -204,6 +206,9 @@ public class EditPageControllerClass implements Initializable {
 		reservationCardCountry = editCCcountry.getText();
 		reservationCardZipcode = editCCzip.getText();
 		reservationCardSecurity = editCCsecurity.getText();
+		ID = editReservationNumber.getText();
+		checkIn = dateIn.toString();
+		checkOut = dateOut.toString(); 
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
 
@@ -214,20 +219,39 @@ public class EditPageControllerClass implements Initializable {
 		Customer customer = new Customer(reservationFirstName, reservationLastName, reservationEmail,
 				reservationPhoneNumber, reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
 				expCombined, reservationCardZipcode, reservationCardCountry, reservationCardSecurity);
+		Room room = new Room(reservationRoomType, checkIn, checkOut, totalDates);
 		customer.ID = ID;
+		customer.roomType = reservationRoomType;
 		customer.checkIn = checkIn;
 		customer.checkOut = checkOut;
-		customer.roomType = reservationRoomType;
-		// will change later
-		customer.roomNumber = "1";
-		customer.roomPrice = "1";
 
-		Room room = new Room(reservationRoomType, checkIn, checkOut, totalDates);
+		if (reserve.isBooked(room) == false) {
+			room.updateRoom(room);
+			customer.roomNumber = room.number;
+			customer.roomPrice = room.price;
+			reserve.changeReservation(ID, customer, room);
+			
+			root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+			root2 = (Parent) FXMLLoader.load();
+			Stage stage2 = new Stage();
+			stage2.setResizable(false);
+			stage2.initOwner(stage);
+			stage2.initModality(Modality.APPLICATION_MODAL);
+			stage2.setScene(new Scene(root2));
+			stage2.showAndWait();
+			
+			
+			//Stage stage = (Stage) exitButton.getScene().getWindow();
+			//stage.close();
+		} else {
+			dateError.setText("Dates are not available");
+		}
 
-		reserve.changeReservation(ID, customer, room);
-		// returns back to main page
-		Stage stage = (Stage) exitButton.getScene().getWindow();
-		stage.close();
 	}
 
 	@FXML

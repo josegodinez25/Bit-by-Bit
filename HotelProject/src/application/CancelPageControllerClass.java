@@ -21,24 +21,35 @@ public class CancelPageControllerClass implements Initializable {
 	private Parent root;
 	@FXML
 	private Button exitButton;
-	
-	
+
 	reviewSingleton review = reviewSingleton.getInstance();
 	String ID;
-	
+
 	@FXML
 	Label reservationID;
-	
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
-		ID = review.getID();
+		ReadWriteExcel obj = new ReadWriteExcel();
+		if (review.getID() == null) {
+			int CustomerCount = 1;
+			// checks if the cell is empty
+			while (obj.isNull(CustomerCount, 1, 0) == false) {
+				CustomerCount++;
+			}
+			CustomerCount--;
+			ID = obj.ReadExcel("Customers", CustomerCount, 12);
+		} else {
+			ID = review.getID();
+		}
+
 		reservationID.setText(ID);
 	}
-	
+
 	public void confirmCancel(ActionEvent event) throws IOException {
 		Reserve res = new Reserve();
 		res.clearCustomerInfo(ID);
-		
+
 		// returns back to main page
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -46,8 +57,7 @@ public class CancelPageControllerClass implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-	
-	
+
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		Stage stage = (Stage) exitButton.getScene().getWindow();

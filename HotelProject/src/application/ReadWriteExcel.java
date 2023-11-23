@@ -12,9 +12,9 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class ReadWriteExcel {
-	
-	//obtains information from the excel sheet
-	//it needs the sheet name, row, and column
+
+	// obtains information from the excel sheet
+	// it needs the sheet name, row, and column
 	public String ReadExcel(String SheetName, int rNum, int cNum) {
 		String data = "";
 		try {
@@ -33,8 +33,8 @@ public class ReadWriteExcel {
 		return data;
 	}
 
-	//prints data into the excel sheet
-	//needs the sheet name, row, column, and the String you want to print
+	// prints data into the excel sheet
+	// needs the sheet name, row, column, and the String you want to print
 	public void WriteExcel(String SheetName, int rNum, int cNum, String DATA) {
 		try {
 
@@ -55,13 +55,15 @@ public class ReadWriteExcel {
 
 	}
 
-	//checks if the the cell is null
-	//needs row, column, and the index of the sheet you want to check
+	// checks if the the cell is null
+	// needs row, column, and the index of the sheet you want to check
 	public boolean isNull(int rNum, int cNum, int index) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
 			Workbook wb = WorkbookFactory.create(fis);
 			if (wb.getSheetAt(index).getRow(rNum).getCell(cNum) == null) {
+				return true;
+			} else if (wb.getSheetAt(index).getRow(rNum).getCell(cNum).getStringCellValue() == "") {
 				return true;
 			}
 		} catch (Exception e) {
@@ -70,9 +72,8 @@ public class ReadWriteExcel {
 		return false;
 	}
 
-
-	//returns a cell from a certain sheet
-	public Cell getCell(String SheetName,int rNum, int cNum) {
+	// returns a cell from a certain sheet
+	public Cell getCell(String SheetName, int rNum, int cNum) {
 		Cell c = null;
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
@@ -86,21 +87,22 @@ public class ReadWriteExcel {
 		}
 		return c;
 	}
+
 	public String getEmail(String customerID) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
 			Workbook wb = WorkbookFactory.create(fis);
 			Sheet sheet = wb.getSheet("Customers");
-			
+
 			for (Row row : sheet) {
 				String id = row.getCell(3).getStringCellValue();
-				if (id.equals(customerID) ) {
+				if (id.equals(customerID)) {
 					return row.getCell(3).getStringCellValue();
 				}
 			}
-			
-			} catch (Exception e ) {
-				e.printStackTrace();
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return null;
 	}

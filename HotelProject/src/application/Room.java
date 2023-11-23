@@ -6,7 +6,6 @@ import java.util.List;
 public class Room {
 	String size;
 	String price;
-	String availability;
 	String number;
 	String checkIn;
 	String checkOut;
