@@ -49,8 +49,8 @@ public class ReviewPageControllerClass implements Initializable {
 			
 			reviewRoomType.setText(res.findCustomerID(ID).roomType);
 			reviewRoomNumber.setText(res.findCustomerID(ID).roomNumber);
-			reviewCCfirstName.setText(res.findCustomerID(ID).firstName);
-			reviewCClastName.setText(res.findCustomerID(ID).lastName);
+			reviewCCfirstName.setText(res.findCustomerID(ID).paymentFirstName);
+			reviewCClastName.setText(res.findCustomerID(ID).paymentLastName);
 			reviewCheckIn.setText(res.findCustomerID(ID).checkIn);
 			reviewCheckOut.setText(res.findCustomerID(ID).checkOut);
 			reviewCCcountry.setText(res.findCustomerID(ID).country);
@@ -65,8 +65,6 @@ public class ReviewPageControllerClass implements Initializable {
 	            CustomerCount++;
 	        }
 	        CustomerCount--;
-	        
-	        
 			reviewFirstName.setText(obj.ReadExcel("Customers", CustomerCount, 1));
 			reviewLastName.setText(obj.ReadExcel("Customers", CustomerCount, 2));
 			reviewEmail.setText(obj.ReadExcel("Customers", CustomerCount, 3));
@@ -81,7 +79,6 @@ public class ReviewPageControllerClass implements Initializable {
 			reviewReservationNumber.setText(obj.ReadExcel("Customers", CustomerCount, 12));
 			reviewRoomNumber.setText(obj.ReadExcel("Customers", CustomerCount, 13));
 			reviewRoomType.setText(obj.ReadExcel("Customers", CustomerCount, 14));
-			//reviewPrice.
 			reviewCheckIn.setText(obj.ReadExcel("Customers", CustomerCount, 16));
 			reviewCheckOut.setText(obj.ReadExcel("Customers", CustomerCount, 17));
 		}

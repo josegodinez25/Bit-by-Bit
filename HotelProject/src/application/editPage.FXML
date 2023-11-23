@@ -263,6 +263,11 @@
                                        </font>
                                     </Label>
                                     <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="30.0" prefWidth="140.0" text="Cancel changes" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                                    <Label fx:id="dateError" prefHeight="28.0" prefWidth="154.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                            </center>

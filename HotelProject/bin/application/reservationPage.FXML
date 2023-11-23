@@ -226,6 +226,11 @@
                                                 <Label text="Check-out Date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <DatePicker fx:id="reservationPageCheckOut" onAction="#setReservationCheckOut" promptText="Choose check-out date" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <Label text="Step 2: Property Details" textAlignment="CENTER" wrapText="true" />
+                                                <Label fx:id="dateError" prefHeight="22.0" prefWidth="110.0" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Label>
                                              </children>
                                           </GridPane>
                                        </children>

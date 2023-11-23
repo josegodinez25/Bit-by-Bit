@@ -63,7 +63,7 @@ public class ReservationPageControllerClass implements Initializable {
 	@FXML
 	private Button confirmTransactionButton;
 	@FXML
-	private Label cardNumberError, cardDateError, cardZipError, emailError, phoneError, securityError, countryError;
+	private Label cardNumberError, cardDateError, cardZipError, emailError, phoneError, securityError, countryError,dateError;
 	@FXML
 	private Label totalCost;
 	@FXML
@@ -85,27 +85,33 @@ public class ReservationPageControllerClass implements Initializable {
 	String checkOut;
 	String checkIn;
 	String expCombined;
+	int price;
+	String stringPrice;
 	String reservationSecurityCode;
 
 	@Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Use .equals() for string comparison
-        String availabilityString = search.getAvailabilityString();
-        if ("Single".equals(availabilityString)) {
-            reservationPageSingle.setSelected(true);
-        } else if ("Double".equals(availabilityString)) {
-            reservationPageDouble.setSelected(true);
-        } else if ("King".equals(availabilityString)) {
-            reservationPageKing.setSelected(true);
-        } else if ("Suite".equals(availabilityString)) {
-            reservationPageSuite.setSelected(true);
-        }
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		// Use .equals() for string comparison
+		String availabilityString = search.getAvailabilityString();
+		if ("Single".equals(availabilityString)) {
+			reservationPageSingle.setSelected(true);
+			reservationRoomType = "Single";
+		} else if ("Double".equals(availabilityString)) {
+			reservationPageDouble.setSelected(true);
+			reservationRoomType = "Double";
+		} else if ("King".equals(availabilityString)) {
+			reservationPageKing.setSelected(true);
+			reservationRoomType = "King";
+		} else if ("Suite".equals(availabilityString)) {
+			reservationPageSuite.setSelected(true);
+			reservationRoomType = "Suite";
+		}
 
-        reservationPageCheckIn.setValue(search.getSearchCheckIn());
-        reservationPageCheckOut.setValue(search.getSearchCheckOut());
-    }
+		reservationPageCheckIn.setValue(search.getSearchCheckIn());
+		reservationPageCheckOut.setValue(search.getSearchCheckOut());
+	}
 
-    // ... [Methods like switchToMainScene, switchToSearchScene remain unchanged]
+	// ... [Methods like switchToMainScene, switchToSearchScene remain unchanged]
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
@@ -142,59 +148,75 @@ public class ReservationPageControllerClass implements Initializable {
 	// need to give error an confirming reservation when incorrect date is picked
 	// so it does not move on to next scene
 	@FXML
-    public void setReservationCheckIn(ActionEvent event) {
-        LocalDate today = LocalDate.now();
-        LocalDate selectedDate = reservationPageCheckIn.getValue();
+	public void setReservationCheckIn(ActionEvent event) {
+		LocalDate today = LocalDate.now();
+		LocalDate selectedDate = reservationPageCheckIn.getValue();
 
-        if (selectedDate != null && !selectedDate.isBefore(today)) {
-            reservationCheckIn = selectedDate;
-            if (reservationCheckOut != null) {
-                reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-                if (reservationRoomType.equals("Single")) {
-                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 115 + "$");
-                } else if (reservationRoomType.equals("Double")) {
-                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 160 + "$");
-                } else if (reservationRoomType.equals("King")) {
-                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 224 + "$");
-                } else if (reservationRoomType.equals("Suite")) {
-                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 1000 + "$");
-                }
-            }
-            checkIn = reservationCheckIn.toString();
-        } else {
-        	// Display an error message for invalid dates
-            // Example: setting a text to a label
-            // You can customize this part as per your UI design
-            totalCost.setText("Selected check-in date is not valid.");
-        }
-    }
+		if (selectedDate != null && !selectedDate.isBefore(today)) {
+			reservationCheckIn = selectedDate;
+			if (reservationCheckOut != null) {
+				reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+				if (reservationRoomType.equals("Single")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 115 + "$");
+					price = (reservationTotalDates.size() - 1) * 115;
+				} else if (reservationRoomType.equals("Double")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 160 + "$");
+					price = (reservationTotalDates.size() - 1) * 160;
+				} else if (reservationRoomType.equals("King")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 224 + "$");
+					price = (reservationTotalDates.size() - 1) * 224;
+				} else if (reservationRoomType.equals("Suite")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 1000 + "$");
+					price = (reservationTotalDates.size() - 1) * 1000;
+				}
+			}
+			checkIn = reservationCheckIn.toString();
+		} else {
+			// Display an error message for invalid dates
+			// Example: setting a text to a label
+			// You can customize this part as per your UI design
+			totalCost.setText("Selected check-in date is not valid.");
+		}
+	}
 
 	// same error for this part where it needs an error pop up on GUI program where
 	// it does not allow to move to next scene
-	 @FXML
-	    public void setReservationCheckOut(ActionEvent event) {
-	        LocalDate today = LocalDate.now();
-	        LocalDate selectedDate = reservationPageCheckOut.getValue();
+	@FXML
+	public void setReservationCheckOut(ActionEvent event) {
+		LocalDate today = LocalDate.now();
+		LocalDate selectedDate = reservationPageCheckOut.getValue();
 
-	        if (selectedDate != null && !selectedDate.isBefore(today)) {
-	            reservationCheckOut = selectedDate;
-	            if (reservationCheckIn != null) {
-	                reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
-	                if (reservationRoomType.equals("Single")) {
-	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 115 + "$");
-	                } else if (reservationRoomType.equals("Double")) {
-	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 160 + "$");
-	                } else if (reservationRoomType.equals("King")) {
-	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 224 + "$");
-	                } else if (reservationRoomType.equals("Suite")) {
-	                    totalCost.setText("The total cost of your stay is " + reservationTotalDates.size() * 1000 + "$");
-	                }
-	            }
-	            checkOut = reservationCheckOut.toString();
-	        } else {
-	            totalCost.setText("Selected check-out date is not valid.");
-	        }
-	 }
+		if (selectedDate != null && !selectedDate.isBefore(today)) {
+			reservationCheckOut = selectedDate;
+			if (reservationCheckIn != null) {
+				reservationGetDatesBetween(reservationCheckIn, reservationCheckOut);
+				if (reservationRoomType.equals("Single")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 115 + "$");
+					price = (reservationTotalDates.size() - 1) * 115;
+				} else if (reservationRoomType.equals("Double")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 160 + "$");
+					price = (reservationTotalDates.size() - 1) * 160;
+				} else if (reservationRoomType.equals("King")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 224 + "$");
+					price = (reservationTotalDates.size() - 1) * 224;
+				} else if (reservationRoomType.equals("Suite")) {
+					totalCost.setText(
+							"The total cost of your stay is " + (reservationTotalDates.size() - 1) * 1000 + "$");
+					price = (reservationTotalDates.size() - 1) * 1000;
+				}
+			}
+			checkOut = reservationCheckOut.toString();
+		} else {
+			totalCost.setText("Selected check-out date is not valid.");
+		}
+	}
 
 	public void receiveRoomFromSearch() {
 
@@ -225,113 +247,114 @@ public class ReservationPageControllerClass implements Initializable {
 		reservationCardCountry = countryCardTextField.getText();
 		reservationCardZipcode = zipcodeCardTextField.getText();
 		reservationSecurityCode = securityCode.getText();
+		checkIn = reservationPageCheckIn.getValue().toString();
+		checkOut = reservationPageCheckOut.getValue().toString();
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
+		stringPrice = Integer.toString(price);
 	}
 
 	public boolean checkForErrors() {
-	    boolean hasErrors = false;
+		boolean hasErrors = false;
 
-	    // Reset error messages
-	    cardNumberError.setText("");
-	    cardDateError.setText("");
-	    cardZipError.setText("");
+		// Reset error messages
+		cardNumberError.setText("");
+		cardDateError.setText("");
+		cardZipError.setText("");
 
-	    // Validate Card Number
-	    if (!isValidCardNumber(paymentCardNumberTextField.getText())) {
-	        cardNumberError.setText("Invalid card number. Must be 16 digits.");
-	        hasErrors = true;
-	    }
+		// Validate Card Number
+		if (!isValidCardNumber(paymentCardNumberTextField.getText())) {
+			cardNumberError.setText("Invalid card number. Must be 16 digits.");
+			hasErrors = true;
+		}
 
-	    // Validate Expiration Date
-	    if (!isValidExpirationDate(expMonthCardTextField.getText(), expYearCardTextField.getText())) {
-	        cardDateError.setText("Invalid expiration date.");
-	        hasErrors = true;
-	    }
+		// Validate Expiration Date
+		if (!isValidExpirationDate(expMonthCardTextField.getText(), expYearCardTextField.getText())) {
+			cardDateError.setText("Invalid expiration date.");
+			hasErrors = true;
+		}
 
-	    // Validate Zip Code
-	    if (!isValidZipCode(zipcodeCardTextField.getText())) {
-	        cardZipError.setText("Invalid ZIP code. Must be 5 digits.");
-	        hasErrors = true;
-	    }
+		// Validate Zip Code
+		if (!isValidZipCode(zipcodeCardTextField.getText())) {
+			cardZipError.setText("Invalid ZIP code. Must be 5 digits.");
+			hasErrors = true;
+		}
 
-	    // Additional Validations (e.g., for names, phone numbers) can be added here
+		// Additional Validations (e.g., for names, phone numbers) can be added here
 
-	    // Return true if any errors were found
-	    return hasErrors;
+		// Return true if any errors were found
+		return hasErrors;
 	}
-	
-	
-	
+
 	private boolean isValidCardNumber(String cardNumber) {
-	    // Regular expression to check for 15 or 16 digit numbers
-	    String regex = "^[0-9]{15,16}$";
-	    return cardNumber.matches(regex);
+		// Regular expression to check for 15 or 16 digit numbers
+		String regex = "^[0-9]{15,16}$";
+		return cardNumber.matches(regex);
 	}
-
 
 	private boolean isValidExpirationDate(String month, String year) {
-	    // Check if month and year are in the correct format
-	    String monthRegex = "^(0[1-9]|1[0-2])$"; // Month should be 01-12
-	    String yearRegex = "^[0-9]{2}$";         // Year should be two digits
+		// Check if month and year are in the correct format
+		String monthRegex = "^(0[1-9]|1[0-2])$"; // Month should be 01-12
+		String yearRegex = "^[0-9]{2}$"; // Year should be two digits
 
-	    if (!month.matches(monthRegex) || !year.matches(yearRegex)) {
-	        return false;
-	    }
+		if (!month.matches(monthRegex) || !year.matches(yearRegex)) {
+			return false;
+		}
 
-	    try {
-	        // Convert to full year (assuming 2000s)
-	        int fullYear = 2000 + Integer.parseInt(year);
-	        int expMonth = Integer.parseInt(month);
+		try {
+			// Convert to full year (assuming 2000s)
+			int fullYear = 2000 + Integer.parseInt(year);
+			int expMonth = Integer.parseInt(month);
 
-	        // Check if the date is in the past
-	        LocalDate currentDate = LocalDate.now();
-	        LocalDate expDate = LocalDate.of(fullYear, expMonth, 1);
+			// Check if the date is in the past
+			LocalDate currentDate = LocalDate.now();
+			LocalDate expDate = LocalDate.of(fullYear, expMonth, 1);
 
-	        return !expDate.isBefore(currentDate.withDayOfMonth(1));
-	    } catch (NumberFormatException e) {
-	        return false;
-	    }
+			return !expDate.isBefore(currentDate.withDayOfMonth(1));
+		} catch (NumberFormatException e) {
+			return false;
+		}
 	}
 
-
 	private boolean isValidZipCode(String zipCode) {
-	    String regex = "^[0-9]{5}$"; // Example regex for a 5-digit US zipcode
-	    return zipCode.matches(regex);
+		String regex = "^[0-9]{5}$"; // Example regex for a 5-digit US zipcode
+		return zipCode.matches(regex);
 	}
 
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
-		confirmTransactionButton.setDisable(true);
-	    getCustomerInfo();
+		getCustomerInfo();
 
 //	    if (checkForErrors()) {
 //	        // If errors are found, stop processing and show error messages
 //	        return;
-//	    }
+//    }
 
-	    // Proceed with the reservation process if no errors are found
-	    Reserve res = new Reserve();
-	    Room rom = new Room(reservationRoomType, checkIn, checkOut, reservationTotalDates);
-	    Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
-	            reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber,
-	            expCombined, reservationCardZipcode, reservationCardCountry, reservationSecurityCode);
+		// Proceed with the reservation process if no errors are found
+		Reserve res = new Reserve();
+		Room rom = new Room(reservationRoomType, checkIn, checkOut, reservationTotalDates);
+		rom.price = stringPrice;
+		Customer cus = new Customer(reservationFirstName, reservationLastName, reservationEmail, reservationPhoneNumber,
+				reservationCardFirstName, reservationCardLastName, reservationCardPaymentNumber, expCombined,
+				reservationCardZipcode, reservationCardCountry, reservationSecurityCode);
 
-	    res.reserveRoom(rom, cus);
-
-	    confirmTransactionButton.setDisable(false);
-	    // Switch to the review page
-	    root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-	    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-	    scene = new Scene(root);
-	    stage.setScene(scene);
-	    stage.show();
-	    FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
-		root2 = (Parent) FXMLLoader.load();
-		Stage stage2 = new Stage();
-		stage2.setResizable(false);
-		stage2.initOwner(stage);
-		stage2.initModality(Modality.APPLICATION_MODAL);
-		stage2.setScene(new Scene(root2));
-		stage2.showAndWait();
+		if (res.isBooked(rom) == false) {
+			res.reserveRoom(rom, cus);
+			// Switch to the review page
+			root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
+			stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reviewPage.FXML"));
+			root2 = (Parent) FXMLLoader.load();
+			Stage stage2 = new Stage();
+			stage2.setResizable(false);
+			stage2.initOwner(stage);
+			stage2.initModality(Modality.APPLICATION_MODAL);
+			stage2.setScene(new Scene(root2));
+			stage2.showAndWait();
+		} else {
+			dateError.setText("Dates are not available");
+		}
 	}
 }
