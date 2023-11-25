@@ -43,7 +43,10 @@
                                                       <Image url="@../../ImageFolder/icons8-reception-50.png" />
                                                    </image>
                                                 </ImageView>
-                                             </graphic></Button>
+                                             </graphic>
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></Button>
                                        </items>
                                     </SplitPane>
                                     <Pane prefHeight="59.0" prefWidth="30.0" />

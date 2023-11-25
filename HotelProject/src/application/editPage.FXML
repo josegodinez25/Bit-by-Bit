@@ -6,6 +6,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -226,10 +227,13 @@
                                           <Font name="SansSerif Regular" size="12.0" />
                                        </font>
                                     </Label>
-                                    <RadioButton fx:id="editPageSingle" mnemonicParsing="false" text="Single" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <RadioButton fx:id="editPageDouble" mnemonicParsing="false" text="Double" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                                    <RadioButton fx:id="editPageKing" mnemonicParsing="false" text="King" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <RadioButton fx:id="editPageSuite" mnemonicParsing="false" text="Suite" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                                    <RadioButton fx:id="editPageSingle" mnemonicParsing="false" text="Single" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                       <toggleGroup>
+                                          <ToggleGroup fx:id="Eroom" />
+                                       </toggleGroup></RadioButton>
+                                    <RadioButton fx:id="editPageDouble" mnemonicParsing="false" text="Double" toggleGroup="$Eroom" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                    <RadioButton fx:id="editPageKing" mnemonicParsing="false" text="King" toggleGroup="$Eroom" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                                    <RadioButton fx:id="editPageSuite" mnemonicParsing="false" text="Suite" toggleGroup="$Eroom" GridPane.columnIndex="2" GridPane.rowIndex="7" />
                                     <DatePicker fx:id="editPageCheckIn" onAction="#setReservationCheckIn" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                                     <DatePicker fx:id="editPageCheckOut" onAction="#setReservationCheckOut" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                                     <Label fx:id="emailError" prefHeight="42.0" prefWidth="161.0" textAlignment="CENTER" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4">
@@ -263,6 +267,11 @@
                                        </font>
                                     </Label>
                                     <Button mnemonicParsing="false" onAction="#switchToMainScene" prefHeight="30.0" prefWidth="140.0" text="Cancel changes" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+                                    <Label fx:id="dateError" prefHeight="28.0" prefWidth="154.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </GridPane>
                            </center>
