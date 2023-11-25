@@ -85,6 +85,29 @@ public class MainPageControllerClass  extends Application {
 		stage2.close();
 	}
 	
+	@FXML
+	public void openSupport(ActionEvent event)throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
+		root2 = (Parent) FXMLLoader.load();
+		Stage stage2 = new Stage();
+		stage2.setResizable(false);
+		stage2.initOwner(stage);
+		stage2.initModality(Modality.APPLICATION_MODAL);
+		stage2.setScene(new Scene(root2));
+		stage2.showAndWait();
+	}
+	
+	@FXML
+	public void adminLogin(ActionEvent event)throws IOException {
+		FXMLLoader FXMLLoader = new FXMLLoader(getClass().getResource("reservationNumberPage.FXML"));
+		root2 = (Parent) FXMLLoader.load();
+		Stage stage2 = new Stage();
+		stage2.setResizable(false);
+		stage2.initOwner(stage);
+		stage2.initModality(Modality.APPLICATION_MODAL);
+		stage2.setScene(new Scene(root2));
+		stage2.showAndWait();
+	}
 	
 	
 	@FXML

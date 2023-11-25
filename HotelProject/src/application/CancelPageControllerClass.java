@@ -51,11 +51,8 @@ public class CancelPageControllerClass implements Initializable {
 		res.clearCustomerInfo(ID);
 
 		// returns back to main page
-		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
-		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		Stage stage = (Stage) exitButton.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML
