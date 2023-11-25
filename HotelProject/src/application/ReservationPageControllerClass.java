@@ -345,51 +345,59 @@ public class ReservationPageControllerClass implements Initializable {
 		// Return true if any errors were found
 		return hasErrors;
 	}
-
+	
 	private boolean isFirstNameValid(String firstName) {
-		if (firstName == "") {
+		// Makes it so only accepts letters 
+		if (firstName == "" || !firstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isLastNameValid(String lastName) {
-		if (lastName == "") {
+		// Makes it so only accepts letters 
+		if (lastName == "" || !lastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCCfirstNameValid(String CCfirstName) {
-		if (CCfirstName == "") {
+		// Makes it so only accepts letters 
+		if (CCfirstName == "" || !CCfirstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCClastNameValid(String CClastName) {
-		if (CClastName == "") {
+		// Makes it so only accepts letters 
+		if (CClastName == ""|| !CClastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isPhoneValid(String phone) {
-		if (phone == "") {
+		// Makes it phone has to numbers only and the length is either 15, 7, or 10
+		// Can add different length to be accepted
+		if (phone == "" || !phone.matches("[0-9]+") || !((phone.length() == 15) || (phone.length() == 7) || (phone.length() == 10))) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCountryValid(String country) {
-		if (country == "") {
+		// Makes it so it only accepts letters
+		if (country == "" || !country.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isSecurityValid(String sec) {
-		if (sec == "") {
+		// Makes it so it only accepts numbers & the length of the security code is either 3 or 4
+		if (sec == "" ||  !sec.matches("[0-9]+") || !((sec.length() == 3) || (sec.length() == 4))) {
 			return false;
 		}
 		return true;
