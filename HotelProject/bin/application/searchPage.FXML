@@ -43,7 +43,7 @@
                                           <Image url="@../../ImageFolder/icons8-hotel-64%20(1).png" />
                                        </image>
                                     </ImageView>
-                                    <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#switchToMainScene" prefHeight="98.0" prefWidth="302.0" style="-fx-background-color: #8f9779;" text="Return To Main" textAlignment="CENTER" textFill="#322e2e" wrapText="true">
+                                    <Button alignment="BOTTOM_CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#switchToMainScene" prefHeight="98.0" prefWidth="302.0" style="-fx-background-color: #8f9779;" text="Return To Main" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Regular" size="24.0" />
                                        </font>

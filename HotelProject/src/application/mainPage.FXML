@@ -32,12 +32,13 @@
                            <children>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label alignment="CENTER" prefHeight="27.0" prefWidth="1242.0" text="          Welcome to the Asylum Hotel" textFill="WHITE">
+                                    <Pane prefHeight="28.0" prefWidth="202.0" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="1038.0" text="          Welcome to the Asylum Hotel" textFill="WHITE">
                                        <font>
                                           <Font name="SansSerif Regular" size="24.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="31.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../ImageFolder/telephone.png" />
                                        </image>
@@ -51,14 +52,15 @@
                               </HBox>
                               <HBox prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label alignment="TOP_CENTER" prefHeight="36.0" prefWidth="1267.0" text="               Where your comfort is what's important" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                    <Pane prefHeight="16.0" prefWidth="232.0" />
+                                    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="1267.0" text="               Where your comfort is what's important" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
                                           <Font name="System Bold" size="10.0" />
                                        </font>
                                     </Label>
                                     <Label alignment="TOP_CENTER" prefHeight="15.0" prefWidth="278.0" text="Theasylum@Hotel.com" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                                        <font>
-                                          <Font name="System Bold" size="10.0" />
+                                          <Font name="SansSerif Regular" size="10.0" />
                                        </font>
                                     </Label>
                                  </children>
@@ -124,7 +126,7 @@
                                        </graphic>
                                     </Button>
                                     <Pane prefHeight="45.0" prefWidth="20.0" />
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Change  Reservation" textFill="#332e2e" wrapText="true">
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="207.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Change  Reservation" textFill="#332e2e" wrapText="true">
                                        <font>
                                           <Font name="SansSerif Bold" size="14.0" />
                                        </font>
@@ -140,7 +142,7 @@
                                        </graphic>
                                     </Button>
                                     <Pane prefHeight="60.0" prefWidth="20.0" />
-                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Cancel Reservation" textFill="#332e2e">
+                                    <Button alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#openReservationNumberPage" opacity="0.75" prefHeight="45.0" prefWidth="197.0" style="-fx-background-color: #8f9779; -fx-background-radius: 15;" text="Cancel Reservation" textFill="#332e2e">
                                        <font>
                                           <Font name="SansSerif Bold" size="14.0" />
                                        </font>
@@ -155,7 +157,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Label alignment="TOP_RIGHT" prefHeight="43.0" prefWidth="341.0" text="18111 Nordhoff St, Northridge, CA 91330" textFill="WHITE">
+                                    <Label alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="341.0" text="18111 Nordhoff St, Northridge, CA 91330" textFill="WHITE">
                                        <font>
                                           <Font name="SansSerif Bold" size="14.0" />
                                        </font>
@@ -215,7 +217,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Pane prefHeight="25.0" prefWidth="100.0" />
-                        <Button mnemonicParsing="false" opacity="0.33" prefHeight="22.0" prefWidth="90.0" style="-fx-background-radius: 15; -fx-background-color: WHITE;" text="Support">
+                        <Button mnemonicParsing="false" onAction="#openSupport" opacity="0.33" prefHeight="22.0" prefWidth="90.0" style="-fx-background-radius: 15; -fx-background-color: WHITE;" text="Support">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -232,7 +234,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Pane prefHeight="25.0" prefWidth="100.0" />
-                        <Button mnemonicParsing="false" opacity="0.33" prefHeight="10.0" prefWidth="92.0" style="-fx-background-radius: 15; -fx-background-color: WHITE;" text="Admin">
+                        <Button mnemonicParsing="false" onAction="#adminLogin" opacity="0.33" prefHeight="10.0" prefWidth="92.0" style="-fx-background-radius: 15; -fx-background-color: WHITE;" text="Admin">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
