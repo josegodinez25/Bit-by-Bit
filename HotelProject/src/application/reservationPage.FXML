@@ -203,6 +203,16 @@
                                                             <Font size="10.0" />
                                                          </font>
                                                       </Label>
+                                                      <Label fx:id="firstNameError" layoutX="352.0" layoutY="193.0" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="lastNameError" layoutX="352.0" layoutY="193.0" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                                         <font>
+                                                            <Font size="10.0" />
+                                                         </font>
+                                                      </Label>
                                                    </children>
                                                 </GridPane>
                                              </children>
@@ -260,6 +270,16 @@
                                                 <DatePicker fx:id="reservationPageCheckOut" onAction="#setReservationCheckOut" promptText="Choose check-out date" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <Label text="Step 2: Property Details" textAlignment="CENTER" wrapText="true" />
                                                 <Label fx:id="dateError" prefHeight="22.0" prefWidth="110.0" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="roomDateError" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                                   <font>
+                                                      <Font size="10.0" />
+                                                   </font>
+                                                </Label>
+                                                <Label fx:id="roomTypeError" layoutX="388.0" layoutY="124.0" prefHeight="24.0" prefWidth="211.0" textFill="RED" GridPane.rowIndex="1">
                                                    <font>
                                                       <Font size="10.0" />
                                                    </font>
@@ -369,6 +389,16 @@
                                              </font>
                                           </Label>
                                           <Label fx:id="securityError" layoutX="466.0" layoutY="184.0" prefHeight="23.0" prefWidth="150.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="CClastNameError" layoutX="179.0" layoutY="133.0" prefHeight="25.0" prefWidth="117.0" textFill="RED">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="CCfirstNameError" layoutX="179.0" layoutY="85.0" prefHeight="25.0" prefWidth="117.0" textFill="RED">
                                              <font>
                                                 <Font size="10.0" />
                                              </font>

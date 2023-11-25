@@ -63,7 +63,8 @@ public class ReservationPageControllerClass implements Initializable {
 	@FXML
 	private Button confirmTransactionButton;
 	@FXML
-	private Label cardNumberError, cardDateError, cardZipError, emailError, phoneError, securityError, countryError,dateError;
+	private Label cardNumberError, cardDateError, cardZipError, emailError, phoneError, securityError, countryError,
+			dateError, lastNameError, firstNameError, CCfirstNameError, CClastNameError, roomTypeError, roomDateError;
 	@FXML
 	private Label totalCost;
 	@FXML
@@ -260,6 +261,14 @@ public class ReservationPageControllerClass implements Initializable {
 		cardNumberError.setText("");
 		cardDateError.setText("");
 		cardZipError.setText("");
+		firstNameError.setText("");
+		lastNameError.setText("");
+		CCfirstNameError.setText("");
+		CClastNameError.setText("");
+		phoneError.setText("");
+		securityError.setText("");
+		countryError.setText("");
+		roomDateError.setText("");
 
 		// Validate Card Number
 		if (!isValidCardNumber(paymentCardNumberTextField.getText())) {
@@ -278,12 +287,101 @@ public class ReservationPageControllerClass implements Initializable {
 			cardZipError.setText("Invalid ZIP code. Must be 5 digits.");
 			hasErrors = true;
 		}
-
+		// Validate Zip Code
+		if (!isFirstNameValid(firstNameTextField.getText())) {
+			firstNameError.setText("Invalid First Name");
+			hasErrors = true;
+		}
+		if (!isLastNameValid(lastNameTextField.getText())) {
+			lastNameError.setText("Invalid Last Name");
+			hasErrors = true;
+		}
+		if (!isCCfirstNameValid(firstNameCardTextField.getText())) {
+			CCfirstNameError.setText("Invalid Card First Name");
+			hasErrors = true;
+		}
+		if (!isCClastNameValid(lastNameCardTextField.getText())) {
+			CClastNameError.setText("Invalid Card Last Name");
+			hasErrors = true;
+		}
+		if (!isPhoneValid(phoneTextField.getText())) {
+			phoneError.setText("Invalid Phone Number");
+			hasErrors = true;
+		}
+		if (!isSecurityValid(securityCode.getText())) {
+			securityError.setText("Invalid Security Code");
+			hasErrors = true;
+		}
+		if (!isCountryValid(countryCardTextField.getText())) {
+			countryError.setText("Invalid Country");
+			hasErrors = true;
+		}
+		if (reservationPageCheckIn.getValue() == null|| reservationPageCheckIn.getValue() == null) {
+			roomDateError.setText("Invalid Dates");
+			hasErrors = true;
+		}
+		
+		if(!reservationPageSingle.isSelected() && !reservationPageDouble.isSelected() 
+				&& !reservationPageKing.isSelected() && !reservationPageSuite.isSelected()) {
+			roomTypeError.setText("Invalid Room Type");
+			hasErrors = true;
+		}
+		
 		// Additional Validations (e.g., for names, phone numbers) can be added here
 
 		// Return true if any errors were found
 		return hasErrors;
 	}
+
+	private boolean isFirstNameValid(String firstName) {
+		if (firstName == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isLastNameValid(String lastName) {
+		if (lastName == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isCCfirstNameValid(String CCfirstName) {
+		if (CCfirstName == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isCClastNameValid(String CClastName) {
+		if (CClastName == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isPhoneValid(String phone) {
+		if (phone == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isCountryValid(String country) {
+		if (country == "") {
+			return false;
+		}
+		return true;
+	}
+
+	private boolean isSecurityValid(String sec) {
+		if (sec == "") {
+			return false;
+		}
+		return true;
+	}
+
 
 	private boolean isValidCardNumber(String cardNumber) {
 		// Regular expression to check for 15 or 16 digit numbers
@@ -322,13 +420,13 @@ public class ReservationPageControllerClass implements Initializable {
 
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
+		// getCustomerInfo();
+
+		if (checkForErrors()) {
+			// If errors are found, stop processing and show error messages
+			return;
+		}
 		getCustomerInfo();
-
-//	    if (checkForErrors()) {
-//	        // If errors are found, stop processing and show error messages
-//	        return;
-//    }
-
 		// Proceed with the reservation process if no errors are found
 		Reserve res = new Reserve();
 		Room rom = new Room(reservationRoomType, checkIn, checkOut, reservationTotalDates);
