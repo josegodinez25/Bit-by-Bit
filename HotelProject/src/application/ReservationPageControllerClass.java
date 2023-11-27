@@ -269,6 +269,7 @@ public class ReservationPageControllerClass implements Initializable {
 		securityError.setText("");
 		countryError.setText("");
 		roomDateError.setText("");
+		emailError.setText("");
 
 		// Validate Card Number
 		if (!isValidCardNumber(paymentCardNumberTextField.getText())) {
@@ -292,38 +293,50 @@ public class ReservationPageControllerClass implements Initializable {
 			firstNameError.setText("Invalid First Name");
 			hasErrors = true;
 		}
+		// Validate First Name
 		if (!isLastNameValid(lastNameTextField.getText())) {
 			lastNameError.setText("Invalid Last Name");
 			hasErrors = true;
 		}
+		// Validate Customer Card First Name
 		if (!isCCfirstNameValid(firstNameCardTextField.getText())) {
 			CCfirstNameError.setText("Invalid Card First Name");
 			hasErrors = true;
 		}
+		// Validate Customer Card Last Name
 		if (!isCClastNameValid(lastNameCardTextField.getText())) {
 			CClastNameError.setText("Invalid Card Last Name");
 			hasErrors = true;
 		}
+		// Validate Phone Number
 		if (!isPhoneValid(phoneTextField.getText())) {
 			phoneError.setText("Invalid Phone Number");
 			hasErrors = true;
 		}
+		// Validate Credit Card Security Code
 		if (!isSecurityValid(securityCode.getText())) {
 			securityError.setText("Invalid Security Code");
 			hasErrors = true;
 		}
+		// Validate Country
 		if (!isCountryValid(countryCardTextField.getText())) {
 			countryError.setText("Invalid Country");
 			hasErrors = true;
 		}
+		// Validate Reservation Page Check In
 		if (reservationPageCheckIn.getValue() == null|| reservationPageCheckIn.getValue() == null) {
 			roomDateError.setText("Invalid Dates");
 			hasErrors = true;
 		}
-		
+		// Validate Room Size
 		if(!reservationPageSingle.isSelected() && !reservationPageDouble.isSelected() 
 				&& !reservationPageKing.isSelected() && !reservationPageSuite.isSelected()) {
 			roomTypeError.setText("Invalid Room Type");
+			hasErrors = true;
+		}
+		// Validate Email
+		if (!isEmailValid(emailTextField.getText())) {
+			emailError.setText("Invalid Email");
 			hasErrors = true;
 		}
 		
@@ -332,54 +345,78 @@ public class ReservationPageControllerClass implements Initializable {
 		// Return true if any errors were found
 		return hasErrors;
 	}
-
+	
 	private boolean isFirstNameValid(String firstName) {
-		if (firstName == "") {
+		// Makes it so only accepts letters 
+		if (firstName == "" || !firstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isLastNameValid(String lastName) {
-		if (lastName == "") {
+		// Makes it so only accepts letters 
+		if (lastName == "" || !lastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCCfirstNameValid(String CCfirstName) {
-		if (CCfirstName == "") {
+		// Makes it so only accepts letters 
+		if (CCfirstName == "" || !CCfirstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCClastNameValid(String CClastName) {
-		if (CClastName == "") {
+		// Makes it so only accepts letters 
+		if (CClastName == ""|| !CClastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isPhoneValid(String phone) {
-		if (phone == "") {
+		// Makes it phone has to numbers only and the length is either 15, 7, or 10
+		// Can add different length to be accepted
+		if (phone == "" || !phone.matches("[0-9]+") || !((phone.length() == 15) || (phone.length() == 7) || (phone.length() == 10))) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isCountryValid(String country) {
-		if (country == "") {
+		// Makes it so it only accepts letters
+		if (country == "" || !country.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
 	}
 
 	private boolean isSecurityValid(String sec) {
-		if (sec == "") {
+		// Makes it so it only accepts numbers & the length of the security code is either 3 or 4
+		if (sec == "" ||  !sec.matches("[0-9]+") || !((sec.length() == 3) || (sec.length() == 4))) {
 			return false;
 		}
 		return true;
+	}
+
+	private boolean isEmailValid(String email) {		
+		if (email == null || email.isEmpty() || email == "") {
+	        return false;
+	    }
+		// Valid Email Domains
+	    String[] validDomains = {"@yahoo.com", "@gmail.com", "@my.csun.edu", "@outlook.com", "@hotmail.com"};
+
+	    for (String domain : validDomains) {
+	        if (email.endsWith(domain)) {
+	            return true; // Email ends with a valid domain
+	        }
+	    }
+
+	    return false; // Email does not match any valid domain
 	}
 
 
