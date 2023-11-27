@@ -20,6 +20,7 @@ import java.util.HashMap;
 
 public class MainPageControllerClass  extends Application {
 	reviewSingleton review = reviewSingleton.getInstance();
+	availabilitySingleton search = availabilitySingleton.getInstance();
 	private Stage stage;
 	private Scene scene;
 	private Parent root, root2, root3, root4;
@@ -36,6 +37,8 @@ public class MainPageControllerClass  extends Application {
 	public void start(Stage stage) throws Exception {
 		// Group root = new Group();
 		try {
+			review.setID(null);
+			
 			Parent root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 			stage = new Stage();
 			Image topIcon = new Image("topLeftLogo.png");

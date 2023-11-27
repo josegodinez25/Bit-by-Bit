@@ -97,24 +97,38 @@ public class ReservationPageControllerClass implements Initializable {
 		if ("Single".equals(availabilityString)) {
 			reservationPageSingle.setSelected(true);
 			reservationRoomType = "Single";
+			price = 115;
 		} else if ("Double".equals(availabilityString)) {
 			reservationPageDouble.setSelected(true);
 			reservationRoomType = "Double";
+			price = 160;
 		} else if ("King".equals(availabilityString)) {
 			reservationPageKing.setSelected(true);
 			reservationRoomType = "King";
+			price = 224;
 		} else if ("Suite".equals(availabilityString)) {
 			reservationPageSuite.setSelected(true);
 			reservationRoomType = "Suite";
+			price = 1000;
 		}
 
-		reservationPageCheckIn.setValue(search.getSearchCheckIn());
-		reservationPageCheckOut.setValue(search.getSearchCheckOut());
+		if (search.getSearchCheckIn() != null && search.getSearchCheckOut() != null) {
+			reservationPageCheckIn.setValue(search.getSearchCheckIn());
+			reservationPageCheckOut.setValue(search.getSearchCheckOut());
+			reservationGetDatesBetween(search.getSearchCheckIn(),search.getSearchCheckOut());
+			totalCost.setText("The total cost of your stay is $" + (reservationTotalDates.size() - 1) * price);
+			
+		}
 	}
 
 	// ... [Methods like switchToMainScene, switchToSearchScene remain unchanged]
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
+
+		search.setSearchCheckIn(null);
+		search.setSearchCheckOut(null);
+		search.setAvailabilityString(null);
+
 		root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
@@ -324,12 +338,12 @@ public class ReservationPageControllerClass implements Initializable {
 			hasErrors = true;
 		}
 		// Validate Reservation Page Check In
-		if (reservationPageCheckIn.getValue() == null|| reservationPageCheckIn.getValue() == null) {
+		if (reservationPageCheckIn.getValue() == null || reservationPageCheckIn.getValue() == null) {
 			roomDateError.setText("Invalid Dates");
 			hasErrors = true;
 		}
 		// Validate Room Size
-		if(!reservationPageSingle.isSelected() && !reservationPageDouble.isSelected() 
+		if (!reservationPageSingle.isSelected() && !reservationPageDouble.isSelected()
 				&& !reservationPageKing.isSelected() && !reservationPageSuite.isSelected()) {
 			roomTypeError.setText("Invalid Room Type");
 			hasErrors = true;
@@ -339,15 +353,15 @@ public class ReservationPageControllerClass implements Initializable {
 			emailError.setText("Invalid Email");
 			hasErrors = true;
 		}
-		
+
 		// Additional Validations (e.g., for names, phone numbers) can be added here
 
 		// Return true if any errors were found
 		return hasErrors;
 	}
-	
+
 	private boolean isFirstNameValid(String firstName) {
-		// Makes it so only accepts letters 
+		// Makes it so only accepts letters
 		if (firstName == "" || !firstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
@@ -355,7 +369,7 @@ public class ReservationPageControllerClass implements Initializable {
 	}
 
 	private boolean isLastNameValid(String lastName) {
-		// Makes it so only accepts letters 
+		// Makes it so only accepts letters
 		if (lastName == "" || !lastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
@@ -363,7 +377,7 @@ public class ReservationPageControllerClass implements Initializable {
 	}
 
 	private boolean isCCfirstNameValid(String CCfirstName) {
-		// Makes it so only accepts letters 
+		// Makes it so only accepts letters
 		if (CCfirstName == "" || !CCfirstName.matches("[a-zA-Z]+")) {
 			return false;
 		}
@@ -371,8 +385,8 @@ public class ReservationPageControllerClass implements Initializable {
 	}
 
 	private boolean isCClastNameValid(String CClastName) {
-		// Makes it so only accepts letters 
-		if (CClastName == ""|| !CClastName.matches("[a-zA-Z]+")) {
+		// Makes it so only accepts letters
+		if (CClastName == "" || !CClastName.matches("[a-zA-Z]+")) {
 			return false;
 		}
 		return true;
@@ -381,7 +395,8 @@ public class ReservationPageControllerClass implements Initializable {
 	private boolean isPhoneValid(String phone) {
 		// Makes it phone has to numbers only and the length is either 15, 7, or 10
 		// Can add different length to be accepted
-		if (phone == "" || !phone.matches("[0-9]+") || !((phone.length() == 15) || (phone.length() == 7) || (phone.length() == 10))) {
+		if (phone == "" || !phone.matches("[0-9]+")
+				|| !((phone.length() == 15) || (phone.length() == 7) || (phone.length() == 10))) {
 			return false;
 		}
 		return true;
@@ -396,29 +411,29 @@ public class ReservationPageControllerClass implements Initializable {
 	}
 
 	private boolean isSecurityValid(String sec) {
-		// Makes it so it only accepts numbers & the length of the security code is either 3 or 4
-		if (sec == "" ||  !sec.matches("[0-9]+") || !((sec.length() == 3) || (sec.length() == 4))) {
+		// Makes it so it only accepts numbers & the length of the security code is
+		// either 3 or 4
+		if (sec == "" || !sec.matches("[0-9]+") || !((sec.length() == 3) || (sec.length() == 4))) {
 			return false;
 		}
 		return true;
 	}
 
-	private boolean isEmailValid(String email) {		
+	private boolean isEmailValid(String email) {
 		if (email == null || email.isEmpty() || email == "") {
-	        return false;
-	    }
+			return false;
+		}
 		// Valid Email Domains
-	    String[] validDomains = {"@yahoo.com", "@gmail.com", "@my.csun.edu", "@outlook.com", "@hotmail.com"};
+		String[] validDomains = { "@yahoo.com", "@gmail.com", "@my.csun.edu", "@outlook.com", "@hotmail.com" };
 
-	    for (String domain : validDomains) {
-	        if (email.endsWith(domain)) {
-	            return true; // Email ends with a valid domain
-	        }
-	    }
+		for (String domain : validDomains) {
+			if (email.endsWith(domain)) {
+				return true; // Email ends with a valid domain
+			}
+		}
 
-	    return false; // Email does not match any valid domain
+		return false; // Email does not match any valid domain
 	}
-
 
 	private boolean isValidCardNumber(String cardNumber) {
 		// Regular expression to check for 15 or 16 digit numbers
