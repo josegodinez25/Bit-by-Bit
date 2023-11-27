@@ -89,7 +89,8 @@ public class SearchPageControllerClass {
 	}
 	
 	@FXML
-	public void switchToMainScene(ActionEvent event) throws IOException {
+	public void switchToMainScene(ActionEvent event) throws IOException {	
+	
 		 root = FXMLLoader.load(getClass().getResource("mainPage.FXML"));
 		 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		 scene = new Scene(root);
