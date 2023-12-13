@@ -24,6 +24,29 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * This class controls the functionality of the edit page in the application.
+ * It handles user interactions to modify existing reservations, displaying and allowing alterations
+ * to reservation details such as guest information, room type, dates, and payment details.
+ * The class initializes the edit page, retrieves existing reservation data, allows modifications, 
+ * and confirms changes upon user interaction.
+ * 
+ * The controller interacts with FXML elements to display and update reservation information,
+ * providing methods to set and confirm changes made by the user.
+ * 
+ * This class integrates with the Reserve, Customer, Room, and ReadWriteExcel classes 
+ * to manage reservation data and perform necessary operations for editing reservations.
+ * 
+ * The class uses JavaFX elements for the user interface and employs various listeners 
+ * to capture user inputs and update the displayed information accordingly.
+ * 
+ * @author Nathan
+ * @author Eric
+ * @author Arash
+ * @author Jose
+ * @version 1.0
+ * @since 1.0
+ */
 public class EditPageControllerClass implements Initializable {
 	reviewSingleton review = reviewSingleton.getInstance();
 	private Stage stage;
@@ -63,7 +86,16 @@ public class EditPageControllerClass implements Initializable {
 	String expCombined;
 	private String ID;
 	String editRoomType;
-
+	
+	/**
+     * Initializes the controller class, retrieves existing reservation data, and populates the edit page.
+     * If a reservation ID is available, the method fetches and displays the corresponding reservation details 
+     * for modification. If not, it fetches data from an external source (Excel file) to populate the fields 
+     * for editing.
+     * 
+     * @param url the location used to resolve relative paths for the root object, or null if the location is not known
+     * @param resourceBundle the resources used to localize the root object, or null if the root object was not localized
+     */
 	@Override
 	public void initialize(URL url, ResourceBundle resourcebundle) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -142,7 +174,9 @@ public class EditPageControllerClass implements Initializable {
 			editPageCheckOut.setValue(dateOut);
 		}
 	}
-
+	 /**
+     * Determines the room type selected by the user and assigns it to the reservation.
+     */
 	public void roomType() {
 		if (editPageSingle.isSelected()) {
 			reservationRoomType = "Single";
@@ -154,7 +188,11 @@ public class EditPageControllerClass implements Initializable {
 			reservationRoomType = "Suite";
 		}
 	}
-
+	/**
+     * Sets the check-in date for the reservation based on the selected date by the user.
+     * 
+     * @param event the action event triggered by the user
+     */
 	@FXML
 	public void setReservationCheckIn(ActionEvent event) {
 		LocalDate today = LocalDate.now();
@@ -168,7 +206,11 @@ public class EditPageControllerClass implements Initializable {
 			checkIn = dateIn.toString();
 		}
 	}
-
+	/**
+     * Sets the check-out date for the reservation based on the selected date by the user.
+     * 
+     * @param event the action event triggered by the user
+     */
 	@FXML
 	public void setReservationCheckOut(ActionEvent event) {
 		LocalDate today = LocalDate.now();
@@ -182,7 +224,12 @@ public class EditPageControllerClass implements Initializable {
 			checkOut = dateOut.toString();
 		}
 	}
-
+	/**
+     * Generates a list of dates between the start and end date for the reservation.
+     * 
+     * @param startDate the start date of the reservation
+     * @param endDate the end date of the reservation
+     */
 	public void getDatesBetween(LocalDate startDate, LocalDate endDate) {
 		totalDates.clear();
 		while (!startDate.isAfter(endDate)) {
@@ -190,7 +237,9 @@ public class EditPageControllerClass implements Initializable {
 			startDate = startDate.plusDays(1);
 		}
 	}
-
+	/**
+     * Gathers and stores the updated reservation details entered by the user.
+     */
 	public void setNewChanges() {
 		roomType();
 
@@ -211,7 +260,12 @@ public class EditPageControllerClass implements Initializable {
 		checkOut = dateOut.toString(); 
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 	}
-
+	/**
+     * Confirms the changes made by the user, updates the reservation, and closes the edit page.
+     * 
+     * @param event the action event triggered by the user
+     * @throws IOException if an I/O exception occurs
+     */
 	@FXML
 	public void confirmChanges(ActionEvent event) throws IOException {
 		setNewChanges();
@@ -253,7 +307,12 @@ public class EditPageControllerClass implements Initializable {
 		}
 
 	}
-
+	/**
+     * Closes the edit page and switches back to the main scene.
+     * 
+     * @param event the action event triggered by the user
+     * @throws IOException if an I/O exception occurs
+     */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		Stage stage = (Stage) exitButton.getScene().getWindow();
