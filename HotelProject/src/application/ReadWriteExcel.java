@@ -11,10 +11,22 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+/**
+ * @author Nathan
+ * @version 11/20/23
+ */
 public class ReadWriteExcel {
 
 	// obtains information from the excel sheet
 	// it needs the sheet name, row, and column
+	
+	/**
+	 * gets the data inside of a cell
+	 * @param SheetName Name of the excel Sheet
+	 * @param rNum Row of targeted Cell
+	 * @param cNum Column of targeted Cell
+	 * @return
+	 */
 	public String ReadExcel(String SheetName, int rNum, int cNum) {
 		String data = "";
 		try {
@@ -35,6 +47,14 @@ public class ReadWriteExcel {
 
 	// prints data into the excel sheet
 	// needs the sheet name, row, column, and the String you want to print
+	
+	/**
+	 * prints out DATA into a cell
+	 * @param SheetName Name of the excel sheet
+	 * @param rNum Row of targeted Cell
+	 * @param cNum Column of targeted Cell
+	 * @param DATA Data gets inputed into the cell
+	 */
 	public void WriteExcel(String SheetName, int rNum, int cNum, String DATA) {
 		try {
 
@@ -57,6 +77,13 @@ public class ReadWriteExcel {
 
 	// checks if the the cell is null
 	// needs row, column, and the index of the sheet you want to check
+	/**
+	 * checks if the cell has any data inside
+	 * @param rNum Row of targeted Cell
+	 * @param cNum Column of targeted Cell
+	 * @param index the index of the sheet you want to check
+	 * @return returns true or false if the cell is null or not
+	 */
 	public boolean isNull(int rNum, int cNum, int index) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
@@ -72,7 +99,13 @@ public class ReadWriteExcel {
 		return false;
 	}
 
-	// returns a cell from a certain sheet
+	/**
+	 * returns a cell from a certain sheet
+	 * @param SheetName
+	 * @param rNum Row of targeted Cell
+	 * @param cNum Column of targeted Cell
+	 * @return returns the cell of the certain row and column
+	 */
 	public Cell getCell(String SheetName, int rNum, int cNum) {
 		Cell c = null;
 		try {
@@ -87,7 +120,11 @@ public class ReadWriteExcel {
 		}
 		return c;
 	}
-
+	/**
+	 * uses the ID to find that customers email
+	 * @param customerID The customers reservation ID
+	 * @return returns the customers email
+	 */
 	public String getEmail(String customerID) {
 		try {
 			FileInputStream fis = new FileInputStream("Hotel Project.xlsx");
