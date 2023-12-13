@@ -54,7 +54,11 @@ public class CancelPageControllerClass implements Initializable {
 		Stage stage = (Stage) exitButton.getScene().getWindow();
 		stage.close();
 	}
-
+	/**
+	 * This method is an action that is taken when the user presses the main button in the cancel page.
+	 * It will close the cancel page and open the main scene
+	 * @throws IOException
+	 */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 		Stage stage = (Stage) exitButton.getScene().getWindow();

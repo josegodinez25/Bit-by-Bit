@@ -425,7 +425,12 @@ public class ReservationPageControllerClass implements Initializable {
 		// Return true if any errors were found
 		return hasErrors;
 	}
-
+	/** 
+	 * Validates the users first name
+	 * 
+	 * @param isFirstNameValid validates if using the alphabet and not numbers
+	 * @return True if first name matches the alphabet
+	*/
 	private boolean isFirstNameValid(String firstName) {
 		// Makes it so only accepts letters
 		if (firstName == "" || !firstName.matches("[a-zA-Z]+")) {
@@ -433,7 +438,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the users last name
+	 * 
+	 * @param isLastNameValid validates if using the alphabet and not numbers
+	 * @return True if last name matches the alphabet
+	*/
 	private boolean isLastNameValid(String lastName) {
 		// Makes it so only accepts letters
 		if (lastName == "" || !lastName.matches("[a-zA-Z]+")) {
@@ -441,7 +451,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the credit card first name
+	 * 
+	 * @param isCCfirstNameValid validates if using the alphabet and not numbers
+	 * @return True if CCfirstName matches the alphabet
+	*/
 	private boolean isCCfirstNameValid(String CCfirstName) {
 		// Makes it so only accepts letters
 		if (CCfirstName == "" || !CCfirstName.matches("[a-zA-Z]+")) {
@@ -449,7 +464,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the credit card last name
+	 * 
+	 * @param isCClastNameValid validates if using the alphabet and not numbers
+	 * @return True if CClastName matches the alphabet
+	*/
 	private boolean isCClastNameValid(String CClastName) {
 		// Makes it so only accepts letters
 		if (CClastName == "" || !CClastName.matches("[a-zA-Z]+")) {
@@ -457,7 +477,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the phone number
+	 * 
+	 * @param isPhoneValid validates length and if numbers are inputed
+	 * @return True if phone matches the given length and matches numbers only
+	*/
 	private boolean isPhoneValid(String phone) {
 		// Makes it phone has to numbers only and the length is either 15, 7, or 10
 		// Can add different length to be accepted
@@ -467,15 +492,25 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the email
+	 * 
+	 * @param isCountryValid
+	 * @return True if country is valid 
+	*/
 	private boolean isCountryValid(String country) {
 		// Makes it so it only accepts letters
-		if (country == "" || !country.matches("[a-zA-Z]+")) {
+		if (country == "" || !(country.matches("[a-zA-Z]+") || country.matches("[a-zA-Z]+" + " " + "[a-zA-Z]+"))) {
 			return false;
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the security code of card number
+	 * 
+	 * @param isSecurityValid validates the length and if it only has integers
+	 * @return True valid length and numbers only
+	*/
 	private boolean isSecurityValid(String sec) {
 		// Makes it so it only accepts numbers & the length of the security code is
 		// either 3 or 4
@@ -484,7 +519,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the email
+	 * 
+	 * @param isEmailValid validates the domains of emails
+	 * @return True if email ends with valid domains
+	*/
 	private boolean isEmailValid(String email) {
 		if (email == null || email.isEmpty() || email == "") {
 			return false;
