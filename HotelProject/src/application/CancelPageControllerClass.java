@@ -14,7 +14,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+/**
+ * Controller class for the CancelPage.fxml file.
+ * Manages cancellation operations and scene transition.
+ */
 public class CancelPageControllerClass implements Initializable {
 	private Stage stage;
 	private Scene scene;
@@ -45,7 +48,12 @@ public class CancelPageControllerClass implements Initializable {
 
 		reservationID.setText(ID);
 	}
-
+	/**
+     * Performs the cancellation process when the user confirms the cancellation.
+     *
+     * @param event The event triggered by the action of confirming the cancellation.
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
 	public void confirmCancel(ActionEvent event) throws IOException {
 		Reserve res = new Reserve();
 		res.clearCustomerInfo(ID);
@@ -56,7 +64,7 @@ public class CancelPageControllerClass implements Initializable {
 	}
 	/**
 	 * This method is an action that is taken when the user presses the main button in the cancel page.
-	 * It will close the cancel page and open the main scene
+	 * @param event will close the cancel page and opens the main scene
 	 * @throws IOException
 	 */
 	@FXML
