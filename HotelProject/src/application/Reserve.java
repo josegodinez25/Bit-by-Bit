@@ -4,9 +4,18 @@ import java.util.Random;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * @author Nathan
+ * @version 11/20/23
+ */
 public class Reserve {
 	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-	// returns true or false if the room is booked or not
+	
+	/**
+	 * checks if the room the user is looking for is booked
+	 * @param room gets the users room they are trying to book
+	 * @return returns true or false whether or not the dates of the room they are trying to book is available
+	 */
 	public boolean isBooked(Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int start = 0;
@@ -75,8 +84,12 @@ public class Reserve {
 		return false;
 	}
 
-	// returns a 5 digit random String
-	// this is the customers ID
+	//returns a 5 digit random String
+		//this is the customers ID
+		/**
+		 * creates a unique ID for the user
+		 * @return returns a random 5 character ID
+		 */
 	public String randomGenerator() {
 		String ID = null;
 		String characterSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -108,6 +121,12 @@ public class Reserve {
 
 	// if the room the customer selected is available then it saves all the data
 	// into an Excel Sheet
+	
+	/**
+	 * checks if the room the customer is booked and if its not then it saves the customers information into our database
+	 * @param room Room information
+	 * @param customer Customer information
+	 */
 	public void reserveRoom(Room room, Customer customer) {
 		if (isBooked(room) == false) {
 			// the customer gets a unique id (will need ID for review,change,cancel)
@@ -132,6 +151,13 @@ public class Reserve {
 
 	// have to adjust the price of the hotel that is sent in the email
 	// only sends the price of the room type
+	
+	/**
+	 * sends an email to a customer if they reserve, cancel , or change a reservation
+	 * @param customer Customers information
+	 * @param room Room information
+	 * @param method type of action ex: cancel, change, or reserve
+	 */
 	public void sendEmail(Customer customer, Room room, String method) {
 		String subject = "Reservation Confirmation";
 		String messageText = "";
@@ -161,6 +187,12 @@ public class Reserve {
 	}
 
 	// scans the excel sheet for the ID that is inputed then returns that Customer
+	
+	/**
+	 * uses the ID to find all of the customers information
+	 * @param customerID The reservation ID the customer inputs
+	 * @return Returns all the customers information given their ID
+	 */
 	public Customer findCustomerID(String customerID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
@@ -204,6 +236,12 @@ public class Reserve {
 	}
 
 	// returns true or false if the ID that is inputed exists or not
+	
+	/**
+	 * checks if the ID the user puts in exists or not
+	 * @param ID The reservation ID the customer inputs
+	 * @return returns true or false if the ID exists or not
+	 */
 	public boolean checkID(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		int rowCount = 1;
@@ -220,6 +258,13 @@ public class Reserve {
 
 	// finds which customer is trying to edit info using the String ID
 	// then updates their information with the new information
+	
+	/**
+	 * updates the excel sheet with customers new information
+	 * @param The reservation ID the customer inputs
+	 * @param cus The customer that wants to change their reservation
+	 * @param room The Room that wants to get changed
+	 */
 	public void changeReservation(String ID, Customer cus, Room room) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 
@@ -254,6 +299,10 @@ public class Reserve {
 
 	// finds which customer is trying to edit info using the String ID
 	// then sets all their information back to null
+	/**
+	 * clears the customers room information and makes ID not exist anymore
+	 * @param ID The reservation ID the customer inputs
+	 */
 	public void clearCustomerInfo(String ID) {
 		ReadWriteExcel obj = new ReadWriteExcel();
 		String roomNumber = "";

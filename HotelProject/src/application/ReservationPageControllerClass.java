@@ -25,10 +25,23 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * The ReservationPageControllerClass manages the reservation page UI functionality.
+ * @author Eric
+ * @author Nathan
+ * @author Arash
+ * @author Jose
+ * @version 1.0
+ * @since 1.0
+ */
 public class ReservationPageControllerClass implements Initializable {
+	
+	// Stage and Scene variables
 	private Stage stage;
 	private Scene scene;
 	private Parent root, root2;
+	
+	// Reservation related variables
 	LocalDate reservationCheckIn;
 	LocalDate reservationCheckOut;
 	private long longReservationCheckIn;
@@ -36,6 +49,8 @@ public class ReservationPageControllerClass implements Initializable {
 	List<LocalDate> reservationTotalDates = new ArrayList<>();
 	availabilitySingleton search = availabilitySingleton.getInstance();
 	reviewSingleton review = reviewSingleton.getInstance();
+	
+	// FXML elements
 	@FXML
 	private TextField firstNameTextField;
 	@FXML
@@ -90,6 +105,12 @@ public class ReservationPageControllerClass implements Initializable {
 	String stringPrice;
 	String reservationSecurityCode;
 
+	 /**
+     * Initializes the controller after its root element has been completely processed.
+     *
+     * @param url            The location used to resolve relative paths for the root object.
+     * @param resourceBundle The resources used to localize the root object.
+     */
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// Use .equals() for string comparison
@@ -122,6 +143,13 @@ public class ReservationPageControllerClass implements Initializable {
 	}
 
 	// ... [Methods like switchToMainScene, switchToSearchScene remain unchanged]
+	
+		/**
+	     * Switches to the main scene.
+	     *
+	     * @param event The ActionEvent triggering the switch.
+	     * @throws IOException If an I/O error occurs.
+	     */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {
 
@@ -135,7 +163,12 @@ public class ReservationPageControllerClass implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	/**
+     * Switches to the search scene.
+     *
+     * @param event The ActionEvent triggering the switch.
+     * @throws IOException If an I/O error occurs.
+     */
 	@FXML
 	public void switchToSearchScene(ActionEvent event) throws IOException {
 		root = FXMLLoader.load(getClass().getResource("searchPage.FXML"));
@@ -144,7 +177,11 @@ public class ReservationPageControllerClass implements Initializable {
 		stage.setScene(scene);
 		stage.show();
 	}
-
+	/**
+     * Sets the selected room type.
+     *
+     * @param event The ActionEvent triggering the room type selection.
+     */
 	@FXML
 	public void setRoomType(ActionEvent event) {
 		if (reservationPageSingle.isSelected()) {
@@ -162,6 +199,12 @@ public class ReservationPageControllerClass implements Initializable {
 
 	// need to give error an confirming reservation when incorrect date is picked
 	// so it does not move on to next scene
+	
+	/**
+     * Sets the check-in date for the reservation.
+     *
+     * @param event The ActionEvent triggering the check-in date selection.
+     */
 	@FXML
 	public void setReservationCheckIn(ActionEvent event) {
 		LocalDate today = LocalDate.now();
@@ -200,6 +243,12 @@ public class ReservationPageControllerClass implements Initializable {
 
 	// same error for this part where it needs an error pop up on GUI program where
 	// it does not allow to move to next scene
+	
+	/**
+     * Sets the check-out date for the reservation.
+     *
+     * @param event The ActionEvent triggering the check-out date selection.
+     */
 	@FXML
 	public void setReservationCheckOut(ActionEvent event) {
 		LocalDate today = LocalDate.now();
@@ -232,13 +281,22 @@ public class ReservationPageControllerClass implements Initializable {
 			totalCost.setText("Selected check-out date is not valid.");
 		}
 	}
-
+	/**
+	* Receives room information from the search.
+	*/
 	public void receiveRoomFromSearch() {
 
 	}
 
 	// function finds the dates in between check in and check out and saves them to
 	// a
+	
+	/**
+	 * Generates a list of dates between the start and end dates for reservation purposes.
+	 *
+	 * @param startDate The starting date of the reservation.
+	 * @param endDate   The ending date of the reservation.
+	 */
 	public void reservationGetDatesBetween(LocalDate startDate, LocalDate endDate) {
 		reservationTotalDates.clear();
 		while (!startDate.isAfter(endDate)) {
@@ -248,7 +306,11 @@ public class ReservationPageControllerClass implements Initializable {
 		// small test that print the elements of the list
 		// System.out.println(Arrays.toString(reservationTotalDates.toArray()));
 	}
-
+	
+	/**
+	 * Retrieves customer information from the input fields in the UI.
+	 * Information includes name, email, phone number, payment details, and address.
+	 */
 	public void getCustomerInfo() {
 		reservationFirstName = firstNameTextField.getText();
 		reservationLastName = lastNameTextField.getText();
@@ -267,7 +329,11 @@ public class ReservationPageControllerClass implements Initializable {
 		expCombined = reservationCardExpMonth + "/" + reservationCardExpYear;
 		stringPrice = Integer.toString(price);
 	}
-
+	/**
+     * Validates customer information for errors.
+     *
+     * @return True if any errors were found, otherwise false.
+     */
 	public boolean checkForErrors() {
 		boolean hasErrors = false;
 
@@ -359,7 +425,12 @@ public class ReservationPageControllerClass implements Initializable {
 		// Return true if any errors were found
 		return hasErrors;
 	}
-
+	/** 
+	 * Validates the users first name
+	 * 
+	 * @param isFirstNameValid validates if using the alphabet and not numbers
+	 * @return True if first name matches the alphabet
+	*/
 	private boolean isFirstNameValid(String firstName) {
 		// Makes it so only accepts letters
 		if (firstName == "" || !firstName.matches("[a-zA-Z]+")) {
@@ -367,7 +438,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the users last name
+	 * 
+	 * @param isLastNameValid validates if using the alphabet and not numbers
+	 * @return True if last name matches the alphabet
+	*/
 	private boolean isLastNameValid(String lastName) {
 		// Makes it so only accepts letters
 		if (lastName == "" || !lastName.matches("[a-zA-Z]+")) {
@@ -375,7 +451,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the credit card first name
+	 * 
+	 * @param isCCfirstNameValid validates if using the alphabet and not numbers
+	 * @return True if CCfirstName matches the alphabet
+	*/
 	private boolean isCCfirstNameValid(String CCfirstName) {
 		// Makes it so only accepts letters
 		if (CCfirstName == "" || !CCfirstName.matches("[a-zA-Z]+")) {
@@ -383,7 +464,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the credit card last name
+	 * 
+	 * @param isCClastNameValid validates if using the alphabet and not numbers
+	 * @return True if CClastName matches the alphabet
+	*/
 	private boolean isCClastNameValid(String CClastName) {
 		// Makes it so only accepts letters
 		if (CClastName == "" || !CClastName.matches("[a-zA-Z]+")) {
@@ -391,7 +477,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the phone number
+	 * 
+	 * @param isPhoneValid validates length and if numbers are inputed
+	 * @return True if phone matches the given length and matches numbers only
+	*/
 	private boolean isPhoneValid(String phone) {
 		// Makes it phone has to numbers only and the length is either 15, 7, or 10
 		// Can add different length to be accepted
@@ -401,15 +492,25 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the email
+	 * 
+	 * @param isCountryValid
+	 * @return True if country is valid 
+	*/
 	private boolean isCountryValid(String country) {
 		// Makes it so it only accepts letters
-		if (country == "" || !country.matches("[a-zA-Z]+")) {
+		if (country == "" || !(country.matches("[a-zA-Z]+") || country.matches("[a-zA-Z]+" + " " + "[a-zA-Z]+"))) {
 			return false;
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the security code of card number
+	 * 
+	 * @param isSecurityValid validates the length and if it only has integers
+	 * @return True valid length and numbers only
+	*/
 	private boolean isSecurityValid(String sec) {
 		// Makes it so it only accepts numbers & the length of the security code is
 		// either 3 or 4
@@ -418,7 +519,12 @@ public class ReservationPageControllerClass implements Initializable {
 		}
 		return true;
 	}
-
+	/** 
+	 * Validates the email
+	 * 
+	 * @param isEmailValid validates the domains of emails
+	 * @return True if email ends with valid domains
+	*/
 	private boolean isEmailValid(String email) {
 		if (email == null || email.isEmpty() || email == "") {
 			return false;
@@ -434,13 +540,24 @@ public class ReservationPageControllerClass implements Initializable {
 
 		return false; // Email does not match any valid domain
 	}
-
+	/**
+     * Validates the card number format.
+     *
+     * @param cardNumber The card number to be validated.
+     * @return True if the card number is valid, otherwise false.
+     */
 	private boolean isValidCardNumber(String cardNumber) {
 		// Regular expression to check for 15 or 16 digit numbers
 		String regex = "^[0-9]{15,16}$";
 		return cardNumber.matches(regex);
 	}
-
+	/**
+     * Validates the expiration date of the card.
+     *
+     * @param month The month of the expiration date.
+     * @param year  The year of the expiration date.
+     * @return True if the expiration date is valid, otherwise false.
+     */
 	private boolean isValidExpirationDate(String month, String year) {
 		// Check if month and year are in the correct format
 		String monthRegex = "^(0[1-9]|1[0-2])$"; // Month should be 01-12
@@ -464,12 +581,23 @@ public class ReservationPageControllerClass implements Initializable {
 			return false;
 		}
 	}
-
+	/**
+     * Validates the ZIP code format.
+     *
+     * @param zipCode The ZIP code to be validated.
+     * @return True if the ZIP code is valid, otherwise false.
+     */
 	private boolean isValidZipCode(String zipCode) {
 		String regex = "^[0-9]{5}$"; // Example regex for a 5-digit US zipcode
 		return zipCode.matches(regex);
 	}
-
+	
+	/**
+     * Sets the customer reservation information and proceeds with the reservation process.
+     *
+     * @param event The ActionEvent triggering the process.
+     * @throws IOException If an I/O error occurs.
+     */
 	@FXML
 	public void setCustomerReservationInformation(ActionEvent event) throws IOException {
 		// getCustomerInfo();

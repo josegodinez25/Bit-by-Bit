@@ -1,5 +1,7 @@
-package application;
+package application; 
+/* Package declaration for organizational purposes. */
 
+/* Import statements for JavaFX, IO functionalities, and date manipulation. */
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,15 +18,25 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.stage.Stage;
 
+/* 
+SearchPageControllerClass for handling room search functionalities in a hotel reservation system.
+*/
 public class SearchPageControllerClass {
+	/* Singleton instance for availability management. */
 	availabilitySingleton search = availabilitySingleton.getInstance();
+	
+	/* Private fields for managing the JavaFX stage and scenes. */
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	
+	/* Fields to store room type and dates for search. */
 	String searchPageRoomType;
 	LocalDate searchCheckIn;
 	LocalDate searchCheckOut;
 	List<LocalDate> searchTotalDates = new ArrayList<>();
+	
+	/* FXML annotated fields for UI elements. */
 	@FXML 
 	private RadioButton searchPageSingle, searchPageDouble, searchPageKing, searchPageSuite;
 	@FXML
@@ -32,9 +44,11 @@ public class SearchPageControllerClass {
 	@FXML
 	private Label roomAvailabilityMessage;
 	
+	/* Temporary fields to store date values as strings. */
 	String checkIn;
 	String checkOut;
 	
+	/* Method to generate a list of dates between two given dates. */
 	public void searchGetDatesBetween(LocalDate startDate, LocalDate endDate) {
 		searchTotalDates.clear();
 		while (!startDate.isAfter(endDate)) {
@@ -42,7 +56,7 @@ public class SearchPageControllerClass {
 			startDate = startDate.plusDays(1);
 		}
 	}
-	
+	/* Method to set the room type based on radio button selection. */
 	@FXML
 	public void setSearchRoomType(ActionEvent event) {
 		if(searchPageSingle.isSelected()) {
@@ -60,6 +74,7 @@ public class SearchPageControllerClass {
 		//test to check if this method works by printing to console
 		//System.out.println(reservationRoomType);
 	}
+	 /* Methods to set check-in and check-out dates from date pickers. */
 	@FXML
 	public void setSearchCheckIn(ActionEvent event) {
 		searchCheckIn = searchPageCheckIn.getValue();
@@ -74,7 +89,7 @@ public class SearchPageControllerClass {
 		//test to check if this method works by printing to console
 		//System.out.println(searchCheckOut.toString());
 	}
-	
+	/* Method to check room availability based on search criteria. */
 	@FXML
 	public void searchAvailability(ActionEvent event) throws IOException {
 		searchGetDatesBetween(searchCheckIn, searchCheckOut);
@@ -87,7 +102,7 @@ public class SearchPageControllerClass {
 			roomAvailabilityMessage.setText("This room is available click here to reserve this room!");
 		}
 	}
-	
+	/* Method to switch back to the main scene. */
 	@FXML
 	public void switchToMainScene(ActionEvent event) throws IOException {	
 	
@@ -97,7 +112,7 @@ public class SearchPageControllerClass {
 		 stage.setScene(scene);
 		 stage.show();
 	}
-	
+	/* Method to switch to the reservation scene, passing along search criteria. */
 	@FXML
 	public void switchToReservationScene(ActionEvent event) throws IOException {
 		    search.setAvailabilityString(searchPageRoomType);

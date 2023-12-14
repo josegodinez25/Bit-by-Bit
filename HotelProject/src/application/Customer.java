@@ -1,5 +1,8 @@
 package application;
-
+/**
+ * @author Nathan
+ * @version 11/20/23
+ */
 public class Customer {
 	String firstName;
 	String lastName;
@@ -23,7 +26,22 @@ public class Customer {
 	String checkOut;
 
 	// constructor of Customer Class
-	// contains all of their information (11 Strings)
+	
+	//contains all of their information (11 Strings)
+    /**
+     * constructor of Customer class
+     * @param firstName first name of customer 
+     * @param lastName last name of of customer 
+     * @param email email of customer 
+     * @param phoneNumber phone number of customer 
+     * @param paymentFirstName first name on the card
+     * @param paymentLastName last name on the card
+     * @param cardNumber card number
+     * @param expDate expiration date of the card
+     * @param zipCode zip code
+     * @param country country
+     * @param secCode security code of card
+     */
 	Customer(String firstName, String lastName, String email, String phoneNumber, String paymentFirstName,
 			String paymentLastName, String cardNumber, String expDate, String zipCode, String country, String secCode) {
 		this.firstName = firstName;
@@ -45,7 +63,10 @@ public class Customer {
 		return email;
 	}
 
-	// writes all the customers information into an Excel file
+	//writes all the customers information into an Excel file
+    /**
+     * writes the users information onto the excel sheet
+     */
 	public void inputUserDetail() {
 		ReadWriteExcel obj = new ReadWriteExcel();
 
